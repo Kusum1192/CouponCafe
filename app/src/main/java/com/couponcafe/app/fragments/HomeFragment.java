@@ -22,6 +22,7 @@ import java.util.TimerTask;
 
 import me.relex.circleindicator.CircleIndicator;
 
+
 public class HomeFragment extends Fragment {
 
     private static ViewPager mPager;
