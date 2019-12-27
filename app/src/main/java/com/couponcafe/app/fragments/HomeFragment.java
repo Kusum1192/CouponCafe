@@ -1,9 +1,11 @@
 package com.couponcafe.app.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
@@ -13,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.couponcafe.app.R;
+import com.couponcafe.app.activities.BestOffersActivity;
 import com.couponcafe.app.utils.Sliding_Adapter_For_viewpager_main;
 
 
@@ -23,21 +26,23 @@ import java.util.TimerTask;
 import me.relex.circleindicator.CircleIndicator;
 
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private static ViewPager mPager;
     private static int currentPage = 0;
-    private static final Integer[] images = {R.drawable.one, R.drawable.two, R.drawable.three};
+    private static final Integer[] images = {R.drawable.one, R.drawable.oyoroom, R.drawable.time_prime};
     private ArrayList<Integer> ImageArray = new ArrayList<Integer>();
     private CircleIndicator indicator;
-
+    CardView cardview_bestoffer;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.home_fragment, container, false);
         mPager = (ViewPager) root.findViewById(R.id.pager);
+        cardview_bestoffer = root.findViewById(R.id.cardview_bestoffer);
         indicator = (CircleIndicator) root.findViewById(R.id.indicator);
 
+        cardview_bestoffer.setOnClickListener(this);
         init();
         return root;
     }
@@ -93,4 +98,14 @@ public class HomeFragment extends Fragment {
     }
 
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.cardview_bestoffer:
+                Intent intent_bestOffers_activity = new Intent(getActivity(), BestOffersActivity.class);
+                startActivity(intent_bestOffers_activity);
+                break;
+
+        }
+    }
 }

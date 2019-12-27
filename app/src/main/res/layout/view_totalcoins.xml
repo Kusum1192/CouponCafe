@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:singleLine="true"
-            android:text="9999999999"
+            android:text="0"
             android:textColor="@color/black"
             android:textSize="@dimen/onefive" />
     </RelativeLayout>
