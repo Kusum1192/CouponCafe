@@ -35,7 +35,7 @@ public class ActivitiesFragment extends Fragment implements View.OnClickListener
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.activities_fragment, container, false);
 
-        Toast.makeText(getActivity(), "activity", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(), "activity", Toast.LENGTH_SHORT).show();
       //  init(view);
 
         return view;

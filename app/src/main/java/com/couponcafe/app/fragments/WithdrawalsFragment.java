@@ -34,7 +34,7 @@ public class WithdrawalsFragment extends Fragment implements View.OnClickListene
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
        View  view = inflater.inflate(R.layout.withdraw_fragment, container, false);
-        Toast.makeText(getActivity(), "withdraw", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(), "withdraw", Toast.LENGTH_SHORT).show();
        // init(view);
 
         return view;

@@ -1,7 +1,10 @@
 package com.couponcafe.app;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import com.couponcafe.app.activities.TestingActivity;
+import com.couponcafe.app.fragments.BlankFragment;
 import com.couponcafe.app.fragments.CategoriesFragment;
 import com.couponcafe.app.fragments.HelpFragment;
 import com.couponcafe.app.fragments.HomeFragment;
@@ -205,7 +208,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void loadProfileFragment() {
-        ProfileFragment fragment = new ProfileFragment();
+//        Intent intent_profile = new Intent(MainActivity.this, TestingActivity.class);
+//        startActivity(intent_profile);
+        BlankFragment fragment = new BlankFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.nav_host_fragment, fragment);
         ft.commit();
