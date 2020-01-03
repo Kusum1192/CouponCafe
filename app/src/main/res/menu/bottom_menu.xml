@@ -14,16 +14,18 @@
     <item
         android:id="@+id/navigation_shoping_assistance"
         android:icon="@drawable/ic_home"
-        android:title="ShopingAssistance" />
+        android:title="@string/invite_earn" />
+
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/ic_person"
+        android:title="Profile" />
 
     <item
         android:id="@+id/navigation_help"
         android:icon="@drawable/ic_help"
         android:title="Help" />
 
-    <item
-        android:id="@+id/navigation_profile"
-        android:icon="@drawable/ic_person"
-        android:title="Profile" />
+
 
 </menu>
