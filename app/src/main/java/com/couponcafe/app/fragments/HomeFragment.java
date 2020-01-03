@@ -35,7 +35,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private CircleIndicator indicator;
     CardView cardview_bestoffer;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
+    public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.home_fragment, container, false);
         mPager = (ViewPager) root.findViewById(R.id.pager);

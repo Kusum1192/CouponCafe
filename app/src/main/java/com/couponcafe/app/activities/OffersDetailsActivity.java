@@ -79,7 +79,7 @@ public class OffersDetailsActivity extends AppCompatActivity implements View.OnC
                 break;
 
             case R.id.scratch_win_dialog:
-                getcustomDialog();
+                //getcustomDialog();
                 break;
 
             case R.id.desc_arrow:
@@ -102,7 +102,7 @@ public class OffersDetailsActivity extends AppCompatActivity implements View.OnC
     private void getcustomDialog() {
         final Dialog dialog = new Dialog(OffersDetailsActivity.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCancelable(false);
+        dialog.setCancelable(true);
         dialog.setContentView(R.layout.custom_dialoge_scratch_win);
         dialog.show();
     }

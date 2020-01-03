@@ -36,4 +36,9 @@
     </string>
     <string name="productcode">Myntracode2200</string>
     <string name="nocomment">there are no comments right now</string>
+    <string name="lifesaving">Lifetime Savings: </string>
+    <string name="invite_text">Invite your friends to CouponCafe and earn 10% of their cashback earnings forever.</string>
+
+    <string name="collapsed">collapsed: %s</string>
+    <string name="expanded">expanded: %s</string>
 </resources>
