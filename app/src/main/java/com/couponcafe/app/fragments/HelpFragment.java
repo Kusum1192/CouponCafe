@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -13,6 +15,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.couponcafe.app.BuildConfig;
 import com.couponcafe.app.R;
 import com.google.android.material.tabs.TabLayout;
 
@@ -20,10 +23,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class HelpFragment extends Fragment {
-
-    ViewPager viewPager;
-    TabLayout tabLayout;
+public class HelpFragment extends Fragment implements View.OnClickListener {
+    LinearLayout AboutUs,ContactUs,PrivacyPolicy,TermsofService,HowsitWork,Faq;
+    TextView version;
     View view;
 
     public HelpFragment() {
@@ -43,65 +45,51 @@ public class HelpFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.help_fragment, container, false);
+        AboutUs = view.findViewById(R.id.aboutUs);
+        ContactUs = view.findViewById(R.id.contactUs);
+        PrivacyPolicy = view.findViewById(R.id.privacyPolicy);
+        TermsofService = view.findViewById(R.id.termsOfServices);
+        HowsitWork = view.findViewById(R.id.howsItWork);
+        Faq = view.findViewById(R.id.faq);
 
-        initView(view);
+        final String versionName = BuildConfig.VERSION_NAME;
+        version = view.findViewById(R.id.versionCode);
+        version.setText("Version : "+versionName);
+
+        AboutUs.setOnClickListener(this);
+        ContactUs.setOnClickListener(this);
+        PrivacyPolicy.setOnClickListener(this);
+        TermsofService.setOnClickListener(this);
+        HowsitWork.setOnClickListener(this);
+        Faq.setOnClickListener(this);
+
         return view;
     }
 
-    public void initView(View view){
-        tabLayout = (TabLayout)view.findViewById(R.id.tab_layout);
-        viewPager = (ViewPager)view.findViewById(R.id.view_pager_child);
-        if (viewPager != null) {
-            setupViewPager(viewPager);
-        }
-        assert viewPager != null;
-        // setupViewPager(viewPager);
-        tabLayout.setupWithViewPager(viewPager);
-        tabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
 
-    }
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
 
-    public void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
-        adapter.addFrag(new OverviewFragment(), "Overview");
-        adapter.addFrag(new ActivitiesFragment(), "faq");
-        adapter.addFrag(new WithdrawalsFragment(), "cashback issue");
-        adapter.addFrag(new WithdrawalsFragment(), "contact us");
-        //viewPager.setOffscreenPageLimit(2);
-        viewPager.setAdapter(adapter);
+            case R.id.aboutUs:
+                Toast.makeText(getActivity(), "About us", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.contactUs:
+                Toast.makeText(getActivity(), "contactUs", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.privacyPolicy:
+                Toast.makeText(getActivity(), "privacyPolicy", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.termsOfServices:
+                Toast.makeText(getActivity(), "termsOfServices", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.howsItWork:
+                Toast.makeText(getActivity(), "howsItWork", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.faq:
+                Toast.makeText(getActivity(), "faq", Toast.LENGTH_SHORT).show();
+                break;
 
-    }
-
-    public class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
-
-
-        public ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
-
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragmentList.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
-
-        public void addFrag(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
         }
     }
-
-
 }

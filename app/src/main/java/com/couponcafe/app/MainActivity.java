@@ -1,13 +1,12 @@
 package com.couponcafe.app;
 
-import android.content.Intent;
 import android.os.Bundle;
 
-import com.couponcafe.app.activities.TestingActivity;
-import com.couponcafe.app.fragments.BlankFragment;
 import com.couponcafe.app.fragments.CategoriesFragment;
 import com.couponcafe.app.fragments.HelpFragment;
 import com.couponcafe.app.fragments.HomeFragment;
+import com.couponcafe.app.fragments.InviteAndEarn;
+import com.couponcafe.app.fragments.NotificationFragment;
 import com.couponcafe.app.fragments.ProfileFragment;
 import com.couponcafe.app.fragments.ShopingAssistanceFragment;
 
@@ -21,11 +20,9 @@ import android.view.View;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -99,6 +96,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Inflate the bottom_menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.title_main_menu, menu);
         MenuItem action_total_amount = menu.findItem(R.id.action_wallet);
+        MenuItem NotificationIcon = menu.findItem(R.id.action_notification);
+
+        NotificationIcon.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                clearBackStack();
+                open_profile_edit_Fragment(new NotificationFragment());
+                return false;
+            }
+        });
+
+
         return true;
     }
 
@@ -155,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }
 
                     case R.id.navigation_categories: {
-                        loadCategoriesFragment();
+//                        loadCategoriesFragment();
                         return true;
                     }
 
@@ -195,7 +204,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void loadShopingAssistanceFragment() {
-        ShopingAssistanceFragment fragment = new ShopingAssistanceFragment();
+        InviteAndEarn fragment = new InviteAndEarn();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.nav_host_fragment, fragment);
         ft.commit();
@@ -214,6 +223,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.nav_host_fragment, fragment);
         ft.commit();
+    }
+
+    private void open_profile_edit_Fragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_left);
+        fragmentTransaction.add(R.id.nav_host_fragment, fragment, fragment.getClass().getName());
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+    public void clearBackStack() {
+
+        int backStackEntryCount = getSupportFragmentManager().getBackStackEntryCount();
+        if (backStackEntryCount > 0) {
+            for (int i = 0; i < backStackEntryCount; i++) {
+                FragmentManager.BackStackEntry first = getSupportFragmentManager()
+                        .getBackStackEntryAt(i);
+                getSupportFragmentManager().popBackStack(first.getId(),
+                        FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            }
+        }
     }
 
 }

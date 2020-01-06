@@ -21,7 +21,6 @@
             android:layout_height="match_parent"
             app:elevation="0dp"
             app:expandedTitleTextAppearance="@style/Widget.AppCompat.ActionBar.TabText"
-
             app:statusBarScrim="?attr/colorAccent">
 
 

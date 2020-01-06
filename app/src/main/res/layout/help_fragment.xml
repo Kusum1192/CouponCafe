@@ -4,39 +4,229 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-        <com.google.android.material.tabs.TabLayout
-            android:visibility="visible"
-            android:id="@+id/tab_layout"
-            style="@style/AppTabLayout1"
+        
+        <LinearLayout
+            android:layout_marginBottom="5sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_margin="15sp"
+                android:layout_width="match_parent"
+                android:layout_height="150sp"
+                android:src="@drawable/coupan">
+            </ImageView>
+
+            <TextView
+                android:id="@+id/versionCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Version : 1.0"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textColor="@color/black">
+            </TextView>
+
+            
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/aboutUs"
+            android:layout_margin="4sp"
             android:background="@color/white"
-            app:tabIndicatorColor="@color/black"
-            app:tabMode="scrollable"
-            app:tabTextAppearance="@style/AppTabTextAppearance1" />
-
-
-        <TextView
-            android:text="this is view pager"
-            android:textSize="30sp"
-            android:textColor="@color/black"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-        <androidx.viewpager.widget.ViewPager
-            android:visibility="visible"
-            android:background="@color/blue"
-            android:id="@+id/view_pager_child"
+            <ImageView
+                android:layout_marginRight="15sp"
+                android:layout_marginLeft="15sp"
+                android:padding="5sp"
+                android:layout_width="50sp"
+                android:layout_height="40sp"
+                android:src="@drawable/about_us">
+
+            </ImageView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="About Us"
+                android:textSize="14sp"
+                android:textColor="@color/black">
+
+            </TextView>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/privacyPolicy"
+            android:layout_margin="4sp"
+            android:background="@color/white"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_marginRight="15sp"
+                android:layout_marginLeft="15sp"
+                android:padding="5sp"
+                android:layout_width="50sp"
+                android:layout_height="40sp"
+                android:src="@drawable/privacy_policy">
+
+            </ImageView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Privacy Policy"
+                android:textSize="14sp"
+                android:textColor="@color/black">
+
+            </TextView>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/termsOfServices"
+            android:layout_margin="4sp"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_marginRight="15sp"
+                android:layout_marginLeft="15sp"
+                android:padding="5sp"
+                android:layout_width="50sp"
+                android:layout_height="40sp"
+                android:src="@drawable/terms_and_services">
+
+            </ImageView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Terms of Services"
+                android:textSize="14sp"
+                android:textColor="@color/black">
+
+            </TextView>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/contactUs"
+            android:layout_margin="4sp"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_marginRight="15sp"
+                android:layout_marginLeft="15sp"
+                android:padding="5sp"
+                android:layout_width="50sp"
+                android:layout_height="40sp"
+                android:src="@drawable/contact_us">
+
+            </ImageView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Contact Us"
+                android:textSize="14sp"
+                android:textColor="@color/black">
+
+            </TextView>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/howsItWork"
+            android:layout_margin="4sp"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_marginRight="15sp"
+                android:layout_marginLeft="15sp"
+                android:layout_width="50sp"
+                android:layout_height="40sp"
+                android:src="@drawable/hows_it_work">
+
+            </ImageView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="How's it Work"
+                android:textSize="14sp"
+                android:textColor="@color/black">
+
+            </TextView>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/faq"
+            android:layout_margin="4sp"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:padding="3dp"
+                android:layout_marginRight="15sp"
+                android:layout_marginLeft="15sp"
+                android:layout_width="50sp"
+                android:layout_height="40sp"
+                android:src="@drawable/faq">
+
+            </ImageView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Faq"
+                android:textSize="14sp"
+                android:textColor="@color/black">
+
+            </TextView>
+
+
+
+        </LinearLayout>
+
+
 
 
     </LinearLayout>
-
+    </ScrollView>
 </LinearLayout>
