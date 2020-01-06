@@ -1,24 +1,29 @@
 package com.couponcafe.app.fragments;
 
-import android.app.Activity;
-import android.content.Context;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import com.couponcafe.app.R;
-import com.couponcafe.app.adapter.ViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 
 
 
 public class ProfileFragment extends Fragment {
-    ViewPager viewPager;
+   // ViewPager viewPager;
     TabLayout tabLayout;
+
+    FrameLayout frameLayout;
+    Fragment fragment = null;
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
 
     //Context context;
     View view;
@@ -45,28 +50,50 @@ public class ProfileFragment extends Fragment {
     }
 
     public void initView(View view){
-        tabLayout = (TabLayout)view.findViewById(R.id.tab_layout);
-        viewPager = (ViewPager)view.findViewById(R.id.view_pager_child);
-        //if (viewPager != null) {
-           // setupViewPager(viewPager);
-       // }
-        tabLayout.setupWithViewPager(viewPager);
-        tabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
+        tabLayout = (TabLayout)view.findViewById(R.id.tabLayout);
+        frameLayout=(FrameLayout)view.findViewById(R.id.frameLayout);
 
-    }
+        fragment = new OverviewFragment();
+        fragmentManager = getActivity().getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout, fragment);
+        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        fragmentTransaction.commit();
 
-//    private void setupViewPager(ViewPager viewPager) {
-//       // FragmentManager cfManager = getChildFragmentManager();
-//        ViewPagerAdapter adapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
-//        adapter.addFrag(new OverviewFragment(), "Overview");
-//        adapter.addFrag(new ActivitiesFragment(), "Activites");
-//        adapter.addFrag(new WithdrawalsFragment(), "Withdrawals");
-//        //viewPager.setOffscreenPageLimit(2);
-//        viewPager.setAdapter(adapter);
-//
-//    }
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                // Fragment fragment = null;
+                switch (tab.getPosition()) {
+                    case 0:
+                        fragment = new OverviewFragment();
+                        break;
+                    case 1:
+                        fragment = new ActivitiesFragment();
+                        break;
+                    case 2:
+                        fragment = new WithdrawalsFragment();
+                        break;
 
+                }
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                ft.replace(R.id.frameLayout, fragment);
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                ft.commit();
+            }
 
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
 
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+  }
 
 }

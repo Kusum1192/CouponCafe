@@ -210,7 +210,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void loadProfileFragment() {
 //        Intent intent_profile = new Intent(MainActivity.this, TestingActivity.class);
 //        startActivity(intent_profile);
-        BlankFragment fragment = new BlankFragment();
+        ProfileFragment fragment = new ProfileFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.nav_host_fragment, fragment);
         ft.commit();
