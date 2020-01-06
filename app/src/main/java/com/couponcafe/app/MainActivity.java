@@ -8,8 +8,6 @@ import com.couponcafe.app.fragments.HomeFragment;
 import com.couponcafe.app.fragments.InviteAndEarn;
 import com.couponcafe.app.fragments.NotificationFragment;
 import com.couponcafe.app.fragments.ProfileFragment;
-import com.couponcafe.app.fragments.ShopingAssistanceFragment;
-
 import com.couponcafe.app.utils.BottomNavigationViewHelper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -125,12 +123,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         switch (id) {
-            case R.id.nav_home:
-                Toast.makeText(this, "home", Toast.LENGTH_SHORT).show();
+            case R.id.nav_cashactivity:
+                //Toast.makeText(this, "home", Toast.LENGTH_SHORT).show();
                 break;
 
-            case R.id.nav_gallery:
-                Toast.makeText(this, "gallery", Toast.LENGTH_SHORT).show();
+            case R.id.nav_withdraw:
+                //Toast.makeText(this, "gallery", Toast.LENGTH_SHORT).show();
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);
@@ -217,8 +215,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void loadProfileFragment() {
-//        Intent intent_profile = new Intent(MainActivity.this, TestingActivity.class);
-//        startActivity(intent_profile);
         ProfileFragment fragment = new ProfileFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.nav_host_fragment, fragment);

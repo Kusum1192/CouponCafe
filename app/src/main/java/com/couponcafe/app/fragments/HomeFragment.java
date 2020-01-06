@@ -14,8 +14,6 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-
 import com.couponcafe.app.R;
 import com.couponcafe.app.activities.BestOffersActivity;
 import com.couponcafe.app.activities.TopStoresDetailsActivity;
@@ -40,7 +38,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private static final Integer[] images = {R.drawable.one, R.drawable.oyoroom, R.drawable.time_prime};
     private ArrayList<Integer> ImageArray = new ArrayList<Integer>();
     private CircleIndicator indicator;
-    CardView cardview_bestoffer;
+    CardView cardview_bestoffer,cardview_share_invite;
     RecyclerView recylerview_topstore;
     private List<TopStores> topStoresList = new ArrayList<>();
    // private RecyclerView recyclerView;
@@ -54,9 +52,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         View root = inflater.inflate(R.layout.home_fragment, container, false);
         mPager = (ViewPager) root.findViewById(R.id.pager);
         cardview_bestoffer = root.findViewById(R.id.cardview_bestoffer);
+        cardview_share_invite = root.findViewById(R.id.cardview_share_invite);
         indicator = (CircleIndicator) root.findViewById(R.id.indicator);
 
         cardview_bestoffer.setOnClickListener(this);
+        cardview_share_invite.setOnClickListener(this);
         recylerview_topstore = root.findViewById(R.id.recylerview_topstore);
 
         mAdapter = new TopStoresAdapter(topStoresList);
@@ -143,6 +143,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             case R.id.cardview_bestoffer:
                 Intent intent_bestOffers_activity = new Intent(getActivity(), BestOffersActivity.class);
                 startActivity(intent_bestOffers_activity);
+                break;
+
+            case R.id.cardview_share_invite:
+
                 break;
 
         }

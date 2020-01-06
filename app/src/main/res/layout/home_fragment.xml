@@ -352,6 +352,51 @@
 
             </androidx.cardview.widget.CardView>
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardview_share_invite"
+                android:layout_marginBottom="2dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="2dp"
+                app:cardUseCompatPadding="true"
+                card_view:cardPreventCornerOverlap="false">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_margin="10dp"
+                            android:textSize="15sp"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:text="@string/invite_friends"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                       <ImageView
+                           android:scaleType="fitXY"
+                           android:src="@drawable/refer_friend"
+                           android:layout_width="match_parent"
+                           android:layout_height="150dp"/>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+
         </LinearLayout>
 
     </ScrollView>

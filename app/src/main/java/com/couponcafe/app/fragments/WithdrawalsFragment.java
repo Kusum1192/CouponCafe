@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
@@ -16,7 +18,8 @@ import com.couponcafe.app.activities.OffersDetailsActivity;
 
 public class WithdrawalsFragment extends Fragment implements View.OnClickListener {
 
-
+    LinearLayout ll_recharge_now,ll_transfer_now;
+    ImageView desc_arrow,e_wallet_arrow;
    // View view = null;
     public WithdrawalsFragment() {
         // Required empty public constructor
@@ -34,13 +37,18 @@ public class WithdrawalsFragment extends Fragment implements View.OnClickListene
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
        View  view = inflater.inflate(R.layout.withdraw_fragment, container, false);
-        //Toast.makeText(getActivity(), "withdraw", Toast.LENGTH_SHORT).show();
-       // init(view);
 
+        init(view);
         return view;
     }
 
     private void init(View view) {
+     ll_recharge_now = view.findViewById(R.id.ll_recharge_now);
+     ll_transfer_now = view.findViewById(R.id.ll_transfer_now);
+     desc_arrow = view.findViewById(R.id.desc_arrow);
+     e_wallet_arrow = view.findViewById(R.id.e_wallet_arrow);
+     desc_arrow.setOnClickListener(this);
+     e_wallet_arrow.setOnClickListener(this);
 
 
     }
@@ -48,7 +56,31 @@ public class WithdrawalsFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void onClick(View view) {
+     switch (view.getId()){
+      case R.id.desc_arrow:
+       if (ll_recharge_now.getVisibility() == View.GONE) {
+        // it's collapsed - expand it
+        ll_recharge_now.setVisibility(View.VISIBLE);
+        desc_arrow.setImageResource(R.drawable.ic_arrow_drop_up);
+       } else {
+        // it's expanded - collapse it
+        ll_recharge_now.setVisibility(View.GONE);
+        desc_arrow.setImageResource(R.drawable.ic_arrow_drop_down);
+       }
+       break;
 
+      case R.id.e_wallet_arrow:
+       if (ll_transfer_now.getVisibility() == View.GONE) {
+        // it's collapsed - expand it
+        ll_transfer_now.setVisibility(View.VISIBLE);
+        e_wallet_arrow.setImageResource(R.drawable.ic_arrow_drop_up);
+       } else {
+        // it's expanded - collapse it
+        ll_transfer_now.setVisibility(View.GONE);
+        e_wallet_arrow.setImageResource(R.drawable.ic_arrow_drop_down);
+       }
+       break;
 
+     }
     }
 }

@@ -38,7 +38,8 @@
     <string name="productcode">Myntracode2200</string>
     <string name="nocomment">there are no comments right now</string>
     <string name="lifesaving">Lifetime Savings: </string>
-    <string name="invite_text">Invite your friends to CouponCafe and earn 10% of their cashback earnings forever.</string>
+    <string name="invite_text">Invite your Friends to CouponCafe and earn 10% of their cashback earnings forever.</string>
+    <string name="invite_friends">Invite Friends &amp; Get 10% Cashback for life</string>
 
     <string name="collapsed">collapsed: %s</string>
     <string name="expanded">expanded: %s</string>
@@ -49,4 +50,15 @@
     <string name="tvvideo"><u><![CDATA[TV,Audio/Video &amp; Movies]]></u></string>
     <string name="text_refer">Get 10% of your firend\'s earnings when they sign up on Coupon Cafe using your referral code</string>
     <string name="share_earn"><![CDATA[Share & Earn]]></string>
+    <string name="useurcash">Use your cashback to rechage your phone or top up yout DTH account.</string>
+    <string name="getcashback">Get 10% of your friends\' earnings when they sign up on CouponCafe using your refrerral code.</string>
+    <string name="ourwalletparner">Our Wallet Partners-</string>
+    <string name="neftnote">You can request an NEFT transfer to your bank a/c.</string>
+    <string name="ourgiftcard">Our Gift Card Partners-</string>
+    <string name="cashactivities">Cash Activities</string>
+    <string name="withdrawamoney">Withdraw Money</string>
+    <string name="specialoffers">Special Offers</string>
+    <string name="referfriend"><![CDATA[Refer & Earn]]></string>
+    <string name="privacy">Privacy</string>
+    <string name="aboutus">About Us</string>
 </resources>

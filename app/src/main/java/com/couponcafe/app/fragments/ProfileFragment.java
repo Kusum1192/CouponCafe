@@ -69,9 +69,6 @@ public class ProfileFragment extends Fragment {
                         fragment = new OverviewFragment();
                         break;
                     case 1:
-                        fragment = new ActivitiesFragment();
-                        break;
-                    case 2:
                         fragment = new WithdrawalsFragment();
                         break;
 
