@@ -125,6 +125,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (id) {
             case R.id.nav_cashactivity:
                 //Toast.makeText(this, "home", Toast.LENGTH_SHORT).show();
+                
                 break;
 
             case R.id.nav_withdraw:
@@ -162,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }
 
                     case R.id.navigation_categories: {
-//                        loadCategoriesFragment();
+                        loadCategoriesFragment();
                         return true;
                     }
 
