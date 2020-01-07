@@ -1,12 +1,13 @@
 package com.couponcafe.app;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import com.couponcafe.app.activities.NotificationActivity;
 import com.couponcafe.app.fragments.CategoriesFragment;
 import com.couponcafe.app.fragments.HelpFragment;
 import com.couponcafe.app.fragments.HomeFragment;
 import com.couponcafe.app.fragments.InviteAndEarn;
-import com.couponcafe.app.fragments.NotificationFragment;
 import com.couponcafe.app.fragments.ProfileFragment;
 import com.couponcafe.app.utils.BottomNavigationViewHelper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -30,7 +31,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -99,8 +99,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NotificationIcon.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                clearBackStack();
-                open_profile_edit_Fragment(new NotificationFragment());
+                Intent intent = new Intent(MainActivity.this, NotificationActivity.class);
+                startActivity(intent);
                 return false;
             }
         });
