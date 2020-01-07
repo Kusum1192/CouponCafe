@@ -29,6 +29,10 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.Menu;
 
@@ -125,11 +129,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (id) {
             case R.id.nav_cashactivity:
                 //Toast.makeText(this, "home", Toast.LENGTH_SHORT).show();
-                
+                setupBottomNavigationFrom(R.id.navigation_profile);
                 break;
 
             case R.id.nav_withdraw:
                 //Toast.makeText(this, "gallery", Toast.LENGTH_SHORT).show();
+                setupBottomNavigationFrom(R.id.navigation_profile);
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);
@@ -242,6 +247,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         FragmentManager.POP_BACK_STACK_INCLUSIVE);
             }
         }
+    }
+
+    public void setupBottomNavigationFrom(final int id) {
+        mBottomNavigationView = (BottomNavigationView)findViewById(R.id.bottom_navigation);
+        BottomNavigationViewHelper.disableShiftMode(mBottomNavigationView);
+        mBottomNavigationView.getMenu().findItem(id).setChecked(true);
+        mBottomNavigationView.getMenu().performIdentifierAction(id, 0);
+
+
     }
 
 }

@@ -5,12 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <ScrollView
+        android:layout_marginBottom="65dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="vertical">
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
         
         <LinearLayout
@@ -20,9 +21,8 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_margin="15sp"
                 android:layout_width="match_parent"
-                android:layout_height="150sp"
+                android:layout_height="140dp"
                 android:src="@drawable/coupan">
             </ImageView>
 
@@ -40,8 +40,8 @@
         </LinearLayout>
 
         <LinearLayout
+            android:padding="8dp"
             android:id="@+id/aboutUs"
-            android:layout_margin="4sp"
             android:background="@color/white"
             android:layout_width="match_parent"
             android:gravity="center"
@@ -49,15 +49,13 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_marginRight="15sp"
-                android:layout_marginLeft="15sp"
-                android:padding="5sp"
-                android:layout_width="50sp"
-                android:layout_height="40sp"
+                android:layout_width="@dimen/help_image_width"
+                android:layout_height="@dimen/help_image_height"
                 android:src="@drawable/about_us">
 
             </ImageView>
             <TextView
+                android:layout_marginLeft="2dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="About Us"
@@ -70,9 +68,14 @@
 
         </LinearLayout>
 
+        <View
+            android:background="@color/line_gray"
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"/>
+
         <LinearLayout
             android:id="@+id/privacyPolicy"
-            android:layout_margin="4sp"
+            android:padding="8dp"
             android:background="@color/white"
             android:layout_width="match_parent"
             android:gravity="center"
@@ -80,15 +83,13 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_marginRight="15sp"
-                android:layout_marginLeft="15sp"
-                android:padding="5sp"
-                android:layout_width="50sp"
-                android:layout_height="40sp"
+                android:layout_width="@dimen/help_image_width"
+                android:layout_height="@dimen/help_image_height"
                 android:src="@drawable/privacy_policy">
 
             </ImageView>
             <TextView
+                android:layout_marginLeft="2dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Privacy Policy"
@@ -100,10 +101,13 @@
 
 
         </LinearLayout>
-
+        <View
+            android:background="@color/line_gray"
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"/>
         <LinearLayout
             android:id="@+id/termsOfServices"
-            android:layout_margin="4sp"
+            android:padding="8dp"
             android:background="@color/white"
             android:layout_width="match_parent"
             android:gravity="center"
@@ -111,15 +115,13 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_marginRight="15sp"
-                android:layout_marginLeft="15sp"
-                android:padding="5sp"
-                android:layout_width="50sp"
-                android:layout_height="40sp"
+                android:layout_width="@dimen/help_image_width"
+                android:layout_height="@dimen/help_image_height"
                 android:src="@drawable/terms_and_services">
 
             </ImageView>
             <TextView
+                android:layout_marginLeft="2dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Terms of Services"
@@ -131,10 +133,13 @@
 
 
         </LinearLayout>
-
+        <View
+            android:background="@color/line_gray"
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"/>
         <LinearLayout
             android:id="@+id/contactUs"
-            android:layout_margin="4sp"
+            android:padding="8dp"
             android:background="@color/white"
             android:layout_width="match_parent"
             android:gravity="center"
@@ -142,15 +147,13 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_marginRight="15sp"
-                android:layout_marginLeft="15sp"
-                android:padding="5sp"
-                android:layout_width="50sp"
-                android:layout_height="40sp"
+                android:layout_width="@dimen/help_image_width"
+                android:layout_height="@dimen/help_image_height"
                 android:src="@drawable/contact_us">
 
             </ImageView>
             <TextView
+                android:layout_marginLeft="2dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Contact Us"
@@ -162,10 +165,13 @@
 
 
         </LinearLayout>
-
+        <View
+            android:background="@color/line_gray"
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"/>
         <LinearLayout
             android:id="@+id/howsItWork"
-            android:layout_margin="4sp"
+            android:padding="8dp"
             android:background="@color/white"
             android:layout_width="match_parent"
             android:gravity="center"
@@ -173,14 +179,13 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_marginRight="15sp"
-                android:layout_marginLeft="15sp"
-                android:layout_width="50sp"
-                android:layout_height="40sp"
+                android:layout_width="@dimen/help_image_width"
+                android:layout_height="@dimen/help_image_height"
                 android:src="@drawable/hows_it_work">
 
             </ImageView>
             <TextView
+                android:layout_marginLeft="2dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="How's it Work"
@@ -192,10 +197,13 @@
 
 
         </LinearLayout>
-
+        <View
+            android:background="@color/line_gray"
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"/>
         <LinearLayout
             android:id="@+id/faq"
-            android:layout_margin="4sp"
+            android:padding="8dp"
             android:background="@color/white"
             android:layout_width="match_parent"
             android:gravity="center"
@@ -203,15 +211,13 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:padding="3dp"
-                android:layout_marginRight="15sp"
-                android:layout_marginLeft="15sp"
-                android:layout_width="50sp"
-                android:layout_height="40sp"
+                android:layout_width="@dimen/help_image_width"
+                android:layout_height="@dimen/help_image_height"
                 android:src="@drawable/faq">
 
             </ImageView>
             <TextView
+                android:layout_marginLeft="2dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Faq"
@@ -223,7 +229,10 @@
 
 
         </LinearLayout>
-
+        <View
+            android:background="@color/line_gray"
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"/>
 
 
 

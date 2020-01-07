@@ -14,9 +14,12 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
 import com.couponcafe.app.R;
 import com.couponcafe.app.activities.BestOffersActivity;
 import com.couponcafe.app.activities.TopStoresDetailsActivity;
+import com.couponcafe.app.activities.ViewAllTopOffersActivity;
 import com.couponcafe.app.adapter.TopStores;
 import com.couponcafe.app.adapter.TopStoresAdapter;
 import com.couponcafe.app.adapter.RecyclerTouchListener;
@@ -44,6 +47,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
    // private RecyclerView recyclerView;
     private TopStoresAdapter mAdapter;
 
+    TextView tv_viewtop_offers;
+
     public HomeFragment() {
     }
 
@@ -58,6 +63,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         cardview_bestoffer.setOnClickListener(this);
         cardview_share_invite.setOnClickListener(this);
         recylerview_topstore = root.findViewById(R.id.recylerview_topstore);
+        tv_viewtop_offers = root.findViewById(R.id.tv_viewtop_offers);
+        tv_viewtop_offers.setOnClickListener(this);
 
         mAdapter = new TopStoresAdapter(topStoresList);
         recylerview_topstore.setHasFixedSize(true);
@@ -147,6 +154,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
             case R.id.cardview_share_invite:
 
+                break;
+
+            case R.id.tv_viewtop_offers:
+                Intent intent_topoffers = new Intent(getActivity(), ViewAllTopOffersActivity.class);
+                startActivity(intent_topoffers);
                 break;
 
         }

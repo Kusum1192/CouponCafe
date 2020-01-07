@@ -61,5 +61,6 @@
     <string name="referfriend"><![CDATA[Refer & Earn]]></string>
     <string name="privacy">Privacy</string>
     <string name="aboutus">About Us</string>
+    <string name="viewtopstore">View Top Stores</string>
     <string name="title_notification">Notifications</string>
 </resources>
