@@ -140,7 +140,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             public void run() {
                 handler.post(Update);
             }
-        }, 2500, 2500);
+        }, 1000, 3500);
     }
 
 
