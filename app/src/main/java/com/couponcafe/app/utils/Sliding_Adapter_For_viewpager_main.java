@@ -12,16 +12,18 @@ import androidx.viewpager.widget.PagerAdapter;
 
 import com.couponcafe.app.R;
 import com.couponcafe.app.activities.OffersDetailsActivity;
+import com.couponcafe.app.models.SliderDatum;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class Sliding_Adapter_For_viewpager_main extends PagerAdapter {
 
-    private ArrayList<Integer> images;
+    private ArrayList<SliderDatum> images;
     private LayoutInflater inflater;
     private Context context;
 
-    public Sliding_Adapter_For_viewpager_main(Context context, ArrayList<Integer> images) {
+    public Sliding_Adapter_For_viewpager_main(Context context, ArrayList<SliderDatum> images) {
         this.context = context;
         this.images=images;
         inflater = LayoutInflater.from(context);
@@ -40,19 +42,25 @@ public class Sliding_Adapter_For_viewpager_main extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup view, final int position) {
         View myImageLayout = inflater.inflate(R.layout.image_viewpager_mainactivity_layout, view, false);
-        ImageView myImage = (ImageView) myImageLayout.findViewById(R.id.image);
-        myImage.setImageResource(images.get(position));
+       // ImageView myImage = (ImageView) myImageLayout.findViewById(R.id.image);
+       // myImage.setImageResource(images.get(position).getImageUrl());
+
+        Picasso.get().load(images.get(position).getImageUrl())
+                .placeholder(R.drawable.placeholder)
+                .error(R.drawable.placeholder)
+                .into((ImageView)myImageLayout.findViewById(R.id.image));
+
         view.addView(myImageLayout, 0);
 
         //listening to image click
-        myImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, OffersDetailsActivity.class);
-                context.startActivity(intent);
-                //Toast.makeText(context, "you clicked image " + (position + 1), Toast.LENGTH_LONG).show();
-            }
-        });
+//        myImage.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(context, OffersDetailsActivity.class);
+//                context.startActivity(intent);
+//                //Toast.makeText(context, "you clicked image " + (position + 1), Toast.LENGTH_LONG).show();
+//            }
+//        });
 
 
         return myImageLayout;

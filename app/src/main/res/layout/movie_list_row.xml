@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="130dp"
+    android:layout_width="100dp"
     android:layout_height="wrap_content"
     android:clickable="true"
     android:focusable="true"
@@ -14,9 +14,10 @@
         android:layout_height="60dp">
 
         <ImageView
-            android:scaleType="centerCrop"
+            android:id="@+id/imageView_topstore"
+            android:scaleType="fitXY"
             android:src="@drawable/time_prime_logo"
-            android:layout_width="50dp"
+            android:layout_width="60dp"
             android:layout_height="40dp"/>
 
     </LinearLayout>
@@ -33,6 +34,7 @@
         android:textStyle="bold" />
 
     <TextView
+        android:textColor="@color/green"
         android:gravity="center"
         android:text="gener"
         android:textSize="12sp"
@@ -44,7 +46,7 @@
     <TextView
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:text="@string/year"
+        android:text="@string/activatecash"
         android:id="@+id/year"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

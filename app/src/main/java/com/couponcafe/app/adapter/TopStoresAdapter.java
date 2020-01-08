@@ -3,31 +3,37 @@ package com.couponcafe.app.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.couponcafe.app.R;
+import com.couponcafe.app.models.TopOfferDatum;
+import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TopStoresAdapter extends RecyclerView.Adapter<TopStoresAdapter.MyViewHolder> {
  
-    private List<TopStores> moviesList;
+    private ArrayList<TopOfferDatum> moviesList;
  
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title, year, genre;
+        ImageView imageView_topstore;
  
         public MyViewHolder(View view) {
             super(view);
             title = (TextView) view.findViewById(R.id.title);
             genre = (TextView) view.findViewById(R.id.genre);
             year = (TextView) view.findViewById(R.id.year);
+            imageView_topstore = (ImageView) view.findViewById(R.id.imageView_topstore);
         }
     }
  
  
-    public TopStoresAdapter(List<TopStores> moviesList) {
+    public TopStoresAdapter(ArrayList<TopOfferDatum> moviesList) {
         this.moviesList = moviesList;
     }
  
@@ -41,10 +47,13 @@ public class TopStoresAdapter extends RecyclerView.Adapter<TopStoresAdapter.MyVi
  
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        TopStores topStores = moviesList.get(position);
-        holder.title.setText(topStores.getTitle());
-        holder.genre.setText(topStores.getGenre());
-        holder.year.setText(topStores.getYear());
+        TopOfferDatum topStores = moviesList.get(position);
+        holder.title.setText(topStores.getOfferName());
+        holder.genre.setText(topStores.getCashBack());
+        Picasso.get().load(topStores.getImageUrl())
+                .placeholder(R.drawable.placeholder)
+                .error(R.drawable.placeholder)
+                .into((holder.imageView_topstore));
     }
  
     @Override

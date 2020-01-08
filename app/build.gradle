@@ -10,6 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        //resConfigs
     }
     buildTypes {
         release {
@@ -29,8 +30,11 @@ dependencies {
     // Add for rohit 26/12/19 for page indicator
     implementation 'me.relex:circleindicator:1.2.2@aar'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    testImplementation 'junit:junit:4.12'
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }

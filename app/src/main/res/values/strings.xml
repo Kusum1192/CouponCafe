@@ -63,4 +63,7 @@
     <string name="aboutus">About Us</string>
     <string name="viewtopstore">View Top Stores</string>
     <string name="title_notification">Notifications</string>
+    <string name="loadingwait">Loading Please Wait</string>
+    <string name="systemmessage">System Message </string>
+    <string name="activatecash">Activate cash</string>
 </resources>

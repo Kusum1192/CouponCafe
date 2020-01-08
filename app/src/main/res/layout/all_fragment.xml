@@ -8,11 +8,12 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/offer_one"
         app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="5dp"
-        app:cardElevation="2dp"
-        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="4dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:cardUseCompatPadding="true"
+        app:cardPreventCornerOverlap="false"
+        >
 
         <LinearLayout
             android:padding="10dp"
@@ -53,7 +54,8 @@
 
 
                 <TextView
-                    android:text="@string/scratchwin"
+                    android:textColor="@color/red"
+                    android:text="@string/editorpics"
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"/>
@@ -112,10 +114,10 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="5dp"
-        app:cardElevation="2dp"
         app:cardUseCompatPadding="true"
+        app:cardPreventCornerOverlap="false"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="4dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -158,7 +160,8 @@
 
 
                 <TextView
-                    android:text="@string/scratchwin"
+                    android:textColor="@color/red"
+                    android:text="@string/editorpics"
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"/>

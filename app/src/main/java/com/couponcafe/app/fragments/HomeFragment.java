@@ -1,28 +1,42 @@
 package com.couponcafe.app.fragments;
 
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.couponcafe.app.R;
 import com.couponcafe.app.activities.BestOffersActivity;
 import com.couponcafe.app.activities.TopStoresDetailsActivity;
 import com.couponcafe.app.activities.ViewAllTopOffersActivity;
+import com.couponcafe.app.adapter.TodayBestOfferListAdapter;
 import com.couponcafe.app.adapter.TopStores;
 import com.couponcafe.app.adapter.TopStoresAdapter;
 import com.couponcafe.app.adapter.RecyclerTouchListener;
+import com.couponcafe.app.interfaces.APIService;
+import com.couponcafe.app.models.AllOffersDataModel;
+import com.couponcafe.app.models.BestOfferDatum;
+import com.couponcafe.app.models.SliderDatum;
+import com.couponcafe.app.models.TopOfferDatum;
+import com.couponcafe.app.utils.ApiClient;
+import com.couponcafe.app.utils.Constants;
 import com.couponcafe.app.utils.Sliding_Adapter_For_viewpager_main;
 
 
@@ -32,22 +46,23 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import me.relex.circleindicator.CircleIndicator;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private static ViewPager mPager;
     private static int currentPage = 0;
-    private static final Integer[] images = {R.drawable.one, R.drawable.oyoroom, R.drawable.time_prime};
-    private ArrayList<Integer> ImageArray = new ArrayList<Integer>();
     private CircleIndicator indicator;
     CardView cardview_bestoffer,cardview_share_invite;
-    RecyclerView recylerview_topstore;
-    private List<TopStores> topStoresList = new ArrayList<>();
-   // private RecyclerView recyclerView;
+    RecyclerView recylerview_topstore,recycler_view_best_offers;
     private TopStoresAdapter mAdapter;
+    private TodayBestOfferListAdapter todayBestAdapter;
 
     TextView tv_viewtop_offers;
+    ProgressDialog progressDialog;
 
     public HomeFragment() {
     }
@@ -55,6 +70,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.home_fragment, container, false);
+
         mPager = (ViewPager) root.findViewById(R.id.pager);
         cardview_bestoffer = root.findViewById(R.id.cardview_bestoffer);
         cardview_share_invite = root.findViewById(R.id.cardview_share_invite);
@@ -63,84 +79,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         cardview_bestoffer.setOnClickListener(this);
         cardview_share_invite.setOnClickListener(this);
         recylerview_topstore = root.findViewById(R.id.recylerview_topstore);
+        recycler_view_best_offers = root.findViewById(R.id.recycler_view_best_offers);
         tv_viewtop_offers = root.findViewById(R.id.tv_viewtop_offers);
         tv_viewtop_offers.setOnClickListener(this);
 
-        mAdapter = new TopStoresAdapter(topStoresList);
-        recylerview_topstore.setHasFixedSize(true);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        recylerview_topstore.setLayoutManager(mLayoutManager);
-        recylerview_topstore.setAdapter(mAdapter);
 
-        recylerview_topstore.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recylerview_topstore, new RecyclerTouchListener.ClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                TopStores topStores = topStoresList.get(position);
-               // Toast.makeText(getActivity(), topStores.getTitle() + " is selected!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity(), TopStoresDetailsActivity.class);
-                startActivity(intent);
-            }
+        getAllOffersData();
 
-            @Override
-            public void onLongClick(View view, int position) {
-
-            }
-        }));
-
-
-        prepareMovieData();
-        init();
         return root;
-    }
-
-    private void init() {
-        for (int i = 0; i < images.length; i++)
-            ImageArray.add(images[i]);
-
-
-        mPager.setAdapter(new Sliding_Adapter_For_viewpager_main(getActivity(), ImageArray));
-
-        indicator.setViewPager(mPager);
-
-        // Pager listener over indicator
-        indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-
-            @Override
-            public void onPageSelected(int position) {
-                currentPage = position;
-
-
-            }
-
-            @Override
-            public void onPageScrolled(int pos, float arg1, int arg2) {
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int pos) {
-
-            }
-        });
-
-
-        // Auto start of viewpager
-        final Handler handler = new Handler();
-        final Runnable Update = new Runnable() {
-            public void run() {
-                if (currentPage == images.length) {
-                    currentPage = 0;
-                }
-                mPager.setCurrentItem(currentPage++, true);
-            }
-        };
-        Timer swipeTimer = new Timer();
-        swipeTimer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                handler.post(Update);
-            }
-        }, 1000, 3500);
     }
 
 
@@ -164,57 +110,144 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    private void prepareMovieData() {
-        TopStores topStores = new TopStores("Times Prime", "upto rs. 800", "Activate Cashback");
-        topStoresList.add(topStores);
 
-        topStores = new TopStores("Shoppers Stop", "Upto rs. 300", "Activate Cashback");
-        topStoresList.add(topStores);
 
-        topStores = new TopStores("Times Prime", "upto rs. 800", "Activate Cashback");
-        topStoresList.add(topStores);
+    private void getAllOffersData() {
+        Constants.setSharedPreferenceInt(getActivity(),"userId",1);
+        Constants.setSharedPreferenceString(getActivity(),"securitytoken","121212121");
+        Constants.setSharedPreferenceString(getActivity(),"versionName","1.0");
+        Constants.setSharedPreferenceInt(getActivity(),"versionCode",1);
 
-        topStores = new TopStores("Shoppers Stop", "Upto rs. 300", "Activate Cashback");
-        topStoresList.add(topStores);
+        APIService apiService = ApiClient.getClient().create(APIService.class);
+        Call<AllOffersDataModel> call = apiService.getOffers(Constants.getSharedPreferenceInt(getActivity(),"userId",0),
+                Constants.getSharedPreferenceString(getActivity(),"securitytoken",""),
+                Constants.getSharedPreferenceString(getActivity(),"versionName",""),
+                Constants.getSharedPreferenceInt(getActivity(),"versionCode",0));
 
-        topStores = new TopStores("Times Prime", "upto rs. 800", "Activate Cashback");
-        topStoresList.add(topStores);
+        if(!((Activity) getActivity()).isFinishing()) {
+            progressDialog = new ProgressDialog(getActivity());
+            progressDialog.setMessage(getString(R.string.loadingwait));
+            progressDialog.show();
+            progressDialog.setCancelable(false);
+        }
 
-        topStores = new TopStores("Shoppers Stop", "Upto rs. 300", "Activate Cashback");
-        topStoresList.add(topStores);
+        call.enqueue(new Callback<AllOffersDataModel>() {
+            @Override
+            public void onResponse(Call<AllOffersDataModel>call, Response<AllOffersDataModel> response) {
+                dismissProgressDialog();
+                if(response!=null){
+                    if(response.isSuccessful()){
+                        if(response.body().getStatus()==200){
+                            final ArrayList<SliderDatum> sliderArrayList = response.body().getSliderData();
+                            final ArrayList<BestOfferDatum> bestOfferData = response.body().getBestOfferData();
+                            final ArrayList<TopOfferDatum> topOfferData = response.body().getTopOfferData();
 
-        topStores = new TopStores("Times Prime", "upto rs. 800", "Activate Cashback");
-        topStoresList.add(topStores);
+                           // Toast.makeText(getActivity(), ""+bestOfferData.size(), Toast.LENGTH_SHORT).show();
+                            mPager.setAdapter(new Sliding_Adapter_For_viewpager_main(getActivity(), sliderArrayList));
+                            indicator.setViewPager(mPager);
+                            // Pager listener over indicator
+                            indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                                @Override
+                                public void onPageSelected(int position) {
+                                    currentPage = position;
+                                }
 
-        topStores = new TopStores("Shoppers Stop", "Upto rs. 300", "Activate Cashback");
-        topStoresList.add(topStores);
+                                @Override
+                                public void onPageScrolled(int pos, float arg1, int arg2) {
 
-        topStores = new TopStores("Times Prime", "upto rs. 800", "Activate Cashback");
-        topStoresList.add(topStores);
+                                }
 
-        topStores = new TopStores("Shoppers Stop", "Upto rs. 300", "Activate Cashback");
-        topStoresList.add(topStores);
+                                @Override
+                                public void onPageScrollStateChanged(int pos) {
 
-        topStores = new TopStores("Times Prime", "upto rs. 800", "Activate Cashback");
-        topStoresList.add(topStores);
+                                }
+                            });
 
-        topStores = new TopStores("Shoppers Stop", "Upto rs. 300", "Activate Cashback");
-        topStoresList.add(topStores);
+                            // Auto start of viewpager
+                            final Handler handler = new Handler();
+                            final Runnable Update = new Runnable() {
+                                public void run() {
+                                    if (currentPage == sliderArrayList.size()) {
+                                        currentPage = 0;
+                                    }
+                                    mPager.setCurrentItem(currentPage++, true);
+                                }
+                            };
+                            Timer swipeTimer = new Timer();
+                            swipeTimer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    handler.post(Update);
+                                }
+                            }, 2500, 7500);
 
-        topStores = new TopStores("Times Prime", "upto rs. 800", "Activate Cashback");
-        topStoresList.add(topStores);
+                            mAdapter = new TopStoresAdapter(topOfferData);
+                            recylerview_topstore.setHasFixedSize(true);
+                            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+                            recylerview_topstore.setLayoutManager(mLayoutManager);
+                            recylerview_topstore.setAdapter(mAdapter);
 
-        topStores = new TopStores("Shoppers Stop", "Upto rs. 300", "Activate Cashback");
-        topStoresList.add(topStores);
+                            recylerview_topstore.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recylerview_topstore, new RecyclerTouchListener.ClickListener() {
+                                @Override
+                                public void onClick(View view, int position) {
+                                    TopOfferDatum topStores = topOfferData.get(position);
+                                    // Toast.makeText(getActivity(), topStores.getTitle() + " is selected!", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getActivity(), TopStoresDetailsActivity.class);
+                                    startActivity(intent);
+                                }
 
-        topStores = new TopStores("Times Prime", "upto rs. 800", "Activate Cashback");
-        topStoresList.add(topStores);
+                                @Override
+                                public void onLongClick(View view, int position) {
 
-        topStores = new TopStores("Shoppers Stop", "Upto rs. 300", "Activate Cashback");
-        topStoresList.add(topStores);
+                                }
+                            }));
 
-        // notify adapter about data set changes
-        // so that it will render the list with new data
-        mAdapter.notifyDataSetChanged();
+                            todayBestAdapter = new TodayBestOfferListAdapter(bestOfferData,getActivity());
+                            RecyclerView.LayoutManager mLayoutManager1 = new LinearLayoutManager(getActivity());
+                            recycler_view_best_offers.setLayoutManager(mLayoutManager1);
+                            //recycler_view_best_offers.setItemAnimator(new DefaultItemAnimator());
+                            recycler_view_best_offers.setAdapter(todayBestAdapter);
+
+
+
+                        }else{
+                            Toast.makeText(getActivity(),getString(R.string.systemmessage)+response.body().getMessage(),Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                }
+                else{
+                    Toast.makeText(getActivity(),getString(R.string.systemmessage)+response.errorBody(),Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<AllOffersDataModel>call, Throwable t) {
+                // Log error here since request failed
+                Log.e("response", t.toString());
+            }
+        });
+
+
+    }
+
+    private void dismissProgressDialog() {
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        dismissProgressDialog();
+        super.onDestroy();
+    }
+
+    @Override
+    public void onPause() {
+        dismissProgressDialog();
+        super.onPause();
     }
 }
