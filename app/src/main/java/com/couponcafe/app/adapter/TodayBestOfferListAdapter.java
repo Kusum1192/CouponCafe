@@ -45,6 +45,7 @@ public class TodayBestOfferListAdapter extends RecyclerView.Adapter<TodayBestOff
 
         holder.offercashback.setText(items.get(position).getCashBack());
         holder.offercategory.setText(items.get(position).getCategory());
+
         Picasso.get().load(items.get(position).getImageUrl())
                 .placeholder(R.drawable.placeholder)
                 .error(R.drawable.placeholder)
@@ -65,8 +66,6 @@ public class TodayBestOfferListAdapter extends RecyclerView.Adapter<TodayBestOff
 
         TextView offername,offercategory,description,offercashback;
         ImageView offerImage;
-
-
 
         public ViewHolder(View itemView) {
             super(itemView);

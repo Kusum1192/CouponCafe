@@ -2,6 +2,7 @@ package com.couponcafe.app.interfaces;
 
 
 import com.couponcafe.app.models.AllOffersDataModel;
+import com.couponcafe.app.models.ViewTopStoreModel;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -18,5 +19,12 @@ public interface APIService {
                                         @Field("securityToken") String securityToken,
                                         @Field("versionName") String versionName,
                                         @Field("versionCode") int versionCode);
+
+    @FormUrlEncoded
+    @POST("topStoreList")
+    Call<ViewTopStoreModel> viewTopStore(@Field("userId") int userId,
+                                      @Field("securityToken") String securityToken,
+                                      @Field("versionName") String versionName,
+                                      @Field("versionCode") int versionCode);
 
 }

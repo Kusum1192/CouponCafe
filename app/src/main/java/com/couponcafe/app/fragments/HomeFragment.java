@@ -56,7 +56,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private static ViewPager mPager;
     private static int currentPage = 0;
     private CircleIndicator indicator;
-    CardView cardview_bestoffer,cardview_share_invite;
+    CardView cardview_share_invite;
     RecyclerView recylerview_topstore,recycler_view_best_offers;
     private TopStoresAdapter mAdapter;
     private TodayBestOfferListAdapter todayBestAdapter;
@@ -72,11 +72,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         View root = inflater.inflate(R.layout.home_fragment, container, false);
 
         mPager = (ViewPager) root.findViewById(R.id.pager);
-        cardview_bestoffer = root.findViewById(R.id.cardview_bestoffer);
         cardview_share_invite = root.findViewById(R.id.cardview_share_invite);
         indicator = (CircleIndicator) root.findViewById(R.id.indicator);
 
-        cardview_bestoffer.setOnClickListener(this);
+
         cardview_share_invite.setOnClickListener(this);
         recylerview_topstore = root.findViewById(R.id.recylerview_topstore);
         recycler_view_best_offers = root.findViewById(R.id.recycler_view_best_offers);
@@ -93,11 +92,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.cardview_bestoffer:
-                Intent intent_bestOffers_activity = new Intent(getActivity(), BestOffersActivity.class);
-                startActivity(intent_bestOffers_activity);
-                break;
-
             case R.id.cardview_share_invite:
 
                 break;
@@ -186,7 +180,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
                             recylerview_topstore.setLayoutManager(mLayoutManager);
                             recylerview_topstore.setAdapter(mAdapter);
-
                             recylerview_topstore.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recylerview_topstore, new RecyclerTouchListener.ClickListener() {
                                 @Override
                                 public void onClick(View view, int position) {
@@ -205,7 +198,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                             todayBestAdapter = new TodayBestOfferListAdapter(bestOfferData,getActivity());
                             RecyclerView.LayoutManager mLayoutManager1 = new LinearLayoutManager(getActivity());
                             recycler_view_best_offers.setLayoutManager(mLayoutManager1);
-                            //recycler_view_best_offers.setItemAnimator(new DefaultItemAnimator());
                             recycler_view_best_offers.setAdapter(todayBestAdapter);
 
 
