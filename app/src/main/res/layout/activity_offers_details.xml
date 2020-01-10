@@ -117,7 +117,6 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:layout_marginTop="10dp"
                             android:layout_marginBottom="10dp"
                             android:textColor="@color/black"
                             android:text="Description"
@@ -134,7 +133,11 @@
                             android:layout_height="wrap_content"/>
 
                     </RelativeLayout>
-
+                    <View
+                        android:layout_marginBottom="10dp"
+                        android:background="@color/line_gray"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"/>
 
                     <TextView
                         android:id="@+id/mItemDescription"
@@ -266,7 +269,6 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
                         android:textColor="@color/black"
                         android:text="Shop via"
@@ -387,7 +389,6 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
                         android:textColor="@color/black"
                         android:text="Recent Users"
