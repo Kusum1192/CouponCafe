@@ -13,11 +13,11 @@
         android:title="@string/action_notification"
         app:showAsAction="always" />
     <item
+        app:showAsAction="always|withText"
         android:visible="true"
         android:id="@+id/action_wallet"
         android:title="walllet"
-        app:actionLayout="@layout/view_totalcoins"
-        app:showAsAction="always"/>
+        app:actionLayout="@layout/view_totalcoins"/>
     <item
         android:icon="@drawable/ic_search"
         android:visible="true"

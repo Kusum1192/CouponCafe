@@ -10,6 +10,7 @@ import com.couponcafe.app.fragments.HomeFragment;
 import com.couponcafe.app.fragments.InviteAndEarn;
 import com.couponcafe.app.fragments.ProfileFragment;
 import com.couponcafe.app.utils.BottomNavigationViewHelper;
+import com.couponcafe.app.utils.Constants;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -30,6 +31,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -92,9 +94,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the bottom_menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.title_main_menu, menu);
-        MenuItem action_total_amount = menu.findItem(R.id.action_wallet);
-        MenuItem NotificationIcon = menu.findItem(R.id.action_notification);
 
+        TextView userCoins = (TextView) menu.findItem(R.id.action_wallet).getActionView().findViewById(R.id.toolbar_total_coin);
+        userCoins.setText(Constants.getSharedPreferenceString(MainActivity.this,"currency","")+" "+Constants.getSharedPreferenceString(MainActivity.this,"userAmount",""));
+
+        MenuItem NotificationIcon = menu.findItem(R.id.action_notification);
         NotificationIcon.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -103,7 +107,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 return false;
             }
         });
-
 
         return true;
     }

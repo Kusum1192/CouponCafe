@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.couponcafe.app.R;
 import com.couponcafe.app.activities.BestOffersActivity;
+import com.couponcafe.app.activities.OffersDetailsActivity;
 import com.couponcafe.app.activities.TopStoresDetailsActivity;
 import com.couponcafe.app.activities.ViewAllTopOffersActivity;
 import com.couponcafe.app.adapter.TodayBestOfferListAdapter;
@@ -35,6 +36,7 @@ import com.couponcafe.app.models.AllOffersDataModel;
 import com.couponcafe.app.models.BestOfferDatum;
 import com.couponcafe.app.models.SliderDatum;
 import com.couponcafe.app.models.TopOfferDatum;
+import com.couponcafe.app.models.TopStoreDatum;
 import com.couponcafe.app.utils.ApiClient;
 import com.couponcafe.app.utils.Constants;
 import com.couponcafe.app.utils.Sliding_Adapter_For_viewpager_main;
@@ -132,9 +134,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 if(response!=null){
                     if(response.isSuccessful()){
                         if(response.body().getStatus()==200){
-                            final ArrayList<SliderDatum> sliderArrayList = response.body().getSliderData();
-                            final ArrayList<BestOfferDatum> bestOfferData = response.body().getBestOfferData();
-                            final ArrayList<TopOfferDatum> topOfferData = response.body().getTopOfferData();
+                           Constants.setSharedPreferenceString(getActivity(),"userAmount",String.valueOf(response.body().getUserAmount()));
+                           Constants.setSharedPreferenceString(getActivity(),"currency",response.body().getCurrency());
+                           final ArrayList<SliderDatum> sliderArrayList = response.body().getSliderData();
+                           final ArrayList<BestOfferDatum> bestOfferDatalist = response.body().getBestOfferData();
+                           final ArrayList<TopStoreDatum> topStoreDatalist = response.body().getTopStoreData();
 
                            // Toast.makeText(getActivity(), ""+bestOfferData.size(), Toast.LENGTH_SHORT).show();
                             mPager.setAdapter(new Sliding_Adapter_For_viewpager_main(getActivity(), sliderArrayList));
@@ -175,7 +179,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                                 }
                             }, 2500, 7500);
 
-                            mAdapter = new TopStoresAdapter(topOfferData);
+                            mAdapter = new TopStoresAdapter(topStoreDatalist);
                             recylerview_topstore.setHasFixedSize(true);
                             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
                             recylerview_topstore.setLayoutManager(mLayoutManager);
@@ -183,7 +187,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                             recylerview_topstore.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recylerview_topstore, new RecyclerTouchListener.ClickListener() {
                                 @Override
                                 public void onClick(View view, int position) {
-                                    TopOfferDatum topStores = topOfferData.get(position);
+                                    TopStoreDatum topStores = topStoreDatalist.get(position);
                                     // Toast.makeText(getActivity(), topStores.getTitle() + " is selected!", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(getActivity(), TopStoresDetailsActivity.class);
                                     startActivity(intent);
@@ -195,10 +199,26 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                                 }
                             }));
 
-                            todayBestAdapter = new TodayBestOfferListAdapter(bestOfferData,getActivity());
+                            todayBestAdapter = new TodayBestOfferListAdapter(bestOfferDatalist,getActivity());
                             RecyclerView.LayoutManager mLayoutManager1 = new LinearLayoutManager(getActivity());
                             recycler_view_best_offers.setLayoutManager(mLayoutManager1);
                             recycler_view_best_offers.setAdapter(todayBestAdapter);
+
+                            recycler_view_best_offers.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recycler_view_best_offers, new RecyclerTouchListener.ClickListener() {
+                                @Override
+                                public void onClick(View view, int position) {
+                                    BestOfferDatum bestOfferDatum = bestOfferDatalist.get(position);
+                                    // Toast.makeText(getActivity(), topStores.getTitle() + " is selected!", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getActivity(), OffersDetailsActivity.class);
+                                    intent.putExtra("offerid",bestOfferDatum.getOfferId());
+                                    startActivity(intent);
+                                }
+
+                                @Override
+                                public void onLongClick(View view, int position) {
+
+                                }
+                            }));
 
 
 

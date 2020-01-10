@@ -38,6 +38,7 @@
                         android:layout_height="wrap_content">
 
                         <ImageView
+                            android:id="@+id/iv_offer_item"
                             android:scaleType="fitCenter"
                             android:src="@drawable/time_prime_logo"
                             android:layout_weight=".7"
@@ -51,28 +52,31 @@
                             android:layout_height="match_parent">
 
                             <TextView
+                                android:id="@+id/tv_offer_name"
                                 android:textColor="@color/black"
                                 android:text="Myntra"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
 
                             <TextView
+                                android:id="@+id/tv_cat_name"
                                 android:text="Fashion"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
 
-                        </LinearLayout>
+                       </LinearLayout>
 
 
                         <TextView
-                            android:id="@+id/scratch_win_dialog"
-                            android:text="@string/scratchwin"
+                            android:textColor="@color/red"
+                            android:text="@string/editorpics"
                             android:layout_weight="1"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"/>
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/tv_offer_mini_desc"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
                         android:textColor="@color/black"
@@ -81,6 +85,7 @@
                         android:layout_height="wrap_content"/>
 
                     <TextView
+                        android:id="@+id/tv_offer_cashback"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
                         android:textColor="@color/green"
@@ -120,6 +125,7 @@
                             android:layout_height="wrap_content"/>
 
                         <ImageView
+                            android:visibility="gone"
                             android:id="@+id/desc_arrow"
                             android:src="@drawable/ic_arrow_down"
                             android:layout_centerVertical="true"
@@ -127,22 +133,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
 
-                        <!--                    <ImageView-->
-                        <!--                        android:visibility="gone"-->
-                        <!--                        android:id="@+id/desc_up_arrow"-->
-                        <!--                        android:src="@drawable/ic_arrow_up"-->
-                        <!--                        android:layout_centerVertical="true"-->
-                        <!--                        android:layout_alignParentRight="true"-->
-                        <!--                        android:layout_width="wrap_content"-->
-                        <!--                        android:layout_height="wrap_content"/>-->
-
-
                     </RelativeLayout>
 
 
                     <TextView
                         android:id="@+id/mItemDescription"
-                        android:visibility="gone"
+                        android:visibility="visible"
                         android:text="@string/text_with_paragraphs"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
@@ -210,6 +206,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:id="@+id/tv_coupon"
                         android:layout_gravity="center"
                         android:layout_margin="10dp"
                         android:textColor="@color/black"
@@ -218,6 +215,7 @@
                         android:layout_height="wrap_content"/>
 
                     <TextView
+                        android:id="@+id/tv_copuon_code"
                         android:layout_gravity="center"
                         android:textSize="20sp"
                         android:textStyle="bold"
@@ -287,6 +285,8 @@
                         android:layout_height="wrap_content">
 
                         <LinearLayout
+                            android:visibility="gone"
+                            android:id="@+id/ll_mobile_web"
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
@@ -306,6 +306,7 @@
                                 android:layout_height="match_parent"/>
 
                             <androidx.appcompat.widget.AppCompatRadioButton
+                                android:id="@+id/radio_upto_cashback"
                                 android:layout_weight=".7"
                                 android:text=""
                                 android:layout_width="0dp"
@@ -315,14 +316,9 @@
 
                         </LinearLayout>
 
-                        <View
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:background="@color/line_gray"
-                            android:layout_width="match_parent"
-                            android:layout_height="0.5dp"/>
-
                         <LinearLayout
+                            android:visibility="gone"
+                            android:id="@+id/ll_mobile_app"
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
@@ -342,6 +338,7 @@
                                 android:layout_height="match_parent"/>
 
                             <androidx.appcompat.widget.AppCompatRadioButton
+                                android:id="@+id/radio_no_cashback"
                                 android:layout_weight=".7"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"/>
@@ -349,6 +346,13 @@
 
 
                         </LinearLayout>
+
+                        <View
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@color/line_gray"
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"/>
 
                     </LinearLayout>
 
@@ -386,7 +390,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
                         android:textColor="@color/black"
-                        android:text="Comment"
+                        android:text="Recent Users"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
@@ -408,23 +412,28 @@
                             android:layout_height="wrap_content">
 
                             <ImageView
-                                android:layout_weight=".6"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/time_prime_logo"
+                                android:id="@+id/iv_user_profile"
+                                android:layout_weight=".4"
                                 android:layout_width="0dp"
-                                android:layout_height="wrap_content"/>
+                                android:layout_height="40dp"/>
 
                             <LinearLayout
                                 android:orientation="vertical"
-                                android:layout_weight="1.4"
-                                android:layout_width="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content">
 
                                 <TextView
+                                    android:id="@+id/tv_username"
                                     android:textColor="@color/black"
                                     android:text="Anil:"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"/>
 
                                 <TextView
+                                    android:id="@+id/tv_work"
                                     android:text="worked"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"/>
@@ -433,6 +442,9 @@
 
 
                             <TextView
+                                android:textColor="@color/black"
+                                android:textSize="12sp"
+                                android:id="@+id/tv_date"
                                 android:text="30 Dec 2019"
                                 android:layout_weight="1"
                                 android:layout_width="0dp"
@@ -462,6 +474,7 @@
                         android:layout_height="0.5dp"/>
 
                     <TextView
+                        android:id="@+id/tv_view_allusers"
                         android:layout_gravity="right"
                         android:textSize="15sp"
                         android:textStyle="bold"
@@ -472,12 +485,7 @@
                         android:layout_height="wrap_content"/>
 
 
-
-
-
                 </LinearLayout>
-
-
 
             </androidx.cardview.widget.CardView>
 
@@ -491,7 +499,7 @@
         android:textSize="18sp"
         android:gravity="center"
         android:padding="12dp"
-        android:background="@color/red"
+        android:background="@color/colorPrimary"
         android:text="Copy Code And Go to Store"
         android:textColor="@color/white"
         android:layout_alignParentBottom="true"

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.couponcafe.app.R;
 import com.couponcafe.app.models.TopOfferDatum;
+import com.couponcafe.app.models.TopStoreDatum;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ import java.util.List;
 
 public class TopStoresAdapter extends RecyclerView.Adapter<TopStoresAdapter.MyViewHolder> {
  
-    private ArrayList<TopOfferDatum> moviesList;
+    private ArrayList<TopStoreDatum> moviesList;
  
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title, year, genre;
@@ -33,7 +34,7 @@ public class TopStoresAdapter extends RecyclerView.Adapter<TopStoresAdapter.MyVi
     }
  
  
-    public TopStoresAdapter(ArrayList<TopOfferDatum> moviesList) {
+    public TopStoresAdapter(ArrayList<TopStoreDatum> moviesList) {
         this.moviesList = moviesList;
     }
  
@@ -47,8 +48,8 @@ public class TopStoresAdapter extends RecyclerView.Adapter<TopStoresAdapter.MyVi
  
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        TopOfferDatum topStores = moviesList.get(position);
-        holder.title.setText(topStores.getOfferName());
+        TopStoreDatum topStores = moviesList.get(position);
+        holder.title.setText(topStores.getStoreName());
         holder.genre.setText(topStores.getCashBack());
         Picasso.get().load(topStores.getImageUrl())
                 .placeholder(R.drawable.placeholder)
