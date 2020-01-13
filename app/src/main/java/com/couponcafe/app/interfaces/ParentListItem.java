@@ -1,5 +1,6 @@
 package com.couponcafe.app.interfaces;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface ParentListItem {

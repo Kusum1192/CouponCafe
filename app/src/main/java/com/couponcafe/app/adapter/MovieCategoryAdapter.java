@@ -6,11 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.fragment.app.FragmentActivity;
+
 import com.couponcafe.app.R;
 import com.couponcafe.app.interfaces.ParentListItem;
+import com.couponcafe.app.models.CategoryDatum;
 import com.couponcafe.app.viewholders.MovieCategoryViewHolder;
 import com.couponcafe.app.viewholders.MoviesViewHolder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MovieCategoryAdapter extends ExpandableRecyclerAdapter<MovieCategoryViewHolder, MoviesViewHolder> {
@@ -23,6 +27,9 @@ public class MovieCategoryAdapter extends ExpandableRecyclerAdapter<MovieCategor
         this.mcontext = context;
         mInflator = LayoutInflater.from(context);
     }
+
+
+
 
     @Override
     public MovieCategoryViewHolder onCreateParentViewHolder(ViewGroup parentViewGroup) {
@@ -40,14 +47,14 @@ public class MovieCategoryAdapter extends ExpandableRecyclerAdapter<MovieCategor
     public void onBindParentViewHolder(MovieCategoryViewHolder movieCategoryViewHolder, int position, ParentListItem parentListItem) {
         MovieCategory movieCategory = (MovieCategory) parentListItem;
         movieCategoryViewHolder.bind(movieCategory);
-        //Toast.makeText(mcontext, "click parent:: ", Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
     public void onBindChildViewHolder(MoviesViewHolder moviesViewHolder, int position, Object childListItem) {
         Movies movies = (Movies) childListItem;
         moviesViewHolder.bind(movies);
-        //Toast.makeText(mcontext, "click child:: ", Toast.LENGTH_SHORT).show();
+
 
     }
 }

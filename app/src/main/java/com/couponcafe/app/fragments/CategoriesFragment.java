@@ -1,6 +1,9 @@
 package com.couponcafe.app.fragments;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +19,20 @@ import com.couponcafe.app.adapter.ExpandableRecyclerAdapter;
 import com.couponcafe.app.adapter.MovieCategory;
 import com.couponcafe.app.adapter.MovieCategoryAdapter;
 import com.couponcafe.app.adapter.Movies;
+import com.couponcafe.app.adapter.RecyclerTouchListener;
+import com.couponcafe.app.interfaces.APIService;
+import com.couponcafe.app.models.CategoriesModel;
+import com.couponcafe.app.models.CategoryDatum;
+import com.couponcafe.app.utils.ApiClient;
+import com.couponcafe.app.utils.Constants;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class CategoriesFragment extends Fragment {
@@ -26,6 +40,7 @@ public class CategoriesFragment extends Fragment {
 
     private MovieCategoryAdapter mAdapter;
     private RecyclerView recyclerView;
+    ProgressDialog progressDialog;
 
     public CategoriesFragment() {
         // Required empty public constructor
@@ -73,27 +88,28 @@ public class CategoriesFragment extends Fragment {
 
         final List<MovieCategory> movieCategories = Arrays.asList(molvie_category_one,  molvie_category_two, molvie_category_three,molvie_category_four,molvie_category_five);
 
+
         recyclerView = (RecyclerView)view.findViewById(R.id.recyclerview);
         mAdapter = new MovieCategoryAdapter(getActivity(), movieCategories);
 
 
-        mAdapter.setExpandCollapseListener(new ExpandableRecyclerAdapter.ExpandCollapseListener() {
-            @Override
-            public void onListItemExpanded(int position) {
-                MovieCategory expandedMovieCategory = movieCategories.get(position);
-                String toastMsg = getResources().getString(R.string.expanded, expandedMovieCategory.getName());
-               // Toast.makeText(getActivity(),"child:expends "+movieCategories,Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onListItemCollapsed(int position) {
-                MovieCategory collapsedMovieCategory = movieCategories.get(position);
-
-                String toastMsg = getResources().getString(R.string.collapsed, collapsedMovieCategory.getName());
-                //Toast.makeText(getActivity(),toastMsg,Toast.LENGTH_SHORT).show();
-               // Toast.makeText(getActivity(),"child:collapsed "+movieCategories.get(position).getChildItemList().get(position),Toast.LENGTH_SHORT).show();
-            }
-        });
+//        mAdapter.setExpandCollapseListener(new ExpandableRecyclerAdapter.ExpandCollapseListener() {
+//            @Override
+//            public void onListItemExpanded(int position) {
+//                MovieCategory expandedMovieCategory = movieCategories.get(position);
+//                String toastMsg = getResources().getString(R.string.expanded, expandedMovieCategory.getName());
+//               // Toast.makeText(getActivity(),"child:expends "+movieCategories,Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onListItemCollapsed(int position) {
+//                MovieCategory collapsedMovieCategory = movieCategories.get(position);
+//
+//                String toastMsg = getResources().getString(R.string.collapsed, collapsedMovieCategory.getName());
+//                //Toast.makeText(getActivity(),toastMsg,Toast.LENGTH_SHORT).show();
+//               // Toast.makeText(getActivity(),"child:collapsed "+movieCategories.get(position).getChildItemList().get(position),Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         recyclerView.setAdapter(mAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -102,7 +118,94 @@ public class CategoriesFragment extends Fragment {
     }
 
 
+    private void getcategoryData() {
 
+        APIService apiService = ApiClient.getClient().create(APIService.class);
+        Call<CategoriesModel> call = apiService.getAllCategories(Constants.getSharedPreferenceInt(getActivity(),"userId",0),
+                Constants.getSharedPreferenceString(getActivity(),"securitytoken",""),
+                Constants.getSharedPreferenceString(getActivity(),"versionName",""),
+                Constants.getSharedPreferenceInt(getActivity(),"versionCode",0));
+
+        if(!((Activity) getActivity()).isFinishing()) {
+            progressDialog = new ProgressDialog(getActivity());
+            progressDialog.setMessage(getString(R.string.loadingwait));
+            progressDialog.show();
+            progressDialog.setCancelable(false);
+        }
+
+        call.enqueue(new Callback<CategoriesModel>() {
+            @Override
+            public void onResponse(Call<CategoriesModel>call, Response<CategoriesModel> response) {
+                dismissProgressDialog();
+                if(response!=null){
+                    if(response.isSuccessful()){
+                        if(response.body().getStatus()==200){
+
+                           ArrayList<CategoryDatum>categoriesModel = response.body().getCategoryData();
+
+
+                           // mAdapter = new MovieCategoryAdapter(getActivity(), categoriesModel);
+
+
+//                            todayBestAdapter = new TodayBestOfferListAdapter(bestOfferDatalist,getActivity());
+//                            RecyclerView.LayoutManager mLayoutManager1 = new LinearLayoutManager(getActivity());
+//                            recycler_view_best_offers.setLayoutManager(mLayoutManager1);
+//                            recycler_view_best_offers.setAdapter(todayBestAdapter);
+
+//                            recycler_view_best_offers.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recycler_view_best_offers, new RecyclerTouchListener.ClickListener() {
+//                                @Override
+//                                public void onClick(View view, int position) {
+//
+//                                }
+//
+//                                @Override
+//                                public void onLongClick(View view, int position) {
+//
+//                                }
+//                            }));
+
+
+
+                        }else{
+                            Toast.makeText(getActivity(),getString(R.string.systemmessage)+response.body().getMessage(),Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                }
+                else{
+                    Toast.makeText(getActivity(),getString(R.string.systemmessage)+response.errorBody(),Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<CategoriesModel>call, Throwable t) {
+                // Log error here since request failed
+                Log.e("response", t.toString());
+            }
+        });
+
+
+    }
+
+    private void dismissProgressDialog() {
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        dismissProgressDialog();
+        super.onDestroy();
+    }
+
+    @Override
+    public void onPause() {
+        dismissProgressDialog();
+        super.onPause();
+    }
 
 
 }
