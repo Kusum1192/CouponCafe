@@ -18,6 +18,7 @@ import com.google.android.material.snackbar.Snackbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
@@ -225,27 +226,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ft.commit();
     }
 
-    private void open_profile_edit_Fragment(Fragment fragment) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_left);
-        fragmentTransaction.add(R.id.nav_host_fragment, fragment, fragment.getClass().getName());
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-    }
 
-    public void clearBackStack() {
-
-        int backStackEntryCount = getSupportFragmentManager().getBackStackEntryCount();
-        if (backStackEntryCount > 0) {
-            for (int i = 0; i < backStackEntryCount; i++) {
-                FragmentManager.BackStackEntry first = getSupportFragmentManager()
-                        .getBackStackEntryAt(i);
-                getSupportFragmentManager().popBackStack(first.getId(),
-                        FragmentManager.POP_BACK_STACK_INCLUSIVE);
-            }
-        }
-    }
 
     public void setupBottomNavigationFrom(final int id) {
         mBottomNavigationView = (BottomNavigationView)findViewById(R.id.bottom_navigation);
@@ -256,4 +237,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+    }
 }
