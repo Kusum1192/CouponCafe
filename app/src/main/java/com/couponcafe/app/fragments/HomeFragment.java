@@ -194,8 +194,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                                 @Override
                                 public void onClick(View view, int position) {
                                     TopStoreDatum topStores = topStoreDatalist.get(position);
-                                    // Toast.makeText(getActivity(), topStores.getTitle() + " is selected!", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(getActivity(), TopStoresDetailsActivity.class);
+                                    intent.putExtra("storeId",topStores.getStoreId());
                                     startActivity(intent);
                                 }
 

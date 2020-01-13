@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     local:popupTheme="@style/ThemeOverlay.AppCompat.Light"
     local:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
@@ -10,8 +10,8 @@
     <RelativeLayout
         android:background="@drawable/rounded_shape"
         android:id="@+id/toolbar_totel_coin_show_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         >
 
         <TextView
@@ -20,8 +20,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:singleLine="true"
-            android:text="0"
-            android:textColor="@color/black"
+            android:text="20"
+            android:textColor="@color/white"
             android:textSize="@dimen/onefive" />
     </RelativeLayout>
 </LinearLayout>

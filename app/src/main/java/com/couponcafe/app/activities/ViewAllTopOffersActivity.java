@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.couponcafe.app.R;
+import com.couponcafe.app.adapter.RecyclerTouchListener;
 import com.couponcafe.app.adapter.ViewTopStoreListAdapter;
 import com.couponcafe.app.interfaces.APIService;
 import com.couponcafe.app.models.TopStoreDatum;
@@ -98,6 +99,21 @@ public class ViewAllTopOffersActivity extends AppCompatActivity implements View.
                             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(ViewAllTopOffersActivity.this);
                             recylerview_topstore.setLayoutManager(mLayoutManager);
                             recylerview_topstore.setAdapter(viewTopStoreListAdapter);
+
+                            recylerview_topstore.addOnItemTouchListener(new RecyclerTouchListener(ViewAllTopOffersActivity.this, recylerview_topstore, new RecyclerTouchListener.ClickListener() {
+                                @Override
+                                public void onClick(View view, int position) {
+                                    TopStoreDatum topStores = topStoreDatumArrayList.get(position);
+                                    Intent intent = new Intent(ViewAllTopOffersActivity.this, TopStoresDetailsActivity.class);
+                                    intent.putExtra("storeId",topStores.getStoreId());
+                                    startActivity(intent);
+                                }
+
+                                @Override
+                                public void onLongClick(View view, int position) {
+
+                                }
+                            }));
 
 
 

@@ -3,6 +3,7 @@ package com.couponcafe.app.interfaces;
 
 import com.couponcafe.app.models.AllOffersDataModel;
 import com.couponcafe.app.models.BestOfferDetailsModel;
+import com.couponcafe.app.models.TopStoreDetailsModel;
 import com.couponcafe.app.models.ViewTopStoreModel;
 
 import retrofit2.Call;
@@ -30,6 +31,15 @@ public interface APIService {
     @FormUrlEncoded
     @POST("bestOfferDetails")
     Call<BestOfferDetailsModel> viewofferDetails(@Field("offerId") String offerid,
+                                                 @Field("userId") int userId,
+                                                 @Field("securityToken") String securityToken,
+                                                 @Field("versionName") String versionName,
+                                                 @Field("versionCode") int versionCode);
+
+
+    @FormUrlEncoded
+    @POST("storeDetails")
+    Call<TopStoreDetailsModel> getTopStoreDetial(@Field("storeId") String storeId,
                                                  @Field("userId") int userId,
                                                  @Field("securityToken") String securityToken,
                                                  @Field("versionName") String versionName,

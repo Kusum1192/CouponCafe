@@ -8,5 +8,6 @@
     <color name="blue">#298BB6</color>
     <color name="green">#3C6808</color>
     <color name="line_gray">#979795</color>
+    <color name="line_gray_tras">#2AD3D3D1</color>
     <color name="red">#DB1414</color>
 </resources>

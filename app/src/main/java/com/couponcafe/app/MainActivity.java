@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         TextView userCoins = (TextView) menu.findItem(R.id.action_wallet).getActionView().findViewById(R.id.toolbar_total_coin);
         userCoins.setText(Constants.getSharedPreferenceString(MainActivity.this,"currency","")+" "+Constants.getSharedPreferenceString(MainActivity.this,"userAmount",""));
-
+        invalidateOptionsMenu();
         MenuItem NotificationIcon = menu.findItem(R.id.action_notification);
         NotificationIcon.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
