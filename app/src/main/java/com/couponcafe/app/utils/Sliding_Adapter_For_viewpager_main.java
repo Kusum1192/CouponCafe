@@ -42,25 +42,26 @@ public class Sliding_Adapter_For_viewpager_main extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup view, final int position) {
         View myImageLayout = inflater.inflate(R.layout.image_viewpager_mainactivity_layout, view, false);
-       // ImageView myImage = (ImageView) myImageLayout.findViewById(R.id.image);
+        ImageView myImage = (ImageView) myImageLayout.findViewById(R.id.image);
        // myImage.setImageResource(images.get(position).getImageUrl());
 
         Picasso.get().load(images.get(position).getImageUrl())
                 .placeholder(R.drawable.placeholder)
                 .error(R.drawable.placeholder)
-                .into((ImageView)myImageLayout.findViewById(R.id.image));
+                .into(myImage);
 
         view.addView(myImageLayout, 0);
 
         //listening to image click
-//        myImage.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(context, OffersDetailsActivity.class);
-//                context.startActivity(intent);
-//                //Toast.makeText(context, "you clicked image " + (position + 1), Toast.LENGTH_LONG).show();
-//            }
-//        });
+        myImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, OffersDetailsActivity.class);
+                intent.putExtra("offerId",position);
+                context.startActivity(intent);
+                //Toast.makeText(context, "you clicked image " + (position + 1), Toast.LENGTH_LONG).show();
+            }
+        });
 
 
         return myImageLayout;

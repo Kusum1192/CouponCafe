@@ -16,16 +16,18 @@ import java.util.List;
 public class MovieCategoryAdapter extends ExpandableRecyclerAdapter<MovieCategoryViewHolder, MoviesViewHolder> {
 
     private LayoutInflater mInflator;
+    Context mcontext;
 
     public MovieCategoryAdapter(Context context, List<? extends ParentListItem> parentItemList) {
         super(parentItemList);
+        this.mcontext = context;
         mInflator = LayoutInflater.from(context);
     }
 
     @Override
     public MovieCategoryViewHolder onCreateParentViewHolder(ViewGroup parentViewGroup) {
         View movieCategoryView = mInflator.inflate(R.layout.movie_category_view, parentViewGroup, false);
-        return new MovieCategoryViewHolder(movieCategoryView);
+        return new MovieCategoryViewHolder(mcontext,movieCategoryView);
     }
 
     @Override
@@ -38,12 +40,14 @@ public class MovieCategoryAdapter extends ExpandableRecyclerAdapter<MovieCategor
     public void onBindParentViewHolder(MovieCategoryViewHolder movieCategoryViewHolder, int position, ParentListItem parentListItem) {
         MovieCategory movieCategory = (MovieCategory) parentListItem;
         movieCategoryViewHolder.bind(movieCategory);
+        //Toast.makeText(mcontext, "click parent:: ", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onBindChildViewHolder(MoviesViewHolder moviesViewHolder, int position, Object childListItem) {
         Movies movies = (Movies) childListItem;
         moviesViewHolder.bind(movies);
+        //Toast.makeText(mcontext, "click child:: ", Toast.LENGTH_SHORT).show();
 
     }
 }
