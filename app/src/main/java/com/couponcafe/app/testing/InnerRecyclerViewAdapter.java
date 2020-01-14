@@ -1,6 +1,7 @@
 package com.couponcafe.app.testing;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.Toast;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.couponcafe.app.R;
+import com.couponcafe.app.activities.BestOffersActivity;
 import com.couponcafe.app.models.SubCategory;
 import java.util.ArrayList;
 
@@ -41,7 +43,11 @@ public class InnerRecyclerViewAdapter extends RecyclerView.Adapter<InnerRecycler
         public void onClick(View view) {
             switch (view.getId()){
                 case R.id.cardView_child:
-                    Toast.makeText(context, "click child: "+getofferList.get(getAdapterPosition()).getSubCategoryName(), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(context, BestOffersActivity.class);
+                    intent.putExtra("subcatId",getofferList.get(getAdapterPosition()).getSubCategoryId());
+                    intent.putExtra("subcatName",getofferList.get(getAdapterPosition()).getSubCategoryName());
+                    context.startActivity(intent);
+//                    Toast.makeText(context, "click child: "+getofferList.get(getAdapterPosition()).getSubCategoryName(), Toast.LENGTH_SHORT).show();
                     break;
             }
         }

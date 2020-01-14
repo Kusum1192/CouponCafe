@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -34,6 +35,12 @@ public class BestOffersActivity extends AppCompatActivity implements View.OnClic
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         init();
+        Intent intent = getIntent();
+        if(intent!=null){
+            String catId = String.valueOf(intent.getIntExtra("subcatId",0));
+            String subcatName = intent.getStringExtra("subcatName");
+
+        }
     }
 
     @Override
