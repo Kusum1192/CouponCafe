@@ -1,20 +1,14 @@
 package com.couponcafe.app.adapter;
 
-public class Movies {
+import java.util.ArrayList;
 
-    private String mName,mMovieSubCatOffers;
+public class Movies extends ArrayList<Movies> {
 
-    public Movies(String name,String mMovieSubCatOffers) {
+    private String mName;
+
+    public Movies(String name) {
         mName = name;
-        this.mMovieSubCatOffers = mMovieSubCatOffers;
-    }
 
-    public String getmMovieSubCatOffers() {
-        return mMovieSubCatOffers;
-    }
-
-    public void setmMovieSubCatOffers(String mMovieSubCatOffers) {
-        this.mMovieSubCatOffers = mMovieSubCatOffers;
     }
 
     public String getName() {

@@ -32,6 +32,9 @@ public abstract class ExpandableRecyclerAdapter<PVH extends ParentViewHolder, CV
     private ExpandCollapseListener mExpandCollapseListener;
     private List<RecyclerView> mAttachedRecyclerViewPool;
 
+    protected ExpandableRecyclerAdapter() {
+    }
+
     /**
      * Allows objects to register themselves as expand/collapse listeners to be
      * notified of change events.

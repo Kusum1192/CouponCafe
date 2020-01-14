@@ -13,11 +13,11 @@ public class MoviesViewHolder extends ChildViewHolder {
     public MoviesViewHolder(View itemView) {
         super(itemView);
         mMoviesTextView = (TextView) itemView.findViewById(R.id.tv_movies);
-        mMovieSubCatOffers = (TextView) itemView.findViewById(R.id.tv_subcat_offers);
+       // mMovieSubCatOffers = (TextView) itemView.findViewById(R.id.tv_subcat_offers);
     }
 
     public void bind(Movies movies) {
         mMoviesTextView.setText(movies.getName());
-        mMovieSubCatOffers.setText(movies.getmMovieSubCatOffers());
+        //mMovieSubCatOffers.setText(movies.getmMovieSubCatOffers());
     }
 }

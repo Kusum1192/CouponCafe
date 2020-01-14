@@ -8,9 +8,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.cardview.widget.CardView;
-
 import com.couponcafe.app.R;
 import com.couponcafe.app.activities.BestOffersActivity;
 import com.couponcafe.app.adapter.MovieCategory;
@@ -21,7 +18,7 @@ public class MovieCategoryViewHolder extends ParentViewHolder implements View.On
     private static final float ROTATED_POSITION = 180f;
 
     private final ImageView mArrowExpandImageView;
-    private TextView mMovieTextView,msubcatMovieTextView;
+    private TextView mMovieTextView;
     LinearLayout ll_main_cat;
     Context context;
 
@@ -30,7 +27,7 @@ public class MovieCategoryViewHolder extends ParentViewHolder implements View.On
         this.context = context;
         ll_main_cat =  itemView.findViewById(R.id.ll_main_cat);
         mMovieTextView = (TextView) itemView.findViewById(R.id.tv_movie_category);
-        msubcatMovieTextView = (TextView) itemView.findViewById(R.id.tv_movie_subcategories);
+        //msubcatMovieTextView = (TextView) itemView.findViewById(R.id.tv_movie_subcategories);
 
         mArrowExpandImageView = (ImageView) itemView.findViewById(R.id.iv_arrow_expand);
         ll_main_cat.setOnClickListener(this);
@@ -38,7 +35,7 @@ public class MovieCategoryViewHolder extends ParentViewHolder implements View.On
 
     public void bind(MovieCategory movieCategory) {
         mMovieTextView.setText(movieCategory.getName());
-        msubcatMovieTextView.setText(movieCategory.getSubname());
+        //msubcatMovieTextView.setText(movieCategory.getSubname());
     }
 
     @Override

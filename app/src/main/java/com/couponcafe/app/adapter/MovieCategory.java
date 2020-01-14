@@ -1,33 +1,40 @@
 package com.couponcafe.app.adapter;
 
+import androidx.annotation.NonNull;
+
 import com.couponcafe.app.interfaces.ParentListItem;
+import com.couponcafe.app.models.CategoryDatum;
+import com.couponcafe.app.models.SubCategory;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
-public class MovieCategory implements ParentListItem {
-    private String mName,subname;
-    private List<Movies> mMovies;
-
-    public MovieCategory(String name, String subcatname, List<Movies> movies) {
+public class MovieCategory extends ArrayList<MovieCategory> implements ParentListItem {
+    private String mName;
+    private ArrayList<Movies> mMovies;
+    //Movies subCategoryName;
+    public MovieCategory(String name, ArrayList<Movies> subCategories) {
         mName = name;
-        subname = subcatname;
-        mMovies = movies;
+        mMovies = subCategories;
     }
+
+    public String getmName() {
+        return mName;
+    }
+
+    public void setmName(String mName) {
+        this.mName = mName;
+    }
+
 
     public String getName() {
         return mName;
     }
 
-    public String getSubname() {
-        return subname;
-    }
-
-    public void setSubname(String subname) {
-        this.subname = subname;
-    }
 
     @Override
-    public List<?> getChildItemList() {
+    public ArrayList<?> getChildItemList() {
         return mMovies;
     }
 
@@ -35,4 +42,6 @@ public class MovieCategory implements ParentListItem {
     public boolean isInitiallyExpanded() {
         return false;
     }
+
+
 }

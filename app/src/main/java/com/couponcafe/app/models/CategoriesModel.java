@@ -1,7 +1,8 @@
 package com.couponcafe.app.models;
 
 import java.util.ArrayList;
-import java.util.List;
+
+import com.couponcafe.app.interfaces.ParentListItem;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

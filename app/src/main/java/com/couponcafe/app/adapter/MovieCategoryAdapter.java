@@ -1,10 +1,10 @@
 package com.couponcafe.app.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.fragment.app.FragmentActivity;
 
@@ -22,12 +22,12 @@ public class MovieCategoryAdapter extends ExpandableRecyclerAdapter<MovieCategor
     private LayoutInflater mInflator;
     Context mcontext;
 
-    public MovieCategoryAdapter(Context context, List<? extends ParentListItem> parentItemList) {
+
+    public MovieCategoryAdapter(Context context, ArrayList<? extends ParentListItem> parentItemList) {
         super(parentItemList);
         this.mcontext = context;
         mInflator = LayoutInflater.from(context);
     }
-
 
 
 

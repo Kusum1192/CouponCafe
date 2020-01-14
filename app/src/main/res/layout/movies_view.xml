@@ -14,6 +14,8 @@
         android:layout_weight=".4" />
 
     <TextView
+        android:text="subcat"
+        android:textColor="@color/black"
         android:id="@+id/tv_movies"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -21,6 +23,8 @@
         android:textSize="14sp" />
 
     <TextView
+        android:text="offers"
+        android:textColor="@color/black"
         android:id="@+id/tv_subcat_offers"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
