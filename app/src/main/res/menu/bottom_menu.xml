@@ -12,8 +12,8 @@
         android:title="Categories" />
 
     <item
-        android:id="@+id/navigation_shoping_assistance"
-        android:icon="@drawable/ic_home"
+        android:id="@+id/navigation_invite"
+        android:icon="@drawable/ic_screen_share"
         android:title="@string/invite_earn" />
 
     <item

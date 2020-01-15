@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         return true;
                     }
 
-                    case R.id.navigation_shoping_assistance: {
+                    case R.id.navigation_invite: {
                         loadShopingAssistanceFragment();
                         return true;
                     }
@@ -233,8 +233,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         BottomNavigationViewHelper.disableShiftMode(mBottomNavigationView);
         mBottomNavigationView.getMenu().findItem(id).setChecked(true);
         mBottomNavigationView.getMenu().performIdentifierAction(id, 0);
-
-
     }
 
 

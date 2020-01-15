@@ -19,12 +19,11 @@
             android:layout_height="wrap_content">
 
             <androidx.cardview.widget.CardView
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="5dp"
-                app:cardElevation="2dp"
-                app:cardUseCompatPadding="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="4dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardUseCompatPadding="true">
 
                 <LinearLayout
                     android:padding="10dp"
@@ -52,6 +51,7 @@
                             android:layout_height="match_parent">
 
                             <TextView
+                                android:textSize="14sp"
                                 android:id="@+id/tv_offer_name"
                                 android:textColor="@color/black"
                                 android:text="Myntra"
@@ -59,6 +59,7 @@
                                 android:layout_height="wrap_content"/>
 
                             <TextView
+                                android:textSize="10sp"
                                 android:id="@+id/tv_cat_name"
                                 android:text="Fashion"
                                 android:layout_width="match_parent"
@@ -68,6 +69,7 @@
 
 
                         <TextView
+                            android:visibility="visible"
                             android:textColor="@color/red"
                             android:text="@string/editorpics"
                             android:layout_weight="1"
@@ -76,6 +78,7 @@
                     </LinearLayout>
 
                     <TextView
+                        android:textSize="12sp"
                         android:id="@+id/tv_offer_mini_desc"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
@@ -101,9 +104,8 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="5dp"
-                app:cardElevation="2dp"
+                app:cardCornerRadius="4dp"
+                app:cardPreventCornerOverlap="false"
                 app:cardUseCompatPadding="true">
 
                 <LinearLayout
@@ -140,6 +142,7 @@
                         android:layout_height="0.5dp"/>
 
                     <TextView
+                        android:textSize="12sp"
                         android:id="@+id/mItemDescription"
                         android:visibility="visible"
                         android:text="@string/text_with_paragraphs"
@@ -198,9 +201,8 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="5dp"
-                app:cardElevation="2dp"
+                app:cardCornerRadius="4dp"
+                app:cardPreventCornerOverlap="false"
                 app:cardUseCompatPadding="true">
 
                 <LinearLayout
@@ -257,9 +259,8 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="5dp"
-                app:cardElevation="2dp"
+                app:cardCornerRadius="4dp"
+                app:cardPreventCornerOverlap="false"
                 app:cardUseCompatPadding="true">
 
                 <LinearLayout
@@ -301,6 +302,8 @@
                                 android:layout_height="wrap_content"/>
 
                             <TextView
+                                android:textSize="10sp"
+                                android:textColor="@color/black"
                                 android:gravity="right"
                                 android:layout_weight="1.3"
                                 android:text="upto 7.3% \n CD CASHBACK"
@@ -333,6 +336,8 @@
                                 android:layout_height="wrap_content"/>
 
                             <TextView
+                                android:textSize="10sp"
+                                android:textColor="@color/black"
                                 android:gravity="right"
                                 android:layout_weight="1.3"
                                 android:text="No \n CD CASHBACK"
@@ -377,9 +382,8 @@
                 android:layout_marginBottom="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="5dp"
-                app:cardElevation="2dp"
+                app:cardCornerRadius="4dp"
+                app:cardPreventCornerOverlap="false"
                 app:cardUseCompatPadding="true">
 
                 <LinearLayout
@@ -479,10 +483,10 @@
                         android:id="@+id/tv_view_allusers"
                         android:layout_gravity="right"
                         android:textSize="15sp"
-                        android:textStyle="bold"
+                        android:textStyle="normal"
                         android:textColor="@color/blue"
                         android:textAllCaps="true"
-                        android:text="View All Comments"
+                        android:text="View All"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
@@ -497,7 +501,7 @@
 
     <TextView
         android:textAllCaps="true"
-        android:textStyle="bold"
+        android:textStyle="normal"
         android:textSize="18sp"
         android:gravity="center"
         android:padding="12dp"

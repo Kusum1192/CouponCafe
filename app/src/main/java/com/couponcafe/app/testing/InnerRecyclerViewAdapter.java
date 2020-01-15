@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.cardview.widget.CardView;
@@ -29,7 +30,7 @@ public class InnerRecyclerViewAdapter extends RecyclerView.Adapter<InnerRecycler
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView tv_subcat_name,tv_subcat_offers;
-        CardView cardView_child;
+        LinearLayout cardView_child;
 
         public ViewHolder(View itemView) {
             super(itemView);

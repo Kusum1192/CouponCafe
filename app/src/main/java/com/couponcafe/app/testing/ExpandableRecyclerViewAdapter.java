@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -36,15 +37,16 @@ public class ExpandableRecyclerViewAdapter extends RecyclerView.Adapter<Expandab
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView name,tv_movie_category;
+        TextView tv_movie_category,tv_movie_subcategories;
         ImageButton dropBtn;
         RecyclerView cardRecyclerView;
         CardView cardView;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.categoryTitle);
+//            name = itemView.findViewById(R.id.categoryTitle);
             tv_movie_category = itemView.findViewById(R.id.tv_movie_category);
+            tv_movie_subcategories = itemView.findViewById(R.id.tv_movie_subcategories);
             dropBtn = itemView.findViewById(R.id.categoryExpandBtn);
             cardRecyclerView = itemView.findViewById(R.id.innerRecyclerView);
             cardView = itemView.findViewById(R.id.cardView);
@@ -65,6 +67,7 @@ public class ExpandableRecyclerViewAdapter extends RecyclerView.Adapter<Expandab
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.tv_movie_category.setText(categoryDatumArrayList.get(position).getCategoryName());
+        holder.tv_movie_subcategories.setText(categoryDatumArrayList.get(position).getOffersCount());
         InnerRecyclerViewAdapter itemInnerRecyclerView = new InnerRecyclerViewAdapter(categoryDatumArrayList.get(position).getSubCategories(), context);
         holder.cardRecyclerView.setLayoutManager(new GridLayoutManager(context, 1));
 
@@ -73,8 +76,26 @@ public class ExpandableRecyclerViewAdapter extends RecyclerView.Adapter<Expandab
             public void onClick(View view) {
 
                 if (counter.get(position) % 2 == 0) {
+
+                    TranslateAnimation animate = new TranslateAnimation(
+                            0,
+                            0,
+                            holder.cardRecyclerView.getHeight(),
+                            0);
+                    animate.setDuration(500);
+                    animate.setFillAfter(true);
+                    holder.cardRecyclerView.startAnimation(animate);
                     holder.cardRecyclerView.setVisibility(View.VISIBLE);
                 } else {
+
+                    TranslateAnimation animate = new TranslateAnimation(
+                            0,
+                            0,
+                            0,
+                            holder.cardRecyclerView.getHeight());
+                    animate.setDuration(500);
+                    animate.setFillAfter(true);
+                    holder.cardRecyclerView.startAnimation(animate);
                     holder.cardRecyclerView.setVisibility(View.GONE);
                 }
 
