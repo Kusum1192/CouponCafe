@@ -17,8 +17,8 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/specialoffers" />
         <item
-            android:id="@+id/nav_tools"
-            android:icon="@drawable/ic_menu_manage"
+            android:id="@+id/nav_invite"
+            android:icon="@drawable/ic_menu_share"
             android:title="@string/referfriend" />
 
         <item

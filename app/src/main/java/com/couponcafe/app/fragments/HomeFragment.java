@@ -26,6 +26,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.couponcafe.app.MainActivity;
 import com.couponcafe.app.R;
 import com.couponcafe.app.activities.BestOffersActivity;
 import com.couponcafe.app.activities.OffersDetailsActivity;
@@ -101,7 +102,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.cardview_share_invite:
-
+                ((MainActivity)getActivity()).setupBottomNavigationFrom(R.id.navigation_invite);
                 break;
 
             case R.id.tv_viewtop_offers:

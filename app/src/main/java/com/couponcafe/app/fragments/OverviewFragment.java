@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.couponcafe.app.MainActivity;
 import com.couponcafe.app.R;
 import com.couponcafe.app.activities.OffersDetailsActivity;
 
@@ -61,8 +62,7 @@ public class OverviewFragment extends Fragment implements View.OnClickListener {
 
         switch (view.getId()){
             case R.id.invite_now:
-                clearBackStack();
-                open_profile_edit_Fragment(new InviteAndEarn());
+                ((MainActivity)getActivity()).setupBottomNavigationFrom(R.id.navigation_invite);
                 break;
         }
     }

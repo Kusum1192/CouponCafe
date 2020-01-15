@@ -127,13 +127,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         switch (id) {
             case R.id.nav_cashactivity:
-                //Toast.makeText(this, "home", Toast.LENGTH_SHORT).show();
                 setupBottomNavigationFrom(R.id.navigation_profile);
                 break;
 
             case R.id.nav_withdraw:
-                //Toast.makeText(this, "gallery", Toast.LENGTH_SHORT).show();
                 setupBottomNavigationFrom(R.id.navigation_profile);
+                break;
+
+            case R.id.nav_invite:
+                setupBottomNavigationFrom(R.id.navigation_invite);
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);
@@ -228,7 +230,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
-    public void setupBottomNavigationFrom(final int id) {
+    public  void setupBottomNavigationFrom(final int id) {
         mBottomNavigationView = (BottomNavigationView)findViewById(R.id.bottom_navigation);
         BottomNavigationViewHelper.disableShiftMode(mBottomNavigationView);
         mBottomNavigationView.getMenu().findItem(id).setChecked(true);
