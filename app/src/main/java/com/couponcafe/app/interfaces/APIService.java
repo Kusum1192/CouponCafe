@@ -4,6 +4,7 @@ package com.couponcafe.app.interfaces;
 import com.couponcafe.app.models.AllOffersDataModel;
 import com.couponcafe.app.models.BestOfferDetailsModel;
 import com.couponcafe.app.models.CategoriesModel;
+import com.couponcafe.app.models.InviteFriendModel;
 import com.couponcafe.app.models.TopStoreDetailsModel;
 import com.couponcafe.app.models.ViewTopStoreModel;
 
@@ -55,5 +56,10 @@ public interface APIService {
                                            @Field("versionName") String versionName,
                                            @Field("versionCode") int versionCode);
 
-
+    @FormUrlEncoded
+    @POST("invitePage")
+    Call<InviteFriendModel> getinviteData(@Field("userId") int userId,
+                                          @Field("securityToken") String securityToken,
+                                          @Field("versionName") String versionName,
+                                          @Field("versionCode") int versionCode);
 }

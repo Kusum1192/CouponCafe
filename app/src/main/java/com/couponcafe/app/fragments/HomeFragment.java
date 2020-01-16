@@ -22,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,10 +46,10 @@ import com.couponcafe.app.models.TopStoreDatum;
 import com.couponcafe.app.utils.ApiClient;
 import com.couponcafe.app.utils.Constants;
 import com.couponcafe.app.utils.Sliding_Adapter_For_viewpager_main;
+import com.squareup.picasso.Picasso;
 
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -70,6 +71,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     TextView tv_viewtop_offers;
     ProgressDialog progressDialog;
+    ImageView tv_home_invite_image;
 
     public HomeFragment() {
     }
@@ -87,6 +89,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         recylerview_topstore = root.findViewById(R.id.recylerview_topstore);
         recycler_view_best_offers = root.findViewById(R.id.recycler_view_best_offers);
         tv_viewtop_offers = root.findViewById(R.id.tv_viewtop_offers);
+        tv_home_invite_image = root.findViewById(R.id.tv_home_invite_image);
         tv_viewtop_offers.setOnClickListener(this);
 
 
@@ -146,6 +149,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                            final ArrayList<SliderDatum> sliderArrayList = response.body().getSliderData();
                            final ArrayList<BestOfferDatum> bestOfferDatalist = response.body().getBestOfferData();
                            final ArrayList<TopStoreDatum> topStoreDatalist = response.body().getTopStoreData();
+
+                            Picasso.get().load(response.body().getInviteImgurl())
+                                    .placeholder(R.drawable.placeholder)
+                                    .error(R.drawable.placeholder)
+                                    .into((tv_home_invite_image));
 
                            // Toast.makeText(getActivity(), ""+bestOfferData.size(), Toast.LENGTH_SHORT).show();
                             mPager.setAdapter(new Sliding_Adapter_For_viewpager_main(getActivity(), sliderArrayList));

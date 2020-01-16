@@ -21,6 +21,9 @@ public class AllOffersDataModel {
     @SerializedName("userAmount")
     @Expose
     private Integer userAmount;
+    @SerializedName("inviteImgurl")
+    @Expose
+    private String inviteImgurl;
     @SerializedName("sliderData")
     @Expose
     private ArrayList<SliderDatum> sliderData = null;
@@ -69,6 +72,14 @@ public class AllOffersDataModel {
 
     public void setUserAmount(Integer userAmount) {
         this.userAmount = userAmount;
+    }
+
+    public String getInviteImgurl() {
+        return inviteImgurl;
+    }
+
+    public void setInviteImgurl(String inviteImgurl) {
+        this.inviteImgurl = inviteImgurl;
     }
 
     public ArrayList<SliderDatum> getSliderData() {
