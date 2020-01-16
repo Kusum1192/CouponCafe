@@ -3,6 +3,8 @@ package com.couponcafe.app.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+
 public class InviteFriendModel {
 
     @SerializedName("message")
@@ -26,6 +28,9 @@ public class InviteFriendModel {
     @SerializedName("inviteText")
     @Expose
     private String inviteText;
+    @SerializedName("invitedUsers")
+    @Expose
+    private ArrayList<InvitedUser> invitedUsers = null;
 
     public String getMessage() {
         return message;
@@ -81,6 +86,14 @@ public class InviteFriendModel {
 
     public void setInviteText(String inviteText) {
         this.inviteText = inviteText;
+    }
+
+    public ArrayList<InvitedUser> getInvitedUsers() {
+        return invitedUsers;
+    }
+
+    public void setInvitedUsers(ArrayList<InvitedUser> invitedUsers) {
+        this.invitedUsers = invitedUsers;
     }
 
 }

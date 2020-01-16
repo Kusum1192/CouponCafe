@@ -27,7 +27,7 @@
 
 
                         <TextView
-                            android:textSize="20sp"
+                            android:textSize="@dimen/common_text_size"
                             android:text="Avilable Balance"
                             android:textColor="@color/black"
                             android:layout_weight="1"
@@ -36,7 +36,7 @@
 
                         <TextView
                             android:textColor="@color/green"
-                            android:textSize="20sp"
+                            android:textSize="@dimen/common_text_size"
                             android:gravity="right"
                             android:text="Rs. 0"
                             android:layout_weight="1"
@@ -51,13 +51,14 @@
 
 
                         <TextView
-                            android:textSize="14sp"
+                            android:textSize="@dimen/common_text_size"
                             android:text="Cashback"
                             android:layout_weight="1"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"/>
 
                         <TextView
+                            android:textSize="@dimen/common_text_size"
                             android:gravity="right"
                             android:text="Rs. 0"
                             android:layout_weight="1"
@@ -72,12 +73,14 @@
 
 
                         <TextView
+                            android:textSize="@dimen/common_text_size"
                             android:text="Rewards"
                             android:layout_weight="1"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"/>
 
                         <TextView
+                            android:textSize="@dimen/common_text_size"
                             android:gravity="right"
                             android:text="Rs. 0"
                             android:layout_weight="1"
@@ -92,12 +95,14 @@
 
 
                         <TextView
+                            android:textSize="@dimen/common_text_size"
                             android:text="Voucher Rewards"
                             android:layout_weight="1"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"/>
 
                         <TextView
+                            android:textSize="@dimen/common_text_size"
                             android:gravity="right"
                             android:text="Rs. 0"
                             android:layout_weight="1"
@@ -112,7 +117,7 @@
 
 
                         <TextView
-                            android:textSize="20sp"
+                            android:textSize="@dimen/common_text_size"
                             android:text="Pending Balance"
                             android:textColor="@color/black"
                             android:layout_weight="1"
@@ -121,7 +126,7 @@
 
                         <TextView
                             android:textColor="@color/black"
-                            android:textSize="20sp"
+                            android:textSize="@dimen/common_text_size"
                             android:gravity="right"
                             android:text="Rs. 0"
                             android:layout_weight="1"
@@ -154,7 +159,7 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:textSize="15sp"
+                            android:textSize="@dimen/common_text_size"
                             android:layout_marginTop="10dp"
                             android:layout_marginBottom="10dp"
                             android:textColor="@color/black"
@@ -193,13 +198,14 @@
 
 
                             <TextView
-                                android:textSize="14sp"
+                                android:textSize="@dimen/common_text_size"
                                 android:text="Avilable Balance"
                                 android:layout_weight="1"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"/>
 
                             <TextView
+                                android:textSize="@dimen/common_text_size"
                                 android:textColor="@color/black"
                                 android:gravity="right"
                                 android:text="Rs. 0"
@@ -249,7 +255,7 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:textSize="15sp"
+                            android:textSize="@dimen/common_text_size"
                             android:layout_marginTop="10dp"
                             android:layout_marginBottom="10dp"
                             android:textColor="@color/black"
@@ -349,7 +355,7 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:textSize="15sp"
+                            android:textSize="@dimen/common_text_size"
                             android:layout_marginTop="10dp"
                             android:layout_marginBottom="10dp"
                             android:textColor="@color/black"
@@ -450,7 +456,7 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:textSize="15sp"
+                            android:textSize="@dimen/common_text_size"
                             android:layout_marginTop="10dp"
                             android:layout_marginBottom="10dp"
                             android:textColor="@color/black"

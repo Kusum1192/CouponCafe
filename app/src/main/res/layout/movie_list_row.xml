@@ -19,7 +19,7 @@
         <ImageView
             android:id="@+id/imageView_topstore"
             android:scaleType="fitXY"
-            android:src="@drawable/time_prime_logo"
+            android:src="@drawable/placeholder"
             android:layout_width="50dp"
             android:layout_height="30dp"/>
 

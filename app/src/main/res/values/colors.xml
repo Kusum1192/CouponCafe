@@ -12,4 +12,5 @@
     <color name="line_gray">#979795</color>
     <color name="line_gray_tras">#2AD3D3D1</color>
     <color name="red">#DB1414</color>
+    <color name="background_color">#86201E50</color>
 </resources>

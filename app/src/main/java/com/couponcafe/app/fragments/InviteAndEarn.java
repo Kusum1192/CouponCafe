@@ -10,6 +10,8 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Parcelable;
 import android.text.TextUtils;
@@ -25,8 +27,10 @@ import android.widget.Toast;
 
 import com.couponcafe.app.BuildConfig;
 import com.couponcafe.app.R;
+import com.couponcafe.app.adapter.InviteUserAdapter;
 import com.couponcafe.app.interfaces.APIService;
 import com.couponcafe.app.models.InviteFriendModel;
+import com.couponcafe.app.models.InvitedUser;
 import com.couponcafe.app.utils.ApiClient;
 import com.couponcafe.app.utils.Constants;
 import com.squareup.picasso.Picasso;
@@ -47,6 +51,7 @@ public class InviteAndEarn extends Fragment implements View.OnClickListener {
     String refferal_code,invitefburl,inviteTextUrl;
 
     ProgressDialog progressDialog;
+    RecyclerView recyclerview;
 
     public InviteAndEarn() {
         // Required empty public constructor
@@ -60,6 +65,7 @@ public class InviteAndEarn extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_invite_and_earn, container, false);
 
         copyReferCode = view.findViewById(R.id.tv_code_copy);
+        recyclerview = view.findViewById(R.id.recyclerview);
         invite_share_people_img = view.findViewById(R.id.invite_share_people_img);
         invite_text = view.findViewById(R.id.invite_text);
         shareNow = view.findViewById(R.id.share_now_button);
@@ -174,7 +180,14 @@ public class InviteAndEarn extends Fragment implements View.OnClickListener {
                                     .placeholder(R.drawable.placeholder)
                                     .error(R.drawable.placeholder)
                                     .into((invite_share_people_img));
+
                             invite_text.setText(response.body().getInviteText());
+                            ArrayList<InvitedUser> invitedUserArrayList = response.body().getInvitedUsers();
+
+                            InviteUserAdapter inviteUserAdapter = new InviteUserAdapter(invitedUserArrayList,getActivity());
+                            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+                            recyclerview.setLayoutManager(mLayoutManager);
+                            recyclerview.setAdapter(inviteUserAdapter);
 
                         }else{
                             Toast.makeText(getActivity(),getString(R.string.systemmessage)+response.body().getMessage(),Toast.LENGTH_SHORT).show();

@@ -39,7 +39,7 @@
                         <ImageView
                             android:id="@+id/iv_offer_item"
                             android:scaleType="fitStart"
-                            android:src="@drawable/time_prime_logo"
+                            android:src="@drawable/placeholder"
                             android:layout_weight=".7"
                             android:layout_width="0dp"
                             android:layout_height="50dp"/>
@@ -51,7 +51,7 @@
                             android:layout_height="match_parent">
 
                             <TextView
-                                android:textSize="14sp"
+                                android:textSize="@dimen/common_text_size"
                                 android:id="@+id/tv_offer_name"
                                 android:textColor="@color/black"
                                 android:text="Myntra"
@@ -59,7 +59,7 @@
                                 android:layout_height="wrap_content"/>
 
                             <TextView
-                                android:textSize="10sp"
+                                android:textSize="13sp"
                                 android:id="@+id/tv_cat_name"
                                 android:text="Fashion"
                                 android:layout_width="match_parent"
@@ -69,6 +69,7 @@
 
 
                         <TextView
+                            android:textSize="13sp"
                             android:visibility="visible"
                             android:textColor="@color/red"
                             android:text="@string/editorpics"
@@ -78,7 +79,7 @@
                     </LinearLayout>
 
                     <TextView
-                        android:textSize="12sp"
+                        android:textSize="@dimen/common_text_size"
                         android:id="@+id/tv_offer_mini_desc"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
@@ -88,6 +89,7 @@
                         android:layout_height="wrap_content"/>
 
                     <TextView
+                        android:textSize="@dimen/common_text_size"
                         android:id="@+id/tv_offer_cashback"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
@@ -119,6 +121,7 @@
                         android:layout_height="wrap_content">
 
                         <TextView
+                            android:textSize="@dimen/common_text_size"
                             android:layout_marginBottom="10dp"
                             android:textColor="@color/black"
                             android:text="Description"
@@ -142,7 +145,8 @@
                         android:layout_height="0.5dp"/>
 
                     <TextView
-                        android:textSize="12sp"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/common_text_size"
                         android:id="@+id/mItemDescription"
                         android:visibility="visible"
                         android:text="@string/text_with_paragraphs"
@@ -164,7 +168,7 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:textSize="12sp"
+                            android:textSize="13sp"
                             android:text="@string/success"
                             android:layout_weight="1"
                             android:layout_width="0dp"
@@ -172,7 +176,7 @@
 
                         <TextView
                             android:gravity="center"
-                            android:textSize="12sp"
+                            android:textSize="13sp"
                             android:text="@string/usertoday"
                             android:layout_weight="1"
                             android:layout_width="0dp"
@@ -180,7 +184,7 @@
 
                         <TextView
                             android:gravity="center"
-                            android:textSize="12sp"
+                            android:textSize="13sp"
                             android:text="@string/verifiedoffers"
                             android:layout_weight="1"
                             android:layout_width="0dp"
@@ -211,6 +215,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:textSize="@dimen/common_text_size"
                         android:id="@+id/tv_coupon"
                         android:layout_gravity="center"
                         android:layout_margin="10dp"
@@ -222,7 +227,7 @@
                     <TextView
                         android:id="@+id/tv_copuon_code"
                         android:layout_gravity="center"
-                        android:textSize="20sp"
+                        android:textSize="18sp"
                         android:textStyle="bold"
                         android:textColor="@color/red"
                         android:textAllCaps="true"
@@ -241,7 +246,7 @@
                         android:layout_margin="5dp"
                         android:id="@+id/tv_code_copy"
                         android:gravity="center"
-                        android:textSize="18sp"
+                        android:textSize="14sp"
                         android:textStyle="bold"
                         android:textColor="@color/blue"
                         android:textAllCaps="true"
@@ -270,6 +275,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:textSize="@dimen/common_text_size"
                         android:layout_marginBottom="10dp"
                         android:textColor="@color/black"
                         android:text="Shop via"
@@ -393,6 +399,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:textSize="@dimen/common_text_size"
                         android:layout_marginBottom="10dp"
                         android:textColor="@color/black"
                         android:text="Recent Users"
@@ -418,7 +425,7 @@
 
                             <ImageView
                                 android:scaleType="fitStart"
-                                android:src="@drawable/time_prime_logo"
+                                android:src="@drawable/placeholder"
                                 android:id="@+id/iv_user_profile"
                                 android:layout_weight=".4"
                                 android:layout_width="0dp"
@@ -431,14 +438,15 @@
                                 android:layout_height="wrap_content">
 
                                 <TextView
+                                    android:textSize="@dimen/common_text_size"
                                     android:id="@+id/tv_username"
                                     android:textColor="@color/black"
-                                    android:text="Anil:"
+                                    android:text="Anil"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"/>
 
                                 <TextView
-                                    android:textSize="12sp"
+                                    android:textSize="13sp"
                                     android:id="@+id/tv_work"
                                     android:text="worked"
                                     android:layout_width="wrap_content"
@@ -449,7 +457,7 @@
 
                             <TextView
                                 android:textColor="@color/black"
-                                android:textSize="12sp"
+                                android:textSize="@dimen/common_text_size"
                                 android:id="@+id/tv_date"
                                 android:text="30 Dec 2019"
                                 android:layout_weight="1"
@@ -482,7 +490,7 @@
                     <TextView
                         android:id="@+id/tv_view_allusers"
                         android:layout_gravity="right"
-                        android:textSize="15sp"
+                        android:textSize="@dimen/common_text_size"
                         android:textStyle="normal"
                         android:textColor="@color/blue"
                         android:textAllCaps="true"

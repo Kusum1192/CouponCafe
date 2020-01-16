@@ -23,8 +23,8 @@
             <ImageView
                 android:id="@+id/image_view_topstore"
                 android:layout_gravity="center"
-                android:scaleType="centerInside"
-                android:src="@drawable/time_prime_logo"
+                android:scaleType="fitXY"
+                android:src="@drawable/placeholder"
                 android:layout_weight=".4"
                 android:layout_width="0dp"
                 android:layout_height="40dp"/>
