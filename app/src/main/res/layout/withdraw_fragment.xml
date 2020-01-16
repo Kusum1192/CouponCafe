@@ -35,6 +35,7 @@
                             android:layout_height="wrap_content"/>
 
                         <TextView
+                            android:id="@+id/tv_user_amount"
                             android:textColor="@color/green"
                             android:textSize="@dimen/common_text_size"
                             android:gravity="right"
@@ -125,6 +126,7 @@
                             android:layout_height="wrap_content"/>
 
                         <TextView
+                            android:id="@+id/tv_user_pending"
                             android:textColor="@color/black"
                             android:textSize="@dimen/common_text_size"
                             android:gravity="right"

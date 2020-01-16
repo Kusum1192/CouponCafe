@@ -126,7 +126,7 @@ public class ProfileFragment extends Fragment {
                                             fragment = new OverviewFragment(response.body().getUserAmount(),response.body().getPendingAmount());
                                             break;
                                         case 1:
-                                            fragment = new WithdrawalsFragment();
+                                            fragment = new WithdrawalsFragment(response.body().getUserAmount(),response.body().getPendingAmount());
                                             break;
 
                                     }
