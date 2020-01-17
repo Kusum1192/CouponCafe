@@ -13,7 +13,7 @@
         app:cardPreventCornerOverlap="false">
 
     <LinearLayout
-        android:padding="10dp"
+        android:padding="8dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -38,6 +38,8 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:textSize="@dimen/common_text_size"
+                    android:textStyle="bold"
                     android:id="@+id/offer_name"
                     android:textColor="@color/black"
                     android:text="Myntra"
@@ -61,6 +63,7 @@
         </LinearLayout>
 
         <TextView
+            android:textSize="@dimen/common_text_size"
             android:id="@+id/offer_short_description"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
@@ -70,6 +73,7 @@
             android:layout_height="wrap_content"/>
 
         <TextView
+            android:textSize="@dimen/common_text_size"
             android:id="@+id/offer_cashback"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"

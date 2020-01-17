@@ -188,6 +188,7 @@ public class InviteAndEarn extends Fragment implements View.OnClickListener {
                             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
                             recyclerview.setLayoutManager(mLayoutManager);
                             recyclerview.setAdapter(inviteUserAdapter);
+                            recyclerview.setNestedScrollingEnabled(false);
 
                         }else{
                             Toast.makeText(getActivity(),getString(R.string.systemmessage)+response.body().getMessage(),Toast.LENGTH_SHORT).show();

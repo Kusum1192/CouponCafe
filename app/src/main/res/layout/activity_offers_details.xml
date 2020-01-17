@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <ScrollView
-        android:scrollbars="none"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="50dp"
-        >
+        android:scrollbars="none">
 
         <LinearLayout
 
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -26,77 +25,78 @@
                 app:cardUseCompatPadding="true">
 
                 <LinearLayout
-                    android:padding="10dp"
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="8dp">
 
                     <LinearLayout
-                        android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
                         <ImageView
                             android:id="@+id/iv_offer_item"
-                            android:scaleType="fitStart"
-                            android:src="@drawable/placeholder"
-                            android:layout_weight=".7"
                             android:layout_width="0dp"
-                            android:layout_height="50dp"/>
+                            android:layout_height="50dp"
+                            android:layout_weight=".7"
+                            android:scaleType="fitStart"
+                            android:src="@drawable/placeholder" />
 
                         <LinearLayout
-                            android:orientation="vertical"
-                            android:layout_weight="1.3"
                             android:layout_width="0dp"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.3"
+                            android:orientation="vertical">
 
                             <TextView
-                                android:textSize="@dimen/common_text_size"
                                 android:id="@+id/tv_offer_name"
-                                android:textColor="@color/black"
-                                android:text="Myntra"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
+                                android:layout_height="wrap_content"
+                                android:text="Myntra"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/common_text_size"
+                                android:textStyle="bold" />
 
                             <TextView
-                                android:textSize="13sp"
                                 android:id="@+id/tv_cat_name"
-                                android:text="Fashion"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
+                                android:layout_height="wrap_content"
+                                android:text="Fashion"
+                                android:textSize="13sp" />
 
-                       </LinearLayout>
+                        </LinearLayout>
 
 
                         <TextView
-                            android:textSize="13sp"
-                            android:visibility="visible"
-                            android:textColor="@color/red"
-                            android:text="@string/editorpics"
-                            android:layout_weight="1"
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/editorpics"
+                            android:textColor="@color/red"
+                            android:textSize="13sp"
+                            android:visibility="visible" />
                     </LinearLayout>
 
                     <TextView
-                        android:textSize="@dimen/common_text_size"
                         android:id="@+id/tv_offer_mini_desc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
-                        android:textColor="@color/black"
                         android:text="@string/uptooff"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/common_text_size" />
 
                     <TextView
-                        android:textSize="@dimen/common_text_size"
                         android:id="@+id/tv_offer_cashback"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
-                        android:textColor="@color/green"
                         android:text="@string/uptocashback"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:textColor="@color/green"
+                        android:textSize="@dimen/common_text_size" />
 
                 </LinearLayout>
 
@@ -111,93 +111,90 @@
                 app:cardUseCompatPadding="true">
 
                 <LinearLayout
-                    android:padding="10dp"
-                    android:orientation="vertical"
+
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:padding="8dp">
 
                         <TextView
-                            android:textSize="@dimen/common_text_size"
-                            android:layout_marginBottom="10dp"
-                            android:textColor="@color/black"
-                            android:text="Description"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:text="Description"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/common_text_size"
+                            android:textStyle="bold" />
 
                         <ImageView
-                            android:visibility="gone"
                             android:id="@+id/desc_arrow"
-                            android:src="@drawable/ic_arrow_down"
-                            android:layout_centerVertical="true"
-                            android:layout_alignParentRight="true"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_arrow_down"
+                            android:visibility="gone" />
 
                     </RelativeLayout>
+
                     <View
-                        android:layout_marginBottom="10dp"
-                        android:background="@color/line_gray"
                         android:layout_width="match_parent"
-                        android:layout_height="0.5dp"/>
+                        android:layout_height="0.5dp"
+                        android:background="@color/line_gray" />
 
                     <TextView
+                        android:id="@+id/mItemDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="@string/text_with_paragraphs"
                         android:textColor="@color/black"
                         android:textSize="@dimen/common_text_size"
-                        android:id="@+id/mItemDescription"
-                        android:visibility="visible"
-                        android:text="@string/text_with_paragraphs"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:visibility="visible" />
 
 
                     <View
-                        android:layout_marginTop="10dp"
-                        android:background="@color/line_gray"
                         android:layout_width="match_parent"
-                        android:layout_height="0.5dp"/>
+                        android:layout_height="0.5dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/line_gray" />
 
                     <LinearLayout
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="8dp">
 
                         <TextView
-                            android:textSize="13sp"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:text="@string/success"
-                            android:layout_weight="1"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"/>
+                            android:textSize="13sp" />
 
                         <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:gravity="center"
-                            android:textSize="13sp"
                             android:text="@string/usertoday"
-                            android:layout_weight="1"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"/>
+                            android:textSize="13sp" />
 
                         <TextView
-                            android:gravity="center"
-                            android:textSize="13sp"
-                            android:text="@string/verifiedoffers"
-                            android:layout_weight="1"
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/verifiedoffers"
+                            android:textSize="13sp" />
 
                     </LinearLayout>
 
 
-
-
-
                 </LinearLayout>
-
 
 
             </androidx.cardview.widget.CardView>
@@ -210,53 +207,52 @@
                 app:cardUseCompatPadding="true">
 
                 <LinearLayout
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <TextView
-                        android:textSize="@dimen/common_text_size"
                         android:id="@+id/tv_coupon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="10dp"
-                        android:textColor="@color/black"
                         android:text="Coupon Code"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/common_text_size" />
 
                     <TextView
                         android:id="@+id/tv_copuon_code"
-                        android:layout_gravity="center"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/red"
-                        android:textAllCaps="true"
-                        android:text="@string/productcode"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/productcode"
+                        android:textAllCaps="true"
+                        android:textColor="@color/red"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
 
                     <View
-                        android:layout_marginTop="10dp"
-                        android:background="@color/line_gray"
                         android:layout_width="match_parent"
-                        android:layout_height="0.5dp"/>
+                        android:layout_height="0.5dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/line_gray" />
 
                     <TextView
-                        android:layout_margin="5dp"
                         android:id="@+id/tv_code_copy"
-                        android:gravity="center"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/blue"
-                        android:textAllCaps="true"
-                        android:text="code copy"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:text="code copy"
+                        android:textAllCaps="true"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/common_text_size"
+                        android:textStyle="bold" />
 
 
                 </LinearLayout>
-
 
 
             </androidx.cardview.widget.CardView>
@@ -269,201 +265,174 @@
                 app:cardUseCompatPadding="true">
 
                 <LinearLayout
-                    android:padding="10dp"
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <TextView
-                        android:textSize="@dimen/common_text_size"
-                        android:layout_marginBottom="10dp"
-                        android:textColor="@color/black"
-                        android:text="Shop via"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="Shop via"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/common_text_size"
+                        android:textStyle="bold" />
+
                     <View
-                        android:layout_marginBottom="10dp"
-                        android:background="@color/line_gray"
                         android:layout_width="match_parent"
-                        android:layout_height="0.5dp"/>
+                        android:layout_height="0.5dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@color/line_gray" />
 
 
                     <LinearLayout
-                        android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="8dp">
 
                         <LinearLayout
-                            android:visibility="gone"
                             android:id="@+id/ll_mobile_web"
-                            android:orientation="horizontal"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
 
                             <TextView
-                                android:textColor="@color/black"
-                                android:layout_weight="1"
+                                android:textSize="@dimen/common_text_size"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight=".6"
                                 android:text="Mobile Web"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"/>
-
-                            <TextView
-                                android:textSize="10sp"
-                                android:textColor="@color/black"
-                                android:gravity="right"
-                                android:layout_weight="1.3"
-                                android:text="upto 7.3% \n CD CASHBACK"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"/>
+                                android:textColor="@color/black" />
 
                             <androidx.appcompat.widget.AppCompatRadioButton
+                                android:textSize="@dimen/common_text_size"
                                 android:id="@+id/radio_upto_cashback"
-                                android:layout_weight=".7"
-                                android:text=""
                                 android:layout_width="0dp"
-                                android:layout_height="wrap_content"/>
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.4"
+                                android:text="upto 7.3% CD CASHBACK" />
 
 
 
                         </LinearLayout>
+
+
 
                         <LinearLayout
-                            android:visibility="gone"
                             android:id="@+id/ll_mobile_app"
-                            android:orientation="horizontal"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
 
                             <TextView
-                                android:textColor="@color/black"
-                                android:layout_weight="1"
+                                android:textSize="@dimen/common_text_size"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight=".6"
                                 android:text="Mobile App"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"/>
-
-                            <TextView
-                                android:textSize="10sp"
-                                android:textColor="@color/black"
-                                android:gravity="right"
-                                android:layout_weight="1.3"
-                                android:text="No \n CD CASHBACK"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"/>
+                                android:textColor="@color/black" />
 
                             <androidx.appcompat.widget.AppCompatRadioButton
+                                android:textSize="@dimen/common_text_size"
                                 android:id="@+id/radio_no_cashback"
-                                android:layout_weight=".7"
                                 android:layout_width="0dp"
-                                android:layout_height="wrap_content"/>
-
-
-
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.4"
+                                android:text="No CD CASHBACK" />
                         </LinearLayout>
-
-                        <View
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:background="@color/line_gray"
-                            android:layout_width="match_parent"
-                            android:layout_height="0.5dp"/>
 
                     </LinearLayout>
 
 
-
-
-
-
-
-
-
-
                 </LinearLayout>
-
 
 
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:layout_marginBottom="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
                 app:cardCornerRadius="4dp"
                 app:cardPreventCornerOverlap="false"
                 app:cardUseCompatPadding="true">
 
                 <LinearLayout
-                    android:padding="10dp"
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <TextView
-                        android:textSize="@dimen/common_text_size"
-                        android:layout_marginBottom="10dp"
-                        android:textColor="@color/black"
-                        android:text="Recent Users"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="Recent Users"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/common_text_size"
+                        android:textStyle="bold" />
 
                     <View
-                        android:layout_marginBottom="10dp"
-                        android:background="@color/line_gray"
                         android:layout_width="match_parent"
-                        android:layout_height="0.5dp"/>
+                        android:layout_height="0.5dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@color/line_gray" />
 
 
                     <LinearLayout
-                        android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="8dp">
 
                         <LinearLayout
-                            android:orientation="horizontal"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
 
                             <ImageView
-                                android:scaleType="fitStart"
-                                android:src="@drawable/placeholder"
                                 android:id="@+id/iv_user_profile"
-                                android:layout_weight=".4"
                                 android:layout_width="0dp"
-                                android:layout_height="40dp"/>
+                                android:layout_height="40dp"
+                                android:layout_weight=".4"
+                                android:scaleType="fitStart"
+                                android:src="@drawable/placeholder" />
 
                             <LinearLayout
-                                android:orientation="vertical"
-                                android:layout_weight="1"
                                 android:layout_width="0dp"
-                                android:layout_height="wrap_content">
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
 
                                 <TextView
-                                    android:textSize="@dimen/common_text_size"
                                     android:id="@+id/tv_username"
-                                    android:textColor="@color/black"
-                                    android:text="Anil"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"/>
+                                    android:layout_height="wrap_content"
+                                    android:text="Anil"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/common_text_size" />
 
                                 <TextView
-                                    android:textSize="13sp"
                                     android:id="@+id/tv_work"
-                                    android:text="worked"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"/>
+                                    android:layout_height="wrap_content"
+                                    android:text="worked"
+                                    android:textSize="13sp" />
 
                             </LinearLayout>
 
 
                             <TextView
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/common_text_size"
                                 android:id="@+id/tv_date"
-                                android:text="30 Dec 2019"
-                                android:layout_weight="1"
                                 android:layout_width="0dp"
-                                android:layout_height="wrap_content"/>
-
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="30 Dec 2019"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/common_text_size" />
 
 
                         </LinearLayout>
@@ -471,32 +440,24 @@
 
                     </LinearLayout>
 
-                    <TextView
-                        android:visibility="gone"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"
-                        android:text="@string/nocomment"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
 
                     <View
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="@color/line_gray"
                         android:layout_width="match_parent"
-                        android:layout_height="0.5dp"/>
+                        android:layout_height="0.5dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/line_gray" />
 
                     <TextView
                         android:id="@+id/tv_view_allusers"
-                        android:layout_gravity="right"
-                        android:textSize="@dimen/common_text_size"
-                        android:textStyle="normal"
-                        android:textColor="@color/blue"
-                        android:textAllCaps="true"
-                        android:text="View All"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:padding="8dp"
+                        android:text="View All"
+                        android:textAllCaps="true"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/common_text_size"
+                        android:textStyle="bold" />
 
 
                 </LinearLayout>
@@ -508,16 +469,16 @@
     </ScrollView>
 
     <TextView
-        android:textAllCaps="true"
-        android:textStyle="normal"
-        android:textSize="18sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
         android:gravity="center"
         android:padding="12dp"
-        android:background="@color/colorPrimary"
         android:text="Copy Code And Go to Store"
+        android:textAllCaps="true"
         android:textColor="@color/white"
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:textSize="18sp"
+        android:textStyle="normal" />
 
 </RelativeLayout>

@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ScrollView
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="none">
@@ -18,13 +19,13 @@
 
 
             <ImageView
-                android:scaleType="fitXY"
                 android:id="@+id/invite_share_people_img"
                 android:layout_width="match_parent"
                 android:layout_height="130sp"
                 android:layout_marginLeft="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginRight="@dimen/_20sdp"
+                android:scaleType="fitXY"
                 android:src="@drawable/placeholder" />
 
 
@@ -131,11 +132,11 @@
                             android:src="@drawable/whatsapp" />
 
                         <TextView
-                            android:textSize="@dimen/common_text_size"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Whatsapp"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/common_text_size" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -153,11 +154,11 @@
                             android:src="@drawable/telegram" />
 
                         <TextView
-                            android:textSize="@dimen/common_text_size"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Telegram"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/common_text_size" />
                     </LinearLayout>
 
 
@@ -175,11 +176,11 @@
                             android:src="@drawable/network" />
 
                         <TextView
-                            android:textSize="@dimen/common_text_size"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Other"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/common_text_size" />
                     </LinearLayout>
 
 
@@ -273,13 +274,13 @@
                         android:src="@drawable/giftbox" />
 
                     <TextView
-                        android:layout_marginLeft="4dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
                         android:gravity="center"
                         android:text="Your Invitations"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/common_text_size"/>
+                        android:textSize="@dimen/common_text_size" />
 
 
                 </LinearLayout>
@@ -290,7 +291,7 @@
                     android:gravity="center"
                     android:text="You've not got any confirmed bonus yet."
                     android:textColor="@color/black"
-                    android:textSize="@dimen/common_text_size"/>
+                    android:textSize="@dimen/common_text_size" />
 
 
             </LinearLayout>
@@ -302,11 +303,10 @@
                 android:background="@color/line_gray" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:scrollbars="none"
                 android:id="@+id/recyclerview"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
+                android:layout_height="wrap_content"
+                android:scrollbars="none" />
 
 
         </LinearLayout>

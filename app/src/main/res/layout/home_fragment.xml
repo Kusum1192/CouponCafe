@@ -69,7 +69,7 @@
                                 android:layout_weight="1"
                                 android:text="@string/topstore"
                                 android:textColor="@color/black"
-                                android:textSize="15sp"
+                                android:textSize="@dimen/common_text_size"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -81,7 +81,7 @@
                                 android:gravity="right"
                                 android:text="@string/viewtopstore"
                                 android:textColor="@color/blue"
-                                android:textSize="15sp"
+                                android:textSize="@dimen/common_text_size"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -100,7 +100,7 @@
                         android:id="@+id/recylerview_topstore"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="10dp" />
+                         />
                 </LinearLayout>
 
 
@@ -124,7 +124,7 @@
                         android:layout_margin="10dp"
                         android:text="@string/todaysoffers"
                         android:textColor="@color/black"
-                        android:textSize="15sp"
+                        android:textSize="@dimen/common_text_size"
                         android:textStyle="bold" />
 
                     <View
@@ -168,7 +168,7 @@
                             android:layout_margin="10dp"
                             android:text="@string/invite_friends"
                             android:textColor="@color/black"
-                            android:textSize="15sp"
+                            android:textSize="@dimen/common_text_size"
                             android:textStyle="bold" />
 
                         <ImageView

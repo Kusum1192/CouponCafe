@@ -199,6 +199,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
                             recylerview_topstore.setLayoutManager(mLayoutManager);
                             recylerview_topstore.setAdapter(mAdapter);
+                            recylerview_topstore.setNestedScrollingEnabled(false);
                             recylerview_topstore.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recylerview_topstore, new RecyclerTouchListener.ClickListener() {
                                 @Override
                                 public void onClick(View view, int position) {
@@ -218,7 +219,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                             RecyclerView.LayoutManager mLayoutManager1 = new LinearLayoutManager(getActivity());
                             recycler_view_best_offers.setLayoutManager(mLayoutManager1);
                             recycler_view_best_offers.setAdapter(todayBestAdapter);
-
+                            recycler_view_best_offers.setNestedScrollingEnabled(false);
                             recycler_view_best_offers.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recycler_view_best_offers, new RecyclerTouchListener.ClickListener() {
                                 @Override
                                 public void onClick(View view, int position) {

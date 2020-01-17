@@ -52,6 +52,7 @@
                         </LinearLayout>
 
                         <TextView
+                            android:textStyle="bold"
                             android:id="@+id/tv_topstore_name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -59,7 +60,7 @@
                             android:layout_marginLeft="10dp"
                             android:text="Time Prime"
                             android:textColor="@color/black"
-                            android:textSize="15sp" />
+                            android:textSize="@dimen/common_text_size" />
 
                     </LinearLayout>
 
@@ -73,10 +74,10 @@
                             android:id="@+id/tv_topstore_cashback"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
+                            android:layout_margin="8dp"
                             android:text="@string/uptocashback"
                             android:textColor="@color/green"
-                            android:textSize="15sp" />
+                            android:textSize="@dimen/common_text_size" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -86,7 +87,7 @@
                             android:text="Activate Cashback"
                             android:textAllCaps="true"
                             android:textColor="@color/white"
-                            android:textSize="18sp" />
+                            android:textSize="@dimen/common_text_size" />
 
                     </LinearLayout>
 

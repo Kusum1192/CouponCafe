@@ -42,7 +42,7 @@ import retrofit2.Response;
 public class CategoriesFragment extends Fragment {
 
 
-    MovieCategoryAdapter mAdapter;
+
     RecyclerView recyclerView;
     ProgressDialog progressDialog;
     String TAG = "testing";
@@ -102,6 +102,7 @@ public class CategoriesFragment extends Fragment {
 
                             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                             recyclerView.setAdapter(expandableCategoryRecyclerViewAdapter);
+                            recyclerView.setNestedScrollingEnabled(false);
 
 
                         }else{

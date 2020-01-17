@@ -24,7 +24,7 @@ public class WithdrawalsFragment extends Fragment implements View.OnClickListene
     ImageView desc_arrow, e_wallet_arrow;
     TextView tv_user_amount, tv_user_pending;
     Integer user_amount, user_pending;
-    ;
+
 
     public WithdrawalsFragment() {
 
