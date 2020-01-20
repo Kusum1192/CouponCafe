@@ -66,4 +66,9 @@
     <string name="loadingwait">Loading Please Wait</string>
     <string name="systemmessage">System Message </string>
     <string name="activatecash">Activate cash</string>
+    <string name="termcondition"><u>Term &amp; Condition</u></string>
+    <string name="login">Login</string>
+    <string name="signup">SignUp</string>
+    <string name="default_notification_channel_id">default notification channel id</string>
+    <string name="channel_id">channel id</string>
 </resources>

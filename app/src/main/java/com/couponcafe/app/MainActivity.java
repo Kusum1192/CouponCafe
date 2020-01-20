@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
 
         setupBottomNavigation();
-       // drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
 
         if (savedInstanceState == null) {
             loadHomeFragment();
@@ -79,16 +79,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         assert navigationView != null;
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setItemIconTintList(null);
-        // Passing each bottom_menu ID as a set of Ids because each
-        // bottom_menu should be considered as top level destinations.
-//        mAppBarConfiguration = new AppBarConfiguration.Builder(
-//                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
-//                R.id.nav_tools, R.id.nav_share, R.id.nav_send)
-//                .setDrawerLayout(drawer)
-//                .build();
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-//        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-//        NavigationUI.setupWithNavController(navigationView, navController);
+
+        View headerView = navigationView.getHeaderView(0);
+        TextView tv_username = headerView.findViewById(R.id.tv_username);
+        TextView tv_useremail = headerView.findViewById(R.id.tv_useremail);
+
+
+        tv_username.setText(Constants.getSharedPreferenceString(MainActivity.this,"username",""));
+        tv_useremail.setText(Constants.getSharedPreferenceString(MainActivity.this,"useremail",""));
+
+
     }
 
     @Override
@@ -112,12 +112,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-//    @Override
-//    public boolean onSupportNavigateUp() {
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-//        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-//                || super.onSupportNavigateUp();
-//    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
