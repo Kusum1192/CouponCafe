@@ -234,7 +234,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                                     BestOfferDatum bestOfferDatum = bestOfferDatalist.get(position);
                                     // Toast.makeText(getActivity(), topStores.getTitle() + " is selected!", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(getActivity(), OffersDetailsActivity.class);
-                                    intent.putExtra("offerid",bestOfferDatum.getOfferId());
+                                    intent.putExtra("offerId",bestOfferDatum.getOfferId());
                                     startActivity(intent);
                                 }
 

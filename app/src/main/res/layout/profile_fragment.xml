@@ -24,7 +24,7 @@
                 android:id="@+id/rl_main"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/custom_nav_header_height"
-                android:background="@drawable/gradiant_bg"
+                android:background="@color/colorPrimary"
                 android:gravity="center|left"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingTop="8dp"
@@ -36,7 +36,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:contentDescription="@string/nav_header_desc"
-                    app:srcCompat="@drawable/ic_profile_64dp"
+                    app:srcCompat="@drawable/ic_account_circle"
                     tools:ignore="VectorDrawableCompat" />
 
 
@@ -61,6 +61,7 @@
                     android:textColor="@color/white" />
 
                 <RelativeLayout
+                    android:layout_toRightOf="@+id/imageView_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/imageView_profile">

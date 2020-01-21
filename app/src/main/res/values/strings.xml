@@ -24,6 +24,7 @@
     <string name="scratchwin"><u><![CDATA[Scratch & Win]]></u></string>
     <string name="uptooff">Upto Rs. 300 Off on minimum Purchase of Rs. 999(New User)</string>
     <string name="uptocashback">UPTO 7.3% CD CASHBACK</string>
+    <string name="sales_description">The Republic Day Sale: Extra 10% Off via Kotak &amp; ICICI Bank Credit Cards + Upto 7% CD Rewards</string>
     <string name="success">61% Success</string>
     <string name="verifiedoffers">Verified Offer</string>
     <string name="usertoday">100 Users today</string>
@@ -71,4 +72,8 @@
     <string name="signup">SignUp</string>
     <string name="default_notification_channel_id">default notification channel id</string>
     <string name="channel_id">channel id</string>
+    <string name="home">Home</string>
+    <string name="hrago">3 hours ago</string>
+    <string name="notification_title"><![CDATA[Flipkart: Beauty, Toys &amp; more Starting from Rs. 99.]]></string>
+    <string name="todays">Todays</string>
 </resources>

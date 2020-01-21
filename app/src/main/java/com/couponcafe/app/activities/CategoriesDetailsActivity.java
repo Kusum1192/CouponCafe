@@ -41,7 +41,7 @@ public class CategoriesDetailsActivity extends AppCompatActivity implements View
     ViewPager viewPager;
     TabLayout tabLayout;
     ProgressDialog progressDialog;
-    private OnAboutDataReceivedListener mAboutDataListener;
+    //OnAboutDataReceivedListener mAboutDataListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -194,11 +194,12 @@ public class CategoriesDetailsActivity extends AppCompatActivity implements View
 
     }
 
-    class ViewPagerAdapter extends FragmentStatePagerAdapter {
+    public class ViewPagerAdapter extends FragmentStatePagerAdapter {
         //        private final List<Fragment> mFragmentList = new ArrayList<>();
 //        private final List<String> mFragmentTitleList = new ArrayList<>();
         ArrayList<SubCategory> allCategoriesDetailsModels;
         ArrayList<BestOfferDatum> bestOfferData;
+
 
         public ViewPagerAdapter(FragmentManager manager) {
             super(manager);
@@ -218,7 +219,7 @@ public class CategoriesDetailsActivity extends AppCompatActivity implements View
 
         @Override
         public Fragment getItem(int position) {
-            return TabFragment.getInstance(position);
+            return TabFragment.getInstance(position,bestOfferData);
         }
 
         @Override
@@ -235,13 +236,10 @@ public class CategoriesDetailsActivity extends AppCompatActivity implements View
         public CharSequence getPageTitle(int position) {
             return allCategoriesDetailsModels.get(position).getSubCategoryName();
         }
+
+
+
     }
 
-    public interface OnAboutDataReceivedListener {
-        void onDataReceived(ArrayList<BestOfferDatum> bestOfferData);
-    }
 
-    public void setAboutDataListener(OnAboutDataReceivedListener listener) {
-        this.mAboutDataListener = listener;
-    }
 }

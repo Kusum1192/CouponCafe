@@ -85,8 +85,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         TextView tv_useremail = headerView.findViewById(R.id.tv_useremail);
 
 
-        tv_username.setText(Constants.getSharedPreferenceString(MainActivity.this,"username",""));
-        tv_useremail.setText(Constants.getSharedPreferenceString(MainActivity.this,"useremail",""));
+//        tv_username.setText(Constants.getSharedPreferenceString(MainActivity.this,"username",""));
+//        tv_useremail.setText(Constants.getSharedPreferenceString(MainActivity.this,"useremail",""));
 
 
     }
@@ -120,6 +120,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         switch (id) {
+            case R.id.nav_home:
+                setupBottomNavigationFrom(R.id.navigation_home);
+                break;
             case R.id.nav_cashactivity:
                 setupBottomNavigationFrom(R.id.navigation_profile);
                 break;
