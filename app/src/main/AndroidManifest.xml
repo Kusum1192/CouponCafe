@@ -28,6 +28,7 @@
         <activity android:name=".activities.TestingActivity" />
         <activity android:name=".activities.BestOffersActivity" />
         <activity android:name=".activities.OffersDetailsActivity" />
+        <activity android:name=".activities.CategoriesDetailsActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

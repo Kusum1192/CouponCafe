@@ -30,6 +30,7 @@ import android.widget.Toast;
 import com.couponcafe.app.MainActivity;
 import com.couponcafe.app.R;
 import com.couponcafe.app.activities.BestOffersActivity;
+import com.couponcafe.app.activities.CategoriesDetailsActivity;
 import com.couponcafe.app.activities.OffersDetailsActivity;
 import com.couponcafe.app.activities.TopStoresDetailsActivity;
 import com.couponcafe.app.activities.ViewAllTopOffersActivity;
@@ -69,7 +70,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private TopStoresAdapter mAdapter;
     private TodayBestOfferListAdapter todayBestAdapter;
 
-    TextView tv_viewtop_offers;
+    TextView tv_viewtop_offers,tv_view_all;
     ProgressDialog progressDialog;
     ImageView tv_home_invite_image;
 
@@ -90,7 +91,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         recycler_view_best_offers = root.findViewById(R.id.recycler_view_best_offers);
         tv_viewtop_offers = root.findViewById(R.id.tv_viewtop_offers);
         tv_home_invite_image = root.findViewById(R.id.tv_home_invite_image);
+        tv_view_all = root.findViewById(R.id.tv_view_all);
         tv_viewtop_offers.setOnClickListener(this);
+        tv_view_all.setOnClickListener(this);
 
 
         getAllOffersData();
@@ -111,6 +114,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             case R.id.tv_viewtop_offers:
                 Intent intent_topoffers = new Intent(getActivity(), ViewAllTopOffersActivity.class);
                 startActivity(intent_topoffers);
+                break;
+
+            case R.id.tv_view_all:
+                Intent intent_best_offers = new Intent(getActivity(), CategoriesDetailsActivity.class);
+                startActivity(intent_best_offers);
                 break;
 
         }

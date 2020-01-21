@@ -1,6 +1,7 @@
 package com.couponcafe.app.interfaces;
 
 
+import com.couponcafe.app.models.AllCategoriesDetailsModel;
 import com.couponcafe.app.models.AllOffersDataModel;
 import com.couponcafe.app.models.BestOfferDetailsModel;
 import com.couponcafe.app.models.CategoriesModel;
@@ -68,5 +69,11 @@ public interface APIService {
     Call<ProfileDataModel> getprofileData(@Field("userId") int userId,
                                           @Field("securityToken") String securityToken,
                                           @Field("versionName") String versionName,
-                                          @Field("versionCode") int versionCode);
+                                         @Field("versionCode") int versionCode);
+    @FormUrlEncoded
+    @POST("categoryDetails")
+    Call<AllCategoriesDetailsModel> allcategoriesDetails(@Field("userId") int userId,
+                                                         @Field("securityToken") String securityToken,
+                                                         @Field("versionName") String versionName,
+                                                         @Field("versionCode") int versionCode);
 }

@@ -99,8 +99,7 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recylerview_topstore"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                         />
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
 
 
@@ -137,6 +136,23 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:scrollbars="none" />
+
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:textSize="@dimen/common_text_size"
+                        android:padding="10dp"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:text="view all"
+                        android:id="@+id/tv_view_all"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/line_gray" />
 
                 </LinearLayout>
 
@@ -175,8 +191,7 @@
                             android:id="@+id/tv_home_invite_image"
                             android:layout_width="match_parent"
                             android:layout_height="150dp"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/placeholder" />
+                            android:scaleType="fitXY" />
 
 
                     </LinearLayout>
