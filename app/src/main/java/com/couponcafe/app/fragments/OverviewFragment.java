@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.couponcafe.app.MainActivity;
 import com.couponcafe.app.R;
 import com.couponcafe.app.activities.OffersDetailsActivity;
+import com.couponcafe.app.activities.ProductDetailsActivity;
 import com.couponcafe.app.utils.Constants;
 
 
@@ -24,6 +26,7 @@ public class OverviewFragment extends Fragment implements View.OnClickListener {
 
     TextView textView_invite, tv_user_amount, tv_user_pending;
     Integer user_amount,user_pending;
+    LinearLayout ll_product_item;
 
     public OverviewFragment() {
         // Required empty public constructor
@@ -55,12 +58,14 @@ public class OverviewFragment extends Fragment implements View.OnClickListener {
     }
 
     private void init(View view) {
+        ll_product_item = view.findViewById(R.id.ll_product_item);
         textView_invite = view.findViewById(R.id.invite_now);
         tv_user_amount = view.findViewById(R.id.tv_user_amount);
         tv_user_pending = view.findViewById(R.id.tv_user_pending);
         tv_user_amount.setText(Constants.getSharedPreferenceString(getActivity(),"currency","")+" "+user_amount);
         tv_user_pending.setText(Constants.getSharedPreferenceString(getActivity(),"currency","")+""+user_pending);
         textView_invite.setOnClickListener(this);
+        ll_product_item.setOnClickListener(this);
     }
 
 
@@ -71,6 +76,14 @@ public class OverviewFragment extends Fragment implements View.OnClickListener {
             case R.id.invite_now:
                 ((MainActivity) getActivity()).setupBottomNavigationFrom(R.id.navigation_invite);
                 break;
+
+            case R.id.ll_product_item:
+                Intent intent_product_details = new Intent(getActivity(), ProductDetailsActivity.class);
+                startActivity(intent_product_details);
+                break;
+
+                default:
+                    break;
         }
     }
 

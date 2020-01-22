@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,15 +19,18 @@ import com.couponcafe.app.models.BestOfferDatum;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
-public class TodayBestOfferListAdapter extends RecyclerView.Adapter<TodayBestOfferListAdapter.ViewHolder> {
+public class TodayBestOfferListAdapter extends RecyclerView.Adapter<TodayBestOfferListAdapter.ViewHolder> implements Filterable {
     ArrayList<BestOfferDatum> items;
+    private List<BestOfferDatum> exampleListFull;
     Context context;
 
     public TodayBestOfferListAdapter(ArrayList<BestOfferDatum> bestOfferDatum, Context context) {
         this.context = context;
         this.items = bestOfferDatum;
+        this.exampleListFull = new ArrayList<>(bestOfferDatum);
     }
 
     @Override
@@ -61,6 +66,37 @@ public class TodayBestOfferListAdapter extends RecyclerView.Adapter<TodayBestOff
         return 0;
 
     }
+
+    @Override
+    public Filter getFilter() {
+        return exampleFilter;
+    }
+
+    private Filter exampleFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            ArrayList<BestOfferDatum> filteredList = new ArrayList<>();
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(exampleListFull);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                for (BestOfferDatum item : exampleListFull) {
+                    if (item.getOfferName().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(item);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+        }
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            items.clear();
+            items.addAll((ArrayList) results.values);
+            notifyDataSetChanged();
+        }
+    };
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 

@@ -112,6 +112,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.action_search:
+
+                // Do Activity menu item stuff here
+                return true;
+
+            default:
+                break;
+        }
+
+        return false;
+    }
+
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override

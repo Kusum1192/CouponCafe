@@ -8,7 +8,9 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.cardview.widget.CardView;
+import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,8 +22,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -77,16 +81,22 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public HomeFragment() {
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.home_fragment, container, false);
-
+        //setHasOptionsMenu(true);
         mPager = (ViewPager) root.findViewById(R.id.pager);
         cardview_share_invite = root.findViewById(R.id.cardview_share_invite);
         indicator = (CircleIndicator) root.findViewById(R.id.indicator);
 
 
-        cardview_share_invite.setOnClickListener(this);
+
         recylerview_topstore = root.findViewById(R.id.recylerview_topstore);
         recycler_view_best_offers = root.findViewById(R.id.recycler_view_best_offers);
         tv_viewtop_offers = root.findViewById(R.id.tv_viewtop_offers);
@@ -94,6 +104,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         tv_view_all = root.findViewById(R.id.tv_view_all);
         tv_viewtop_offers.setOnClickListener(this);
         tv_view_all.setOnClickListener(this);
+        cardview_share_invite.setOnClickListener(this);
 
 
         getAllOffersData();
@@ -285,5 +296,50 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onPause() {
         dismissProgressDialog();
         super.onPause();
+    }
+
+//    @Override
+//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+//        inflater.inflate(R.menu.share_main_menu, menu);
+//        super.onCreateOptionsMenu(menu, inflater);
+
+//        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        //MenuItem searchItem = menu.findItem(R.id.action_search);
+       // SearchView searchView = (SearchView) searchItem.getActionView();
+//        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                return false;
+//            }
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                todayBestAdapter.getFilter().filter(newText);
+//                return false;
+//            }
+//        });
+
+//    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu,MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.action_search:
+                Toast.makeText(getActivity(), "clcik", Toast.LENGTH_SHORT).show();
+                // Do Activity menu item stuff here
+                return true;
+
+            default:
+                break;
+        }
+
+        return false;
     }
 }

@@ -76,4 +76,10 @@
     <string name="hrago">3 hours ago</string>
     <string name="notification_title"><![CDATA[Flipkart: Beauty, Toys &amp; more Starting from Rs. 99.]]></string>
     <string name="todays">Todays</string>
+    <string name="purchase">Purchase Card</string>
+    <string name="product_title">Redmi 8A (Sunset Red, 32 GB)</string>
+    <string name="justhere">#JustHere</string>
+    <string name="price">\u20B9 5,999</string>
+    <string name="price1">\u20B9 10,999</string>
+    <string name="nocostemi">No Cost EMI</string>
 </resources>
