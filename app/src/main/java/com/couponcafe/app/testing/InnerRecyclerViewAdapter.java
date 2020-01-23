@@ -12,6 +12,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.couponcafe.app.R;
 import com.couponcafe.app.activities.BestOffersActivity;
+import com.couponcafe.app.activities.CategoriesDetailsActivity;
 import com.couponcafe.app.models.SubCategory;
 import java.util.ArrayList;
 
@@ -44,7 +45,7 @@ public class InnerRecyclerViewAdapter extends RecyclerView.Adapter<InnerRecycler
         public void onClick(View view) {
             switch (view.getId()){
                 case R.id.cardView_child:
-                    Intent intent = new Intent(context, BestOffersActivity.class);
+                    Intent intent = new Intent(context, CategoriesDetailsActivity.class);
                     intent.putExtra("subcatId",getofferList.get(getAdapterPosition()).getSubCategoryId());
                     intent.putExtra("subcatName",getofferList.get(getAdapterPosition()).getSubCategoryName());
                     context.startActivity(intent);

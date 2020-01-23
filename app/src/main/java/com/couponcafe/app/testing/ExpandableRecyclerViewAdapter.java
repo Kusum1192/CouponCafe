@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.couponcafe.app.R;
 import com.couponcafe.app.models.CategoryDatum;
+import com.squareup.picasso.Picasso;
 
 
 import java.util.ArrayList;
@@ -41,10 +43,11 @@ public class ExpandableRecyclerViewAdapter extends RecyclerView.Adapter<Expandab
         ImageButton dropBtn;
         RecyclerView cardRecyclerView;
         CardView cardView;
+        ImageView iv_product_image;
 
         public ViewHolder(View itemView) {
             super(itemView);
-//            name = itemView.findViewById(R.id.categoryTitle);
+            iv_product_image = itemView.findViewById(R.id.iv_product_image);
             tv_movie_category = itemView.findViewById(R.id.tv_movie_category);
             tv_movie_subcategories = itemView.findViewById(R.id.tv_movie_subcategories);
             dropBtn = itemView.findViewById(R.id.categoryExpandBtn);
@@ -66,6 +69,7 @@ public class ExpandableRecyclerViewAdapter extends RecyclerView.Adapter<Expandab
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
+        Picasso.get().load(categoryDatumArrayList.get(position).getImageUrl()).placeholder(R.drawable.ic_placeholder_small).error(R.drawable.ic_placeholder_small).into((holder.iv_product_image));
         holder.tv_movie_category.setText(categoryDatumArrayList.get(position).getCategoryName());
         holder.tv_movie_subcategories.setText(categoryDatumArrayList.get(position).getOffersCount());
         InnerRecyclerViewAdapter itemInnerRecyclerView = new InnerRecyclerViewAdapter(categoryDatumArrayList.get(position).getSubCategories(), context);

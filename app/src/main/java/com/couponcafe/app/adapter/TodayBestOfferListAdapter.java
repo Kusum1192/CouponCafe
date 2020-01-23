@@ -52,8 +52,8 @@ public class TodayBestOfferListAdapter extends RecyclerView.Adapter<TodayBestOff
         holder.offercategory.setText(items.get(position).getCategory());
 
         Picasso.get().load(items.get(position).getImageUrl())
-                .placeholder(R.drawable.placeholder)
-                .error(R.drawable.placeholder)
+                .placeholder(R.drawable.ic_placeholder_small)
+                .error(R.drawable.ic_placeholder_small)
                 .into((holder.offerImage));
 
     }

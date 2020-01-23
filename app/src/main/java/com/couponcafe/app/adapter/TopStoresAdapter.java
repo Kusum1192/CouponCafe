@@ -52,8 +52,8 @@ public class TopStoresAdapter extends RecyclerView.Adapter<TopStoresAdapter.MyVi
         holder.title.setText(topStores.getStoreName());
         holder.genre.setText(topStores.getCashBack());
         Picasso.get().load(topStores.getImageUrl())
-                .placeholder(R.drawable.placeholder)
-                .error(R.drawable.placeholder)
+                .placeholder(R.drawable.ic_placeholder_small)
+                .error(R.drawable.ic_placeholder_small)
                 .into((holder.imageView_topstore));
     }
  

@@ -103,8 +103,8 @@ public class ProfileFragment extends Fragment {
                     if(response.isSuccessful()){
                         if(response.body().getStatus()==200){
                             Picasso.get().load(response.body().getSocialImgurl())
-                                    .placeholder(R.drawable.placeholder)
-                                    .error(R.drawable.placeholder).transform(new CircleTransform())
+                                    .placeholder(R.drawable.ic_placeholder_small)
+                                    .error(R.drawable.ic_placeholder_small).transform(new CircleTransform())
                                     .into((imageView_profile));
                             tv_useremail.setText(response.body().getSocialEmail());
                             tv_username.setText(response.body().getSocialName());

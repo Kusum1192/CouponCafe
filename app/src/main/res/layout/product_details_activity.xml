@@ -164,10 +164,10 @@
         <TextView
             android:gravity="center"
             android:layout_alignParentBottom="true"
-            android:textStyle="bold"
-            android:textSize="20sp"
+            android:textStyle="normal"
+            android:textSize="18sp"
             android:background="@color/colorPrimary"
-            android:padding="15dp"
+            android:padding="12dp"
             android:textColor="@color/white"
             android:text="Purchase Now"
             android:layout_width="match_parent"

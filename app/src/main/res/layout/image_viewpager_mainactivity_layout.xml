@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:adjustViewBounds="true"
-        android:src="@drawable/placeholder"
+        android:src="@drawable/ic_placeholder_small"
         android:scaleType="fitXY"
         />
 </FrameLayout>

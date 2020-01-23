@@ -23,16 +23,10 @@
             app:tabTextAppearance="@style/AppTabTextAppearance1" />
 
 
-        <TextView
-            android:text="this is view pager"
-            android:textSize="30sp"
-            android:textColor="@color/black"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+
 
         <androidx.viewpager.widget.ViewPager
             android:visibility="visible"
-            android:background="@color/blue"
             android:id="@+id/view_pager_child"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

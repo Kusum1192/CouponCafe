@@ -41,7 +41,7 @@
                             android:layout_height="50dp"
                             android:layout_weight=".7"
                             android:scaleType="fitStart"
-                            android:src="@drawable/placeholder" />
+                            android:src="@drawable/ic_placeholder_small" />
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -160,13 +160,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
                         android:layout_marginTop="10dp"
-                        android:background="@color/line_gray" />
+                        android:background="@color/line_gray"
+                        android:visibility="gone" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:padding="8dp">
+                        android:padding="8dp"
+                        android:visibility="gone">
 
                         <TextView
                             android:layout_width="0dp"
@@ -216,10 +218,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_margin="10dp"
+                        android:layout_margin="8dp"
                         android:text="Coupon Code"
                         android:textColor="@color/black"
                         android:textSize="@dimen/common_text_size" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@color/line_gray" />
 
                     <TextView
                         android:id="@+id/tv_copuon_code"
@@ -232,12 +240,6 @@
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.5dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@color/line_gray" />
 
                     <TextView
                         android:id="@+id/tv_code_copy"
@@ -286,6 +288,7 @@
 
 
                     <LinearLayout
+                        android:background="@color/white"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -295,54 +298,65 @@
                             android:id="@+id/ll_mobile_web"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:visibility="gone">
+                            android:orientation="vertical"
+                            android:visibility="visible">
 
-                            <TextView
-                                android:textSize="@dimen/common_text_size"
-                                android:layout_width="0dp"
+                            <LinearLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight=".6"
-                                android:text="Mobile Web"
-                                android:textColor="@color/black" />
+                                android:orientation="horizontal">
 
-                            <androidx.appcompat.widget.AppCompatRadioButton
-                                android:textSize="@dimen/common_text_size"
-                                android:id="@+id/radio_upto_cashback"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1.4"
-                                android:text="upto 7.3% CD CASHBACK" />
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight=".6"
+                                    android:text="Mobile Web"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/common_text_size" />
+
+                                <androidx.appcompat.widget.AppCompatRadioButton
+                                    android:id="@+id/radio_upto_cashback"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1.4"
+                                    android:text="upto 7.3% CD CASHBACK"
+                                    android:textSize="@dimen/common_text_size" />
 
 
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="0.5dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:background="@color/line_gray_tras" />
 
                         </LinearLayout>
-
-
 
                         <LinearLayout
                             android:id="@+id/ll_mobile_app"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:visibility="gone">
+                            android:visibility="visible">
 
 
                             <TextView
-                                android:textSize="@dimen/common_text_size"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight=".6"
                                 android:text="Mobile App"
-                                android:textColor="@color/black" />
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/common_text_size" />
 
                             <androidx.appcompat.widget.AppCompatRadioButton
-                                android:textSize="@dimen/common_text_size"
                                 android:id="@+id/radio_no_cashback"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1.4"
-                                android:text="No CD CASHBACK" />
+                                android:text="No CD CASHBACK"
+                                android:textSize="@dimen/common_text_size" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -399,7 +413,7 @@
                                 android:layout_height="40dp"
                                 android:layout_weight=".4"
                                 android:scaleType="fitStart"
-                                android:src="@drawable/placeholder" />
+                                android:src="@drawable/ic_placeholder_small" />
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -439,25 +453,6 @@
 
 
                     </LinearLayout>
-
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.5dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@color/line_gray" />
-
-                    <TextView
-                        android:id="@+id/tv_view_allusers"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:padding="8dp"
-                        android:text="View All"
-                        android:textAllCaps="true"
-                        android:textColor="@color/blue"
-                        android:textSize="@dimen/common_text_size"
-                        android:textStyle="bold" />
 
 
                 </LinearLayout>

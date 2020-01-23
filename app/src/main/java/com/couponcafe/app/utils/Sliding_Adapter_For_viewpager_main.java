@@ -46,8 +46,8 @@ public class Sliding_Adapter_For_viewpager_main extends PagerAdapter {
        // myImage.setImageResource(images.get(position).getImageUrl());
 
         Picasso.get().load(images.get(position).getImageUrl())
-                .placeholder(R.drawable.placeholder)
-                .error(R.drawable.placeholder)
+                .placeholder(R.drawable.ic_placeholder_small)
+                .error(R.drawable.ic_placeholder_small)
                 .into(myImage);
 
         view.addView(myImageLayout, 0);

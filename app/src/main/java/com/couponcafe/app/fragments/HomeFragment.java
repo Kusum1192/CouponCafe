@@ -170,8 +170,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                            final ArrayList<TopStoreDatum> topStoreDatalist = response.body().getTopStoreData();
 
                             Picasso.get().load(response.body().getInviteImgurl())
-                                    .placeholder(R.drawable.placeholder)
-                                    .error(R.drawable.placeholder)
+                                    .placeholder(R.drawable.ic_placeholder_small)
+                                    .error(R.drawable.ic_placeholder_small)
                                     .into((tv_home_invite_image));
 
                            // Toast.makeText(getActivity(), ""+bestOfferData.size(), Toast.LENGTH_SHORT).show();

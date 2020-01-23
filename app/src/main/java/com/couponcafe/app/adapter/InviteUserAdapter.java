@@ -44,8 +44,8 @@ public class InviteUserAdapter extends RecyclerView.Adapter<InviteUserAdapter.Vi
         holder.tv_tym.setText(items.get(position).getTime());
 
         Picasso.get().load(items.get(position).getImageUrl())
-                .placeholder(R.drawable.placeholder)
-                .error(R.drawable.placeholder).transform(new CircleTransform())
+                .placeholder(R.drawable.ic_placeholder_small)
+                .error(R.drawable.ic_placeholder_small).transform(new CircleTransform())
                 .into((holder.iv_user_image));
 
     }

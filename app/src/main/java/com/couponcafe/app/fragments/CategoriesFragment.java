@@ -10,29 +10,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.couponcafe.app.R;
-import com.couponcafe.app.adapter.ExpandableRecyclerAdapter;
-import com.couponcafe.app.adapter.MovieCategory;
-import com.couponcafe.app.adapter.MovieCategoryAdapter;
-import com.couponcafe.app.adapter.Movies;
 import com.couponcafe.app.interfaces.APIService;
-import com.couponcafe.app.interfaces.ParentListItem;
 import com.couponcafe.app.models.CategoriesModel;
 import com.couponcafe.app.models.CategoryDatum;
-import com.couponcafe.app.models.SubCategory;
 import com.couponcafe.app.testing.ExpandableRecyclerViewAdapter;
 import com.couponcafe.app.utils.ApiClient;
 import com.couponcafe.app.utils.Constants;
-import com.couponcafe.app.viewholders.ChildViewHolder;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,7 +30,6 @@ import retrofit2.Response;
 
 
 public class CategoriesFragment extends Fragment {
-
 
 
     RecyclerView recyclerView;
@@ -61,25 +50,25 @@ public class CategoriesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-      View view = inflater.inflate(R.layout.categories_fragment, container, false);
+        View view = inflater.inflate(R.layout.categories_fragment, container, false);
 
-        recyclerView = (RecyclerView)view.findViewById(R.id.recyclerview);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
 
-      getcategoryData();
+        getcategoryData();
 
-      return view;
+        return view;
     }
 
 
     private void getcategoryData() {
 
         APIService apiService = ApiClient.getClient().create(APIService.class);
-        Call<CategoriesModel> call = apiService.getAllCategories(Constants.getSharedPreferenceInt(getActivity(),"userId",0),
-                Constants.getSharedPreferenceString(getActivity(),"securitytoken",""),
-                Constants.getSharedPreferenceString(getActivity(),"versionName",""),
-                Constants.getSharedPreferenceInt(getActivity(),"versionCode",0));
+        Call<CategoriesModel> call = apiService.getAllCategories(Constants.getSharedPreferenceInt(getActivity(), "userId", 0),
+                Constants.getSharedPreferenceString(getActivity(), "securitytoken", ""),
+                Constants.getSharedPreferenceString(getActivity(), "versionName", ""),
+                Constants.getSharedPreferenceInt(getActivity(), "versionCode", 0));
 
-        if(!((Activity) getActivity()).isFinishing()) {
+        if (!((Activity) getActivity()).isFinishing()) {
             progressDialog = new ProgressDialog(getActivity());
             progressDialog.setMessage(getString(R.string.loadingwait));
             progressDialog.show();
@@ -88,14 +77,12 @@ public class CategoriesFragment extends Fragment {
 
         call.enqueue(new Callback<CategoriesModel>() {
             @Override
-            public void onResponse(Call<CategoriesModel>call, Response<CategoriesModel> response) {
+            public void onResponse(Call<CategoriesModel> call, Response<CategoriesModel> response) {
                 dismissProgressDialog();
-                if(response!=null){
-                    if(response.isSuccessful()){
-                        if(response.body().getStatus()==200){
-
+                if (response != null) {
+                    if (response.isSuccessful()) {
+                        if (response.body().getStatus() == 200) {
                             ArrayList<CategoryDatum> categoriesModel = response.body().getCategoryData();
-
 
                             ExpandableRecyclerViewAdapter expandableCategoryRecyclerViewAdapter =
                                     new ExpandableRecyclerViewAdapter(getActivity(), categoriesModel);
@@ -105,21 +92,20 @@ public class CategoriesFragment extends Fragment {
                             recyclerView.setNestedScrollingEnabled(false);
 
 
-                        }else{
-                            Toast.makeText(getActivity(),getString(R.string.systemmessage)+response.body().getMessage(),Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getActivity(), getString(R.string.systemmessage) + response.body().getMessage(), Toast.LENGTH_SHORT).show();
                         }
 
                     }
-                }
-                else{
-                    Toast.makeText(getActivity(),getString(R.string.systemmessage)+response.errorBody(),Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getActivity(), getString(R.string.systemmessage) + response.errorBody(), Toast.LENGTH_SHORT).show();
                 }
 
 
             }
 
             @Override
-            public void onFailure(Call<CategoriesModel>call, Throwable t) {
+            public void onFailure(Call<CategoriesModel> call, Throwable t) {
                 // Log error here since request failed
                 Log.e("response", t.toString());
             }

@@ -1,7 +1,6 @@
 package com.couponcafe.app.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,18 +10,18 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.couponcafe.app.R;
-import com.couponcafe.app.models.BestOfferDatum;
+import com.couponcafe.app.models.Notification;
 import com.couponcafe.app.models.TopStoreDatum;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 
-public class ViewTopStoreListAdapter extends RecyclerView.Adapter<ViewTopStoreListAdapter.ViewHolder> {
-    ArrayList<TopStoreDatum> items;
+public class NotificationsListAdapter extends RecyclerView.Adapter<NotificationsListAdapter.ViewHolder> {
+    ArrayList<Notification> items;
     Context context;
 
-    public ViewTopStoreListAdapter(ArrayList<TopStoreDatum> bestOfferDatum, Context context) {
+    public NotificationsListAdapter(ArrayList<Notification> bestOfferDatum, Context context) {
         this.context = context;
         this.items = bestOfferDatum;
     }
@@ -30,22 +29,21 @@ public class ViewTopStoreListAdapter extends RecyclerView.Adapter<ViewTopStoreLi
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.view_topstore_list_adapter_layout, parent, false);
+                .inflate(R.layout.notfication_item_view, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
-        holder.tv_topstore_name.setText(items.get(position).getStoreName());
-        holder.tv_cashback.setText(items.get(position).getCashBack());
-        holder.tv_offer_count.setText(items.get(position).getOffersCount());
-        holder.tv_topstore_category.setText(items.get(position).getCategory());
+        holder.tv_notification_name.setText(items.get(position).getNotifyTitle());
+        holder.tv_notification_description.setText(items.get(position).getShortDescription());
+        holder.tv_notification_tym.setText(items.get(position).getTimesAgo());
 
         Picasso.get().load(items.get(position).getImageUrl())
                 .placeholder(R.drawable.ic_placeholder_small)
                 .error(R.drawable.ic_placeholder_small)
-                .into((holder.image_view_topstore));
+                .into((holder.image_view_notification));
 
     }
 
@@ -60,16 +58,15 @@ public class ViewTopStoreListAdapter extends RecyclerView.Adapter<ViewTopStoreLi
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tv_topstore_name,tv_topstore_category,tv_cashback,tv_offer_count;
-        ImageView image_view_topstore;
+        TextView tv_notification_name,tv_notification_description,tv_notification_tym;
+        ImageView image_view_notification;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            tv_topstore_name = itemView.findViewById(R.id.tv_topstore_name);
-            tv_topstore_category = itemView.findViewById(R.id.tv_topstore_category);
-            tv_cashback = itemView.findViewById(R.id.tv_cashback);
-            tv_offer_count = itemView.findViewById(R.id.tv_offer_count);
-            image_view_topstore = itemView.findViewById(R.id.image_view_topstore);
+            tv_notification_name = itemView.findViewById(R.id.tv_notification_name);
+            tv_notification_description = itemView.findViewById(R.id.tv_notification_description);
+            tv_notification_tym = itemView.findViewById(R.id.tv_notification_tym);
+            image_view_notification = itemView.findViewById(R.id.image_view_notification);
 
         }
 

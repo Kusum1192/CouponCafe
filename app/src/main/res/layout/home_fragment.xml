@@ -97,6 +97,8 @@
 
 
                     <androidx.recyclerview.widget.RecyclerView
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
                         android:id="@+id/recylerview_topstore"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
@@ -143,8 +145,8 @@
                         android:textSize="@dimen/common_text_size"
                         android:padding="10dp"
                         android:gravity="center"
-                        android:textColor="@color/black"
-                        android:text="view all"
+                        android:textColor="@color/blue"
+                        android:text="View All Best Offers"
                         android:id="@+id/tv_view_all"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>

@@ -141,8 +141,8 @@ public class TopStoresDetailsActivity extends AppCompatActivity implements View.
                             final ArrayList<OffersDatum> storeDetailsArrayList = storeDetails.getOffersData();
 
                             Picasso.get().load(storeDetails.getImageUrl())
-                                    .placeholder(R.drawable.placeholder)
-                                    .error(R.drawable.placeholder)
+                                    .placeholder(R.drawable.ic_placeholder_small)
+                                    .error(R.drawable.ic_placeholder_small)
                                     .into((storeImage));
                             TextView tv_topstore_name = findViewById(R.id.tv_topstore_name);
                             TextView tv_topstore_cashback = findViewById(R.id.tv_topstore_cashback);

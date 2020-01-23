@@ -39,7 +39,7 @@ public class OffersDetailsActivity extends AppCompatActivity implements View.OnC
 
 
     TextView text_copy_code, mItemDescription, tv_offer_name, tv_cat_name, tv_offer_mini_desc, tv_offer_cashback,
-            tv_copuon_code, tv_username, tv_date,tv_work, tv_view_allusers,tv_coupon;
+            tv_copuon_code, tv_username, tv_date,tv_work,tv_coupon;
     ImageView desc_arrow, iv_offer_item,iv_user_profile;
     AppCompatRadioButton radio_upto_cashback, radio_no_cashback;
     ProgressDialog progressDialog;
@@ -73,7 +73,7 @@ public class OffersDetailsActivity extends AppCompatActivity implements View.OnC
         text_copy_code = findViewById(R.id.tv_code_copy);
         ll_mobile_app = findViewById(R.id.ll_mobile_app);
         ll_mobile_web = findViewById(R.id.ll_mobile_web);
-        tv_view_allusers = findViewById(R.id.tv_view_allusers);
+//        tv_view_allusers = findViewById(R.id.tv_view_allusers);
         mItemDescription = findViewById(R.id.mItemDescription);
         tv_offer_name = findViewById(R.id.tv_offer_name);
         tv_cat_name = findViewById(R.id.tv_cat_name);
@@ -90,7 +90,7 @@ public class OffersDetailsActivity extends AppCompatActivity implements View.OnC
         radio_upto_cashback = findViewById(R.id.radio_upto_cashback);
         radio_no_cashback = findViewById(R.id.radio_no_cashback);
         text_copy_code.setOnClickListener(this);
-        tv_view_allusers.setOnClickListener(this);
+//        tv_view_allusers.setOnClickListener(this);
         desc_arrow.setOnClickListener(this);
 
 
@@ -125,9 +125,7 @@ public class OffersDetailsActivity extends AppCompatActivity implements View.OnC
                 Toast.makeText(this, "text copied", Toast.LENGTH_SHORT).show();
                 break;
 
-            case R.id.tv_view_allusers:
 
-                break;
 
             case R.id.desc_arrow:
                 if (mItemDescription.getVisibility() == View.GONE) {
@@ -180,8 +178,8 @@ public class OffersDetailsActivity extends AppCompatActivity implements View.OnC
                             else ll_mobile_web.setVisibility(View.VISIBLE);
 
                             Picasso.get().load(offerdetails.getImageUrl())
-                                    .placeholder(R.drawable.placeholder)
-                                    .error(R.drawable.placeholder)
+                                    .placeholder(R.drawable.ic_placeholder_small)
+                                    .error(R.drawable.ic_placeholder_small)
                                     .into((iv_offer_item));
 
                             RecentUser recentUser = offerdetails.getRecentUser();
@@ -192,8 +190,8 @@ public class OffersDetailsActivity extends AppCompatActivity implements View.OnC
 
 
                             Picasso.get().load(recentUser.getImageUrl())
-                                    .placeholder(R.drawable.placeholder)
-                                    .error(R.drawable.placeholder).transform(new CircleTransform())
+                                    .placeholder(R.drawable.ic_placeholder_small)
+                                    .error(R.drawable.ic_placeholder_small).transform(new CircleTransform())
                                     .into((iv_user_profile));
 
                             CouponDealData couponDealData = offerdetails.getCouponDealData();

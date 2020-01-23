@@ -5,7 +5,9 @@ import com.couponcafe.app.models.AllCategoriesDetailsModel;
 import com.couponcafe.app.models.AllOffersDataModel;
 import com.couponcafe.app.models.BestOfferDetailsModel;
 import com.couponcafe.app.models.CategoriesModel;
+import com.couponcafe.app.models.CustomNotifyModel;
 import com.couponcafe.app.models.InviteFriendModel;
+import com.couponcafe.app.models.Notification;
 import com.couponcafe.app.models.ProfileDataModel;
 import com.couponcafe.app.models.TopStoreDetailsModel;
 import com.couponcafe.app.models.ViewTopStoreModel;
@@ -76,4 +78,11 @@ public interface APIService {
                                                          @Field("securityToken") String securityToken,
                                                          @Field("versionName") String versionName,
                                                          @Field("versionCode") int versionCode);
+
+    @FormUrlEncoded
+    @POST("customNotify")
+    Call<CustomNotifyModel> getnotificationData(@Field("userId") int userId,
+                                                @Field("securityToken") String securityToken,
+                                                @Field("versionName") String versionName,
+                                                @Field("versionCode") int versionCode);
 }

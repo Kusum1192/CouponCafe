@@ -5,8 +5,6 @@
     android:clickable="true"
     android:focusable="true"
     android:background="@color/white"
-    android:layout_marginTop="8dp"
-    android:layout_marginBottom="5dp"
     android:orientation="vertical">
 
     <LinearLayout
@@ -19,7 +17,7 @@
         <ImageView
             android:id="@+id/imageView_topstore"
             android:scaleType="fitXY"
-            android:src="@drawable/placeholder"
+            android:src="@drawable/ic_placeholder_small"
             android:layout_width="50dp"
             android:layout_height="30dp"/>
 
@@ -47,6 +45,7 @@
          />
 
     <TextView
+        android:visibility="gone"
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="@string/activatecash"

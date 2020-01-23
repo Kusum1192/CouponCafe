@@ -177,8 +177,8 @@ public class InviteAndEarn extends Fragment implements View.OnClickListener {
                             inviteTextUrl = response.body().getInviteTextUrl();
 
                             Picasso.get().load(response.body().getInviteImgurl())
-                                    .placeholder(R.drawable.placeholder)
-                                    .error(R.drawable.placeholder)
+                                    .placeholder(R.drawable.ic_placeholder_small)
+                                    .error(R.drawable.ic_placeholder_small)
                                     .into((invite_share_people_img));
 
                             invite_text.setText(response.body().getInviteText());
