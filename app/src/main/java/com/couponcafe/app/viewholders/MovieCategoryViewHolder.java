@@ -43,7 +43,7 @@ public class MovieCategoryViewHolder extends ParentViewHolder implements View.On
         super.onClick(v);
         switch (v.getId()){
             case R.id.ll_main_cat:
-                Toast.makeText(context, "parent click", Toast.LENGTH_SHORT).show();
+
                 Intent intent = new Intent(context, BestOffersActivity.class);
                 context.startActivity(intent);
             break;

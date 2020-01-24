@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.couponcafe.app.activities.NotificationActivity;
+import com.couponcafe.app.fragments.BlankFragment;
 import com.couponcafe.app.fragments.CategoriesFragment;
 import com.couponcafe.app.fragments.HelpFragment;
 import com.couponcafe.app.fragments.HomeFragment;
