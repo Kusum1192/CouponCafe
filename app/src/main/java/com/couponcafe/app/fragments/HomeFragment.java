@@ -255,8 +255,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                                 }
                             }));
 
-
-
                         }else{
                             Toast.makeText(getActivity(),getString(R.string.systemmessage)+response.body().getMessage(),Toast.LENGTH_SHORT).show();
                         }

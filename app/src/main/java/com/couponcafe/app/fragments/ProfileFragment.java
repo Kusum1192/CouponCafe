@@ -110,7 +110,7 @@ public class ProfileFragment extends Fragment {
                             tv_username.setText(response.body().getSocialName());
                             tv_total.setText(Constants.getSharedPreferenceString(getActivity(),"currency","")+""+response.body().getUserSavings());
 
-                            fragment = new OverviewFragment(response.body().getUserAmount(),response.body().getPendingAmount());
+                            fragment = new OverviewFragment(response.body().getUserAmount(),response.body().getPendingAmount(),response.body().getProducts());
                             fragmentManager = getActivity().getSupportFragmentManager();
                             fragmentTransaction = fragmentManager.beginTransaction();
                             fragmentTransaction.replace(R.id.frameLayout, fragment);
@@ -123,7 +123,7 @@ public class ProfileFragment extends Fragment {
                                     // Fragment fragment = null;
                                     switch (tab.getPosition()) {
                                         case 0:
-                                            fragment = new OverviewFragment(response.body().getUserAmount(),response.body().getPendingAmount());
+                                            fragment = new OverviewFragment(response.body().getUserAmount(),response.body().getPendingAmount(),response.body().getProducts());
                                             break;
                                         case 1:
                                             fragment = new WithdrawalsFragment(response.body().getUserAmount(),response.body().getPendingAmount());

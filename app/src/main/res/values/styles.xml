@@ -67,8 +67,8 @@
 
 
     <style name="Fuel_Indicator" parent="@style/Widget.AppCompat.RatingBar.Small">
-        <item name="android:progressDrawable">@drawable/fuel_bar_full</item>
-        <item name="android:indeterminateDrawable">@drawable/fuel_bar_full</item>
+<!--        <item name="android:progressDrawable">@drawable/fuel_bar_full</item>-->
+<!--        <item name="android:indeterminateDrawable">@drawable/fuel_bar_full</item>-->
         <item name="android:minHeight">23dip</item>
         <item name="android:maxHeight">25dip</item>
     </style>
