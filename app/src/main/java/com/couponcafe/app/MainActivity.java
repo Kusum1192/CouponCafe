@@ -37,7 +37,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-//    private AppBarConfiguration mAppBarConfiguration;
+
     private BottomNavigationView mBottomNavigationView;
     private DrawerLayout drawer;
 
@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
 
         setupBottomNavigation();
-
 
         if (savedInstanceState == null) {
             loadHomeFragment();
@@ -249,6 +248,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         BottomNavigationViewHelper.disableShiftMode(mBottomNavigationView);
         mBottomNavigationView.getMenu().findItem(id).setChecked(true);
         mBottomNavigationView.getMenu().performIdentifierAction(id, 0);
+
     }
 
 

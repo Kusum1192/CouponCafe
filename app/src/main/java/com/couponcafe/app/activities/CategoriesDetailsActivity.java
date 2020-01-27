@@ -52,18 +52,18 @@ public class CategoriesDetailsActivity extends AppCompatActivity implements View
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        getCategoriesDetails();
+
 
         //  init();
-//        Intent intent = getIntent();
-//        if(intent!=null){
-//            String catId = String.valueOf(intent.getIntExtra("subcatId",0));
-//            String subcatName = intent.getStringExtra("subcatName");
-//
-//        }
+        Intent intent = getIntent();
+        if(intent!=null){
+            String catId = String.valueOf(intent.getIntExtra("subcatId",0));
+            String subcatName = intent.getStringExtra("subcatName");
+            getCategoriesDetails(catId);
+        }
     }
 
-    private void getCategoriesDetails() {
+    private void getCategoriesDetails(final String catId) {
 
         APIService apiService = ApiClient.getClient().create(APIService.class);
         Call<AllCategoriesDetailsModel> call = apiService.allcategoriesDetails(Constants.getSharedPreferenceInt(CategoriesDetailsActivity.this, "userId", 0),
@@ -90,9 +90,11 @@ public class CategoriesDetailsActivity extends AppCompatActivity implements View
                             viewPager = (ViewPager) findViewById(R.id.view_pager);
                             ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), allCategoriesDetailsModels, bestOfferData);
                             viewPager.setAdapter(adapter);
-
+                            //Toast.makeText(CategoriesDetailsActivity.this, "click child:cat "+catId, Toast.LENGTH_SHORT).show();
+                            viewPager.setCurrentItem(Integer.parseInt(""+catId));
                             tabLayout = (TabLayout) findViewById(R.id.tab_layout);
                             tabLayout.setupWithViewPager(viewPager);
+
 
                         } else {
                             Toast.makeText(CategoriesDetailsActivity.this, getString(R.string.systemmessage) + response.body().getMessage(), Toast.LENGTH_SHORT).show();
@@ -134,35 +136,7 @@ public class CategoriesDetailsActivity extends AppCompatActivity implements View
         super.onPause();
     }
 
-//    class ViewPagerAdapter extends FragmentPagerAdapter {
-//
-//       // private String title[] = {"One", "Two", "Three"};
-//        ArrayList<SubCategory> allCategoriesDetailsModels;
-//
-//        public ViewPagerAdapter(FragmentManager manager) {
-//            super(manager);
-//        }
-//
-//        public ViewPagerAdapter(FragmentManager supportFragmentManager, ArrayList<SubCategory> allCategoriesDetailsModels) {
-//            super(supportFragmentManager);
-//            this.allCategoriesDetailsModels = allCategoriesDetailsModels;
-//        }
-//
-//        @Override
-//        public Fragment getItem(int position) {
-//            return TabFragment.getInstance(position);
-//        }
-//
-//        @Override
-//        public int getCount() {
-//            return allCategoriesDetailsModels.size();
-//        }
-//
-//        @Override
-//        public CharSequence getPageTitle(int position) {
-//            return allCategoriesDetailsModels.get(position);
-//        }
-//    }
+
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -170,24 +144,6 @@ public class CategoriesDetailsActivity extends AppCompatActivity implements View
         return true;
     }
 
-//    private void init() {
-//        viewPager = (ViewPager)findViewById(R.id.view_pager);
-//        setupViewPager(viewPager);
-//        tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-//        tabLayout.setupWithViewPager(viewPager);
-//        tabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
-//    }
-
-
-//    private void setupViewPager(ViewPager viewPager) {
-//        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-//        adapter.addFrag(new AllFragment(), "All");
-//        adapter.addFrag(new TravelFragment(), "Travel");
-//        adapter.addFrag(new FoodDiningFragment(), "Food & Dining");
-//        adapter.addFrag(new AllFragment(), "Mobiles & Tablets");
-//        adapter.addFrag(new TravelFragment(), "Computers,Laptops & Gaming");
-//        viewPager.setAdapter(adapter);
-//    }
 
     @Override
     public void onClick(View view) {
@@ -195,8 +151,7 @@ public class CategoriesDetailsActivity extends AppCompatActivity implements View
     }
 
     public class ViewPagerAdapter extends FragmentStatePagerAdapter {
-        //        private final List<Fragment> mFragmentList = new ArrayList<>();
-//        private final List<String> mFragmentTitleList = new ArrayList<>();
+
         ArrayList<SubCategory> allCategoriesDetailsModels;
         ArrayList<BestOfferDatum> bestOfferData;
 
@@ -227,10 +182,7 @@ public class CategoriesDetailsActivity extends AppCompatActivity implements View
             return allCategoriesDetailsModels.size();
         }
 
-//        public void addFrag(Fragment fragment, String title) {
-//            mFragmentList.add(fragment);
-//            mFragmentTitleList.add(title);
-//        }
+
 
         @Override
         public CharSequence getPageTitle(int position) {

@@ -49,7 +49,7 @@ public class InnerRecyclerViewAdapter extends RecyclerView.Adapter<InnerRecycler
                     intent.putExtra("subcatId",getofferList.get(getAdapterPosition()).getSubCategoryId());
                     intent.putExtra("subcatName",getofferList.get(getAdapterPosition()).getSubCategoryName());
                     context.startActivity(intent);
-//                    Toast.makeText(context, "click child: "+getofferList.get(getAdapterPosition()).getSubCategoryName(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(context, "click child: "+getofferList.get(getAdapterPosition()).getSubCategoryId(), Toast.LENGTH_SHORT).show();
                     break;
             }
         }
