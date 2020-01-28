@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    public static final String BASE_URL = "https://spinpay.app/api/v1/";
+    public static final String BASE_URL = "https://couponhub.app/api/v1/";
     private static Retrofit retrofit = null;
  
  

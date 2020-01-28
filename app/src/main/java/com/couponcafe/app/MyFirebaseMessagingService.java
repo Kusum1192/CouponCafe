@@ -16,6 +16,7 @@ import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 
 
+import com.couponcafe.app.activities.SplashActivity;
 import com.couponcafe.app.utils.Constants;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -24,6 +25,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Map;
 
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
@@ -42,20 +44,25 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
          Uri imgurl  = remoteMessage.getNotification().getImageUrl();
         String imgs = String.valueOf(imgurl);
 
+        final Map<String, String> data = remoteMessage.getData();
+        String mapData = data.get("OfferKey");
+
         image = getBitmapFromURL(imgs);
         sendNotification(remoteMessage.getNotification().getTag(), remoteMessage.getNotification().getTitle(),
-                remoteMessage.getNotification().getBody(),image);
+                remoteMessage.getNotification().getBody(),image,mapData);
 
 
 
     }
 
-    private void sendNotification(String tag, String title,String messageBody, Bitmap img) {
-        Intent intent = new Intent(this, MainActivity.class);
 
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
+
+    private void sendNotification(String tag, String title,String messageBody, Bitmap img,String mapData) {
+        Intent intent = new Intent(this, SplashActivity.class);
+        intent.putExtra("OfferKey",mapData);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
+                PendingIntent.FLAG_ONE_SHOT);
         Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
         String channelID = getString(R.string.channel_id);

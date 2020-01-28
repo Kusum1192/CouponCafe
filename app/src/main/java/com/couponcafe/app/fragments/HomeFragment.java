@@ -77,6 +77,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     TextView tv_viewtop_offers,tv_view_all;
     ProgressDialog progressDialog;
     ImageView tv_home_invite_image;
+    String TAG = "testing";
 
     public HomeFragment() {
     }
@@ -138,10 +139,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
 
     private void getAllOffersData() {
-        Constants.setSharedPreferenceInt(getActivity(),"userId",1);
-        Constants.setSharedPreferenceString(getActivity(),"securitytoken","121212121");
-        Constants.setSharedPreferenceString(getActivity(),"versionName","1.0");
-        Constants.setSharedPreferenceInt(getActivity(),"versionCode",1);
+
+        Log.e(TAG, "onResponse:home_ST "+Constants.getSharedPreferenceString(getActivity(), "securitytoken", ""));
+        Log.e(TAG, "onResponse:home_uswrid "+Constants.getSharedPreferenceInt(getActivity(), "userId", 0));
+        Log.e(TAG, "onResponse:home_versionCode "+Constants.getSharedPreferenceInt(getActivity(), "versionCode", 0));
+        Log.e(TAG, "onResponse:home_usename "+Constants.getSharedPreferenceString(getActivity(), "username", ""));
+        Log.e(TAG, "onResponse:home_versionCode "+Constants.getSharedPreferenceString(getActivity(), "versionName", ""));
+        Log.e(TAG, "onResponse:homeimage "+Constants.getSharedPreferenceString(getActivity(), "userimage", ""));
 
         APIService apiService = ApiClient.getClient().create(APIService.class);
         Call<AllOffersDataModel> call = apiService.getOffers(Constants.getSharedPreferenceInt(getActivity(),"userId",0),

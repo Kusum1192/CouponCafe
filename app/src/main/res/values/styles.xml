@@ -73,5 +73,9 @@
         <item name="android:maxHeight">25dip</item>
     </style>
 
+    <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/colorPrimary</item>
+    </style>
+
 
 </resources>

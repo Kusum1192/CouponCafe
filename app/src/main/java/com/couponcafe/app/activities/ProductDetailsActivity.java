@@ -50,7 +50,6 @@ public class ProductDetailsActivity extends AppCompatActivity implements View.On
     private static ViewPager mPager;
     private static int currentPage = 0;
     private CircleIndicator indicator;
-    int images[] = {R.drawable.time_prime, R.drawable.oyoroom, R.drawable.time_prime, R.drawable.oyoroom};
     ProgressDialog progressDialog;
 
     @Override
@@ -211,7 +210,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements View.On
 
         @Override
         public int getCount() {
-            return images.length;
+            return sliderData.size();
         }
 
         @Override

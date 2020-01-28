@@ -3,10 +3,12 @@ package com.couponcafe.app.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -15,9 +17,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.couponcafe.app.BuildConfig;
 import com.couponcafe.app.MainActivity;
 import com.couponcafe.app.R;
+import com.couponcafe.app.interfaces.APIService;
+import com.couponcafe.app.models.UserAppOpenModel;
+import com.couponcafe.app.models.UserRegisterModel;
+import com.couponcafe.app.utils.ApiClient;
 import com.couponcafe.app.utils.Constants;
 import com.google.android.gms.ads.identifier.AdvertisingIdClient;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -34,6 +42,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -53,12 +65,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void init() {
         getSupportActionBar().setTitle(getString(R.string.login));
-        TextView tv_sign_in = findViewById(R.id.tv_sign_in);
-        TextView tv_sign_up = findViewById(R.id.tv_sign_up);
         TextView tv_google_login = findViewById(R.id.tv_google_login);
         TextView tv_fb_login = findViewById(R.id.tv_fb_login);
-        tv_sign_in.setOnClickListener(this);
-        tv_sign_up.setOnClickListener(this);
         tv_google_login.setOnClickListener(this);
         tv_fb_login.setOnClickListener(this);
 
@@ -134,8 +142,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     // [START auth_with_google]
     private void firebaseAuthWithGoogle(final GoogleSignInAccount acct) {
 
-
-
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -164,8 +170,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             Constants.setSharedPreferenceString(LoginActivity.this,"username",user.getDisplayName());
                             Constants.setSharedPreferenceString(LoginActivity.this,"useremail",user.getEmail());
 
-                            Intent intent_main = new Intent(LoginActivity.this,MainActivity.class);
-                            startActivity(intent_main);
+                            Constants.setSharedPreferenceInt(LoginActivity.this,"versionCode",versioncode);
+                            Constants.setSharedPreferenceString(LoginActivity.this,"versionName",version);
+
+
+                            userSignUp(apilevel,android_id,devicename,"google", acct.getId(),acct.getEmail(),acct.getDisplayName(),
+                                    acct.getPhotoUrl(), Constants.getSharedPreferenceString(LoginActivity.this,"adverId","")
+                                    ,version,versioncode);
 
 
                         } else {
@@ -175,6 +186,120 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                     }
                 });
+    }
+
+
+    private void userSignUp(String apilevel, String android_id, String devicename, String socialtype, String id, String email,
+                            String displayName, Uri photoUrl, String adId, String version, int versioncode) {
+
+        if(!((Activity) LoginActivity.this).isFinishing()){
+            progressDialog = new ProgressDialog(LoginActivity.this);
+            progressDialog.setMessage(getString(R.string.loadingwait));
+            progressDialog.show();
+            progressDialog.setCancelable(false);
+        }
+
+        APIService apiService = ApiClient.getClient().create(APIService.class);
+        Call<UserRegisterModel> call = apiService.userSignUp(apilevel,android_id,devicename,socialtype,id,email,displayName,photoUrl,
+                adId,version,versioncode,Constants.getSharedPreferenceString(LoginActivity.this,"token",""),
+                Constants.getSharedPreferenceString(LoginActivity.this,"utm_source",""),
+                Constants.getSharedPreferenceString(LoginActivity.this,"utm_medium",""),
+                Constants.getSharedPreferenceString(LoginActivity.this,"utm_term",""),
+                Constants.getSharedPreferenceString(LoginActivity.this,"utm_content",""),
+                Constants.getSharedPreferenceString(LoginActivity.this,"utm_campaign",""));
+        call.enqueue(new Callback<UserRegisterModel>() {
+            @Override
+            public void onResponse(Call<UserRegisterModel> call, Response<UserRegisterModel> response) {
+                progressDialog.dismiss();
+                try{
+                    if(response!=null){
+                        if (response.isSuccessful()) {
+                            if (response.body().getStatus()==200) {
+                                Constants.setSharedPreferenceInt(LoginActivity.this, "userId", response.body().getUserId());
+                                Constants.setSharedPreferenceString(LoginActivity.this, "username", response.body().getSocialName());
+                                Constants.setSharedPreferenceString(LoginActivity.this, "userimage", response.body().getSocialImgurl());
+                                Constants.setSharedPreferenceString(LoginActivity.this, "securitytoken", response.body().getSecurityToken());
+
+                                openApp();
+                            } else {
+                                Toast.makeText(LoginActivity.this, getString(R.string.systemmessage) + response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        }else {
+                            Toast.makeText(LoginActivity.this, getString(R.string.systemmessage) + response.errorBody(), Toast.LENGTH_SHORT).show();
+                        }
+                    }else Toast.makeText(LoginActivity.this, getString(R.string.systemmessage) + response.errorBody(), Toast.LENGTH_SHORT).show();
+
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+
+
+            }
+
+            @Override
+            public void onFailure(Call<UserRegisterModel> call, Throwable t) {
+                progressDialog.dismiss();
+                Toast.makeText(LoginActivity.this, getString(R.string.systemmessage)+t, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void openApp(){
+        int versionCode = BuildConfig.VERSION_CODE;
+        final String versionName = BuildConfig.VERSION_NAME;
+
+        APIService apiService = ApiClient.getClient().create(APIService.class);
+        Call<UserAppOpenModel> call = apiService.appOpen(Constants.getSharedPreferenceInt(LoginActivity.this,"userId",0),
+                Constants.getSharedPreferenceString(LoginActivity.this,"securitytoken",""),versionName,versionCode);
+
+
+
+        call.enqueue(new Callback<UserAppOpenModel>() {
+            @Override
+            public void onResponse(Call<UserAppOpenModel> call, Response<UserAppOpenModel> response) {
+                try{
+                    if(response.isSuccessful()){
+                        if(response.body().getStatus()==200) {
+                            String amount = String.valueOf(response.body().getUserAmount());
+                            String coins = String.valueOf(response.body().getUserCoin());
+                            String curency = String.valueOf(response.body().getCurrency());
+                            String packAge = response.body().getPackAge();
+
+
+                            String userFrom = "couponhub";
+                            Constants.setSharedPreferenceString(LoginActivity.this,"userFrom",userFrom);
+                            Constants.setSharedPreferenceString(LoginActivity.this,"forceUpdatePackage",packAge);
+                            Constants.setSharedPreferenceString(LoginActivity.this, "totalamount", amount);
+                            Constants.setSharedPreferenceString(LoginActivity.this, "totalcoins", coins);
+                            Constants.setSharedPreferenceString(LoginActivity.this, "curency", curency);
+
+
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                        else
+                            Toast.makeText(LoginActivity.this, getString(R.string.systemmessage) + response.body().getMessage(), Toast.LENGTH_SHORT).show();
+
+
+                    }
+                    else{
+                        Toast.makeText(LoginActivity.this,getString(R.string.systemmessage)+response.errorBody(),Toast.LENGTH_SHORT).show();
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<UserAppOpenModel> call, Throwable t) {
+                Toast.makeText(LoginActivity.this,getString(R.string.systemmessage)+t,Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     // [START signin]
@@ -188,25 +313,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
 
         switch (view.getId()){
-            case R.id.tv_sign_in:
-                Intent intent_sign_in = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent_sign_in);
-                finish();
-
-                break;
-
-            case R.id.tv_sign_up:
-                Intent intent_sign_up = new Intent(LoginActivity.this,SignUpActivity.class);
-                startActivity(intent_sign_up);
-                finish();
-                break;
 
             case R.id.tv_google_login:
                 signIn();
                 break;
 
             case R.id.tv_fb_login:
-
+                Toast.makeText(this, "Feature Coming Soon..!", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
