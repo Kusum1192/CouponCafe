@@ -75,6 +75,38 @@
             android:layout_height="0.3dp"/>
 
         <LinearLayout
+            android:id="@+id/contactUs"
+            android:padding="8dp"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/help_image_width"
+                android:layout_height="@dimen/help_image_height"
+                android:src="@drawable/contact_us">
+
+            </ImageView>
+            <TextView
+                android:layout_marginLeft="2dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Contact Us"
+                android:textSize="14sp"
+                android:textColor="@color/black">
+
+            </TextView>
+
+
+
+        </LinearLayout>
+        <View
+            android:background="@color/line_gray"
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"/>
+        <LinearLayout
             android:id="@+id/privacyPolicy"
             android:padding="8dp"
             android:background="@color/white"
@@ -86,7 +118,7 @@
             <ImageView
                 android:layout_width="@dimen/help_image_width"
                 android:layout_height="@dimen/help_image_height"
-                android:src="@drawable/privacy_policy">
+                android:src="@drawable/sheet">
 
             </ImageView>
             <TextView
@@ -94,6 +126,39 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Privacy Policy"
+                android:textSize="14sp"
+                android:textColor="@color/black">
+
+            </TextView>
+
+
+
+        </LinearLayout>
+        <View
+            android:background="@color/line_gray"
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"/>
+
+        <LinearLayout
+            android:id="@+id/howsItWork"
+            android:padding="8dp"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/help_image_width"
+                android:layout_height="@dimen/help_image_height"
+                android:src="@drawable/hows_it_work">
+
+            </ImageView>
+            <TextView
+                android:layout_marginLeft="2dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="How's it Work"
                 android:textSize="14sp"
                 android:textColor="@color/black">
 
@@ -138,9 +203,14 @@
             android:background="@color/line_gray"
             android:layout_width="match_parent"
             android:layout_height="0.3dp"/>
+
+
+
+
+
         <LinearLayout
-            android:id="@+id/contactUs"
             android:padding="8dp"
+            android:id="@+id/product_catelog"
             android:background="@color/white"
             android:layout_width="match_parent"
             android:gravity="center"
@@ -150,14 +220,14 @@
             <ImageView
                 android:layout_width="@dimen/help_image_width"
                 android:layout_height="@dimen/help_image_height"
-                android:src="@drawable/contact_us">
+                android:src="@drawable/privacy_policy">
 
             </ImageView>
             <TextView
                 android:layout_marginLeft="2dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Contact Us"
+                android:text="Product / Services Catalog"
                 android:textSize="14sp"
                 android:textColor="@color/black">
 
@@ -165,14 +235,17 @@
 
 
 
+
         </LinearLayout>
+
         <View
             android:background="@color/line_gray"
             android:layout_width="match_parent"
             android:layout_height="0.3dp"/>
+
         <LinearLayout
-            android:id="@+id/howsItWork"
             android:padding="8dp"
+            android:id="@+id/return_cancel"
             android:background="@color/white"
             android:layout_width="match_parent"
             android:gravity="center"
@@ -182,14 +255,14 @@
             <ImageView
                 android:layout_width="@dimen/help_image_width"
                 android:layout_height="@dimen/help_image_height"
-                android:src="@drawable/hows_it_work">
+                android:src="@drawable/refund">
 
             </ImageView>
             <TextView
                 android:layout_marginLeft="2dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="How's it Work"
+                android:text="Refund, &amp; Cancellation policy"
                 android:textSize="14sp"
                 android:textColor="@color/black">
 
@@ -198,11 +271,16 @@
 
 
         </LinearLayout>
+
         <View
             android:background="@color/line_gray"
             android:layout_width="match_parent"
             android:layout_height="0.3dp"/>
+
+
+
         <LinearLayout
+            android:visibility="gone"
             android:id="@+id/faq"
             android:padding="8dp"
             android:background="@color/white"

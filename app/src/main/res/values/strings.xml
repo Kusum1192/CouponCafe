@@ -59,7 +59,7 @@
     <string name="withdrawamoney">Withdraw Money</string>
     <string name="specialoffers">Special Offers</string>
     <string name="referfriend"><![CDATA[Refer & Earn]]></string>
-    <string name="privacy">Privacy</string>
+    <string name="privacy">Privacy Policy</string>
     <string name="aboutus">About Us</string>
     <string name="viewtopstore">View Top Stores</string>
     <string name="title_notification">Notifications</string>
@@ -81,4 +81,5 @@
     <string name="price">\u20B9 5,999</string>
     <string name="price1">\u20B9 10,999</string>
     <string name="nocostemi">No Cost EMI</string>
+    <string name="highpayout">High Payout Alert</string>
 </resources>

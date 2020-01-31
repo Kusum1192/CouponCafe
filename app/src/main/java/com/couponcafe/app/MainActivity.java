@@ -1,5 +1,6 @@
 package com.couponcafe.app;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -22,6 +23,7 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -35,6 +37,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -144,6 +148,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        String BASE_URL_WEB="https://couponhub.app/info-files/";
 
         switch (id) {
             case R.id.nav_home:
@@ -160,9 +165,46 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_invite:
                 setupBottomNavigationFrom(R.id.navigation_invite);
                 break;
+
+            case R.id.nav_special_offer:
+                Toast.makeText(this, "Coming Soon..!", Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.nav_aboutus:
+                webViewLoad(BASE_URL_WEB+"about-us.html","About Us");
+                break;
+
+
+            case R.id.nav_privacy:
+                webViewLoad(BASE_URL_WEB+"privacy-policy.html","Privacy Policy");
+                break;
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void webViewLoad(String url,String title){
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle(title);
+
+        WebView wv = new WebView(MainActivity.this);
+        wv.loadUrl(url);
+        wv.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+        });
+
+        builder.setView(wv);
+        builder.setNegativeButton("Accept", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+            }
+        });
+        builder.show();
     }
 
 
