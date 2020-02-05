@@ -5,10 +5,7 @@ import android.content.SharedPreferences;
 
 public class Constants {
     private final static String PREF_FILE = "com.couponcafe";
-//    public static final String USER_ID = "userid";
-//    public static final String USER_NAME = "username";
-//    public static final String USER_TYPE = "usertype";
-//    public static final String USER_STATE = "userstate";
+
 
 
     public static void setSharedPreferenceString(Context context, String key, String value) {
@@ -28,19 +25,7 @@ public class Constants {
         editor.apply();
     }
 
-    public static void setSharedPreferenceLong(Context context, String key, long value) {
-        SharedPreferences settings = context.getSharedPreferences(PREF_FILE, 0);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putLong(key, value);
-        editor.apply();
-    }
 
-    public static void setSharedPreferenceFloat(Context context, String key, float value) {
-        SharedPreferences settings = context.getSharedPreferences(PREF_FILE, 0);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putFloat(key, value);
-        editor.apply();
-    }
 
 
     static void setSharedPreferenceBoolean(Context context, String key, boolean value) {
@@ -63,15 +48,7 @@ public class Constants {
         SharedPreferences settings = context.getSharedPreferences(PREF_FILE, 0);
         return settings.getInt(key, defValue);
     }
-    public static long getSharedPreferenceLong(Context context, String key, long defValue) {
-        SharedPreferences settings = context.getSharedPreferences(PREF_FILE, 0);
-        return settings.getLong(key, defValue);
-    }
 
-    public static float getSharedPreferenceFloat(Context context, String key, float defValue) {
-        SharedPreferences settings = context.getSharedPreferences(PREF_FILE, 0);
-        return settings.getFloat(key, defValue);
-    }
 
     public static boolean getSharedPreferenceBoolean(Context context, String key, boolean defValue) {
         SharedPreferences settings = context.getSharedPreferences(PREF_FILE, 0);

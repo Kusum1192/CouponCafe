@@ -1,5 +1,6 @@
 package com.couponcafe.app.fragments;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,11 +11,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.couponcafe.app.R;
 import com.couponcafe.app.activities.OffersDetailsActivity;
+import com.couponcafe.app.activities.PaymentScreenActivity;
 import com.couponcafe.app.utils.Constants;
 
 
@@ -22,8 +25,9 @@ public class WithdrawalsFragment extends Fragment implements View.OnClickListene
 
     LinearLayout ll_recharge_now, ll_transfer_now;
     ImageView desc_arrow, e_wallet_arrow;
-    TextView tv_user_amount, tv_user_pending;
+    TextView tv_user_amount, tv_user_pending,tv_transfer_now;
     Integer user_amount, user_pending;
+    CardView card_make_recharge,card_transfer_bank,card_gift_card;
 
 
     public WithdrawalsFragment() {
@@ -54,6 +58,10 @@ public class WithdrawalsFragment extends Fragment implements View.OnClickListene
     private void init(View view) {
         tv_user_amount = view.findViewById(R.id.tv_user_amount);
         tv_user_pending = view.findViewById(R.id.tv_user_pending);
+        tv_transfer_now = view.findViewById(R.id.tv_transfer_now);
+        card_gift_card = view.findViewById(R.id.card_gift_card);
+        card_make_recharge = view.findViewById(R.id.card_make_recharge);
+        card_transfer_bank = view.findViewById(R.id.card_transfer_bank);
         tv_user_amount.setText(Constants.getSharedPreferenceString(getActivity(), "currency", "") + " " + user_amount);
         tv_user_pending.setText(Constants.getSharedPreferenceString(getActivity(), "currency", "") + "" + user_pending);
         ll_recharge_now = view.findViewById(R.id.ll_recharge_now);
@@ -62,6 +70,10 @@ public class WithdrawalsFragment extends Fragment implements View.OnClickListene
         e_wallet_arrow = view.findViewById(R.id.e_wallet_arrow);
         desc_arrow.setOnClickListener(this);
         e_wallet_arrow.setOnClickListener(this);
+        tv_transfer_now.setOnClickListener(this);
+        card_make_recharge.setOnClickListener(this);
+        card_transfer_bank.setOnClickListener(this);
+        card_gift_card.setOnClickListener(this);
 
 
     }
@@ -70,18 +82,6 @@ public class WithdrawalsFragment extends Fragment implements View.OnClickListene
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.desc_arrow:
-                if (ll_recharge_now.getVisibility() == View.GONE) {
-                    // it's collapsed - expand it
-                    ll_recharge_now.setVisibility(View.VISIBLE);
-                    desc_arrow.setImageResource(R.drawable.ic_arrow_drop_up);
-                } else {
-                    // it's expanded - collapse it
-                    ll_recharge_now.setVisibility(View.GONE);
-                    desc_arrow.setImageResource(R.drawable.ic_arrow_drop_down);
-                }
-                break;
-
             case R.id.e_wallet_arrow:
                 if (ll_transfer_now.getVisibility() == View.GONE) {
                     // it's collapsed - expand it
@@ -94,6 +94,62 @@ public class WithdrawalsFragment extends Fragment implements View.OnClickListene
                 }
                 break;
 
+            case R.id.card_make_recharge:
+                Toast.makeText(getActivity(), "Features coming soon.", Toast.LENGTH_SHORT).show();
+//                if (ll_recharge_now.getVisibility() == View.GONE) {
+//                    // it's collapsed - expand it
+//                    ll_recharge_now.setVisibility(View.VISIBLE);
+//                    desc_arrow.setImageResource(R.drawable.ic_arrow_drop_up);
+//                } else {
+//                    // it's expanded - collapse it
+//                    ll_recharge_now.setVisibility(View.GONE);
+//                    desc_arrow.setImageResource(R.drawable.ic_arrow_drop_down);
+//                }
+                break;
+
+            case R.id.card_gift_card:
+                Toast.makeText(getActivity(), "Features coming soon.", Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.card_transfer_bank:
+                Toast.makeText(getActivity(), "Features coming soon.", Toast.LENGTH_SHORT).show();
+                break;
+
+
+
+            case R.id.tv_transfer_now:
+
+                int thresold = 100;
+                 if(user_amount > thresold){
+                     Intent intent_payment = new Intent(getActivity(), PaymentScreenActivity.class);
+                     startActivity(intent_payment);
+                 }
+
+                 else{
+                     getDialog();
+                 }
+                break;
+
         }
+    }
+
+    public void getDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        //Uncomment the below code to Set the message and title from the strings.xml file
+        // builder.setMessage(R.string.dialog_message).setTitle(R.string.dialog_title);
+
+        //Setting message manually and performing action on button click
+        builder.setMessage("You have insufficient cashback balance for this transaction(250 rupees required atleast)")
+                .setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                    }
+                });
+        //Creating dialog box
+        AlertDialog alert = builder.create();
+        //Setting the title manually
+        alert.setTitle("Insufficient Cashback Balance");
+        alert.show();
     }
 }

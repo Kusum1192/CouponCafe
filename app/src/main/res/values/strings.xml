@@ -82,4 +82,6 @@
     <string name="price1">\u20B9 10,999</string>
     <string name="nocostemi">No Cost EMI</string>
     <string name="highpayout">High Payout Alert</string>
+    <string name="wallet">Wallet</string>
+    <string name="withdrawal">Withdrawal</string>
 </resources>

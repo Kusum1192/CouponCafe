@@ -145,102 +145,6 @@
 
             </LinearLayout>
 
-            <!--    rechagenow-->
-            <androidx.cardview.widget.CardView
-                app:cardCornerRadius="4dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardUseCompatPadding="true"
-                app:cardPreventCornerOverlap="false">
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <RelativeLayout
-                        android:padding="8dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:textSize="@dimen/common_text_size"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:textColor="@color/black"
-                            android:text="Make a Recharge"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-
-                        <ImageView
-                            android:id="@+id/desc_arrow"
-                            android:src="@drawable/ic_arrow_drop_down"
-                            android:layout_centerVertical="true"
-                            android:layout_alignParentRight="true"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-
-                    </RelativeLayout>
-
-                    <LinearLayout
-                        android:visibility="gone"
-                        android:id="@+id/ll_recharge_now"
-                        android:padding="10dp"
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-
-                        <TextView
-                            android:text="@string/useurcash"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-
-                            <TextView
-                                android:textSize="@dimen/common_text_size"
-                                android:text="Avilable Balance"
-                                android:layout_weight="1"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"/>
-
-                            <TextView
-                                android:textSize="@dimen/common_text_size"
-                                android:textColor="@color/black"
-                                android:gravity="right"
-                                android:text="Rs. 0"
-                                android:layout_weight="1"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"/>
-                        </LinearLayout>
-
-                        <TextView
-                            android:gravity="center"
-                            android:layout_marginBottom="10dp"
-                            android:layout_marginTop="10dp"
-                            android:padding="10dp"
-                            android:textSize="20sp"
-                            android:text="Recharge Now"
-                            android:background="@color/red"
-                            android:textColor="@color/white"
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"/>
-
-                        <TextView
-                            android:text="minimum Required Rs. 250"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
             <!--    trasfer e wallet-->
             <androidx.cardview.widget.CardView
                 app:cardCornerRadius="4dp"
@@ -320,6 +224,7 @@
                         </LinearLayout>
 
                         <TextView
+                            android:id="@+id/tv_transfer_now"
                             android:gravity="center"
                             android:layout_marginBottom="10dp"
                             android:layout_marginTop="10dp"
@@ -341,8 +246,109 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
+            <!--    rechagenow-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_make_recharge"
+                app:cardCornerRadius="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardUseCompatPadding="true"
+                app:cardPreventCornerOverlap="false">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:padding="8dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:textSize="@dimen/common_text_size"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:textColor="@color/black"
+                            android:text="Make a Recharge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <ImageView
+                            android:id="@+id/desc_arrow"
+                            android:src="@drawable/ic_arrow_drop_down"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/ll_recharge_now"
+                        android:padding="10dp"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                        <TextView
+                            android:text="@string/useurcash"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+
+                            <TextView
+                                android:textSize="@dimen/common_text_size"
+                                android:text="Avilable Balance"
+                                android:layout_weight="1"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"/>
+
+                            <TextView
+                                android:textSize="@dimen/common_text_size"
+                                android:textColor="@color/black"
+                                android:gravity="right"
+                                android:text="Rs. 0"
+                                android:layout_weight="1"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"/>
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/tv_rechargenow"
+                            android:gravity="center"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginTop="10dp"
+                            android:padding="10dp"
+                            android:textSize="20sp"
+                            android:text="Recharge Now"
+                            android:background="@color/red"
+                            android:textColor="@color/white"
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:text="minimum Required Rs. 250"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+
             <!--    transfer bank-->
             <androidx.cardview.widget.CardView
+                android:id="@+id/card_transfer_bank"
                 app:cardCornerRadius="4dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -444,6 +450,7 @@
 
             <!--    covert to gift cards-->
             <androidx.cardview.widget.CardView
+                android:id="@+id/card_gift_card"
                 app:cardCornerRadius="4dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

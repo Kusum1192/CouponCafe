@@ -121,7 +121,7 @@ public class SplashActivity extends AppCompatActivity {
 
         Constants.setSharedPreferenceInt(SplashActivity.this,"versionCode",versionCode);
         Constants.setSharedPreferenceString(SplashActivity.this,"versionName",versionName);
-        Log.e(TAG, "onResponse:splash "+Constants.getSharedPreferenceString(SplashActivity.this, "securitytoken", ""));
+
         APIService apiService = ApiClient.getClient().create(APIService.class);
         Call<UserAppOpenModel> call = apiService.appOpen(Constants.getSharedPreferenceInt(SplashActivity.this,"userId",0),
                 Constants.getSharedPreferenceString(SplashActivity.this,"securitytoken",""),
@@ -206,8 +206,6 @@ public class SplashActivity extends AppCompatActivity {
             }
         });
     }
-
-
 
 
     @Override

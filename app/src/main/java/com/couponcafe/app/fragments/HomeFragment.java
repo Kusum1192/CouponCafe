@@ -140,13 +140,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private void getAllOffersData() {
 
-        Log.e(TAG, "onResponse:home_ST "+Constants.getSharedPreferenceString(getActivity(), "securitytoken", ""));
-        Log.e(TAG, "onResponse:home_uswrid "+Constants.getSharedPreferenceInt(getActivity(), "userId", 0));
-        Log.e(TAG, "onResponse:home_versionCode "+Constants.getSharedPreferenceInt(getActivity(), "versionCode", 0));
-        Log.e(TAG, "onResponse:home_usename "+Constants.getSharedPreferenceString(getActivity(), "username", ""));
-        Log.e(TAG, "onResponse:home_versionCode "+Constants.getSharedPreferenceString(getActivity(), "versionName", ""));
-        Log.e(TAG, "onResponse:homeimage "+Constants.getSharedPreferenceString(getActivity(), "userimage", ""));
-
         APIService apiService = ApiClient.getClient().create(APIService.class);
         Call<AllOffersDataModel> call = apiService.getOffers(Constants.getSharedPreferenceInt(getActivity(),"userId",0),
                 Constants.getSharedPreferenceString(getActivity(),"securitytoken",""),
@@ -167,7 +160,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 if(response!=null){
                     if(response.isSuccessful()){
                         if(response.body().getStatus()==200){
-                           Constants.setSharedPreferenceString(getActivity(),"userAmount",String.valueOf(response.body().getUserAmount()));
+                           Constants.setSharedPreferenceInt(getActivity(),"userAmount",response.body().getUserAmount());
                            Constants.setSharedPreferenceString(getActivity(),"currency",response.body().getCurrency());
                            final ArrayList<SliderDatum> sliderArrayList = response.body().getSliderData();
                            final ArrayList<BestOfferDatum> bestOfferDatalist = response.body().getBestOfferData();
