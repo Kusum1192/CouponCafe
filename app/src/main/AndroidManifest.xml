@@ -36,7 +36,6 @@
         <activity android:name=".activities.ViewAllTopOffersActivity" />
         <activity android:name=".activities.NotificationActivity" />
         <activity android:name=".activities.TestingActivity" />
-        <activity android:name=".activities.BestOffersActivity" />
         <activity android:name=".activities.OffersDetailsActivity" />
         <activity android:name=".activities.CategoriesDetailsActivity" />
         <activity android:name=".activities.ProductDetailsActivity" />

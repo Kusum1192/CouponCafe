@@ -26,9 +26,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.couponcafe.app.R;
 import com.couponcafe.app.adapter.RecyclerTouchListener;
 import com.couponcafe.app.adapter.TopStoreDetailsAdapter;
-import com.couponcafe.app.adapter.TopStores;
+
 import com.couponcafe.app.interfaces.APIService;
-import com.couponcafe.app.models.OfferDetails;
+
 import com.couponcafe.app.models.OffersDatum;
 import com.couponcafe.app.models.StoreDetails;
 import com.couponcafe.app.models.TopStoreDetailsModel;

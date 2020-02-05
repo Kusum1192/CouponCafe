@@ -5,12 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.couponcafe.app.activities.NotificationActivity;
-import com.couponcafe.app.fragments.BlankFragment;
 import com.couponcafe.app.fragments.CategoriesFragment;
 import com.couponcafe.app.fragments.HelpFragment;
 import com.couponcafe.app.fragments.HomeFragment;
-import com.couponcafe.app.fragments.InviteAndEarn;
+import com.couponcafe.app.fragments.InviteAndEarnFragment;
 import com.couponcafe.app.fragments.ProfileFragment;
+import com.couponcafe.app.fragments.ProfileTestingFragment;
 import com.couponcafe.app.utils.BottomNavigationViewHelper;
 import com.couponcafe.app.utils.Constants;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -26,7 +26,6 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.navigation.NavigationView;
@@ -61,7 +60,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setupBottomNavigation();
 
         if (savedInstanceState == null) {
-            loadHomeFragment();
+           // loadHomeFragment();
+            HomeFragment homeFragment = new HomeFragment();
+            HoldAllFragments(homeFragment);
         }
 
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -221,33 +222,50 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 switch (item.getItemId()) {
                     case R.id.navigation_home: {
-                        loadHomeFragment();
+                        //loadHomeFragment();
+                        HomeFragment homeFragment = new HomeFragment();
+                        HoldAllFragments(homeFragment);
                         return true;
                     }
 
                     case R.id.navigation_categories: {
-                        loadCategoriesFragment();
+//                        loadCategoriesFragment();
+                        CategoriesFragment categoriesFragment = new CategoriesFragment();
+                        HoldAllFragments(categoriesFragment);
                         return true;
                     }
 
                     case R.id.navigation_invite: {
-                        loadShopingAssistanceFragment();
+//                        loadInviteAndEarnFragment();
+                        InviteAndEarnFragment inviteAndEarnFragment = new InviteAndEarnFragment();
+                        HoldAllFragments(inviteAndEarnFragment);
                         return true;
                     }
 
                     case R.id.navigation_help: {
-                    loadHelpFragment();
+                    //loadHelpFragment();
+                    HelpFragment helpFragment = new HelpFragment();
+                    HoldAllFragments(helpFragment);
                         return true;
 
                     }
                     case R.id.navigation_profile: {
-                        loadProfileFragment();
+//                        loadProfileFragment();
+                        ProfileFragment profileFragment = new ProfileFragment();
+//                        ProfileTestingFragment profileTestingFragment = new ProfileTestingFragment();
+                        HoldAllFragments(profileFragment);
                         return true;
                     }
                 }
                 return false;
             }
         });
+    }
+
+    public void HoldAllFragments(Fragment fragment){
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.nav_host_fragment, fragment);
+        ft.commit();
     }
 
 
@@ -265,8 +283,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ft.commit();
     }
 
-    public void loadShopingAssistanceFragment() {
-        InviteAndEarn fragment = new InviteAndEarn();
+    public void loadInviteAndEarnFragment() {
+        InviteAndEarnFragment fragment = new InviteAndEarnFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.nav_host_fragment, fragment);
         ft.commit();

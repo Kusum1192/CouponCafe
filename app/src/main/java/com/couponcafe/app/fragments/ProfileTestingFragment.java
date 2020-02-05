@@ -4,6 +4,8 @@ package com.couponcafe.app.fragments;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,44 +17,48 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import com.couponcafe.app.R;
 import com.couponcafe.app.interfaces.APIService;
+import com.couponcafe.app.models.BestOfferDatum;
 import com.couponcafe.app.models.ProfileDataModel;
+import com.couponcafe.app.models.SubCategory;
 import com.couponcafe.app.utils.ApiClient;
 import com.couponcafe.app.utils.CircleTransform;
 import com.couponcafe.app.utils.Constants;
 import com.google.android.material.tabs.TabLayout;
 import com.squareup.picasso.Picasso;
 
-import java.text.BreakIterator;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class ProfileFragment extends Fragment {
-   // ViewPager viewPager;
-    TabLayout tabLayout;
+public class ProfileTestingFragment extends Fragment {
 
+    TabLayout tabLayout;
     FrameLayout frameLayout;
-    Fragment fragment = null;
-    FragmentManager fragmentManager;
-    FragmentTransaction fragmentTransaction;
     ProgressDialog progressDialog;
     ImageView imageView_profile;
     TextView tv_useremail,tv_username,tv_total;
     protected FragmentActivity mActivity;
-
-    //Context context;
+    ViewPager viewPager;
     View view;
 
 
-    public ProfileFragment() {
+    public ProfileTestingFragment() {
         // Required empty public constructor
        // Toast.makeText(mActivity, "profile call", Toast.LENGTH_SHORT).show();
     }
@@ -67,7 +73,7 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.profile_fragment, container, false);
+        view = inflater.inflate(R.layout.shoping_fragment, container, false);
 
         initView(view);
 
@@ -82,6 +88,8 @@ public class ProfileFragment extends Fragment {
         tv_username = view.findViewById(R.id.tv_username);
         tv_useremail = view.findViewById(R.id.tv_useremail);
         tv_total = view.findViewById(R.id.tv_total);
+
+
     }
 
     private void getProfileData() {
@@ -114,43 +122,16 @@ public class ProfileFragment extends Fragment {
                             tv_username.setText(response.body().getSocialName());
                             tv_total.setText(Constants.getSharedPreferenceString(mActivity,"currency","")+""+response.body().getUserSavings());
 
-                            fragment = new OverviewFragment(response.body().getUserAmount(),response.body().getPendingAmount(),response.body().getProducts());
-                            fragmentManager = mActivity.getSupportFragmentManager();
-                            fragmentTransaction = fragmentManager.beginTransaction();
-                            fragmentTransaction.replace(R.id.frameLayout, fragment);
-                            fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                            fragmentTransaction.commit();
+                            viewPager = (ViewPager)view.findViewById(R.id.view_pager);
+                            //FragmentManager cfManager = getChildFragmentManager();
+                            ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager(), response);
+                            viewPager.setAdapter(adapter);
 
-                            tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-                                @Override
-                                public void onTabSelected(TabLayout.Tab tab) {
-                                    // Fragment fragment = null;
-                                    switch (tab.getPosition()) {
-                                        case 0:
-                                            fragment = new OverviewFragment(response.body().getUserAmount(),response.body().getPendingAmount(),response.body().getProducts());
-                                            break;
-                                        case 1:
-                                            fragment = new WithdrawalsFragment(response.body().getUserAmount(),response.body().getPendingAmount());
-                                            break;
+                            tabLayout = (TabLayout)view.findViewById(R.id.tab_layout);
+                            tabLayout.setupWithViewPager(viewPager);
 
-                                    }
-                                    FragmentManager fm = mActivity.getSupportFragmentManager();
-                                    FragmentTransaction ft = fm.beginTransaction();
-                                    ft.replace(R.id.frameLayout, fragment);
-                                    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                                    ft.commit();
-                                }
 
-                                @Override
-                                public void onTabUnselected(TabLayout.Tab tab) {
 
-                                }
-
-                                @Override
-                                public void onTabReselected(TabLayout.Tab tab) {
-
-                                }
-                            });
 
 
                         }else{
@@ -176,6 +157,8 @@ public class ProfileFragment extends Fragment {
 
     }
 
+
+
     private void dismissProgressDialog() {
         if (progressDialog != null && progressDialog.isShowing()) {
             progressDialog.dismiss();
@@ -199,9 +182,67 @@ public class ProfileFragment extends Fragment {
         super.onAttach(context);
         if (context instanceof FragmentActivity){
             mActivity = (FragmentActivity) context;
+
         }
 
     }
+
+
+
+    public class ViewPagerAdapter extends FragmentStatePagerAdapter  {
+
+        Response<ProfileDataModel> response;
+
+        public ViewPagerAdapter(FragmentManager fm,Response response) {
+            super(fm);
+            this.response = response;
+        }
+
+        public ViewPagerAdapter(FragmentManager childFragmentManager) {
+            super(childFragmentManager);
+        }
+
+
+
+        @Override
+        public Fragment getItem(int position) {
+//            Fragment fragment = null;
+            switch (position) {
+                case 0:
+                    return new OverviewFragment(response.body().getUserAmount(), response.body().getPendingAmount(), response.body().getProducts());
+//                    return new OverviewFragment();
+
+                case 1:
+                    return new WithdrawalsFragment(response.body().getUserAmount(), response.body().getPendingAmount());
+//                    return new WithdrawalsFragment();
+            }
+
+            return null;
+        }
+
+        @Override
+        public int getCount() {
+            return 2;
+        }
+
+
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            String title = null;
+            if (position == 0)
+            {
+                title = "OverView";
+            }
+            else if (position == 1)
+            {
+                title = "Withdrawal";
+            }
+
+            return title;
+        }
+    }
+
 
 
 }

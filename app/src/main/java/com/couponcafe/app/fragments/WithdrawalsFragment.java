@@ -1,5 +1,6 @@
 package com.couponcafe.app.fragments;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +12,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import com.couponcafe.app.R;
 import com.couponcafe.app.activities.OffersDetailsActivity;
@@ -28,6 +31,7 @@ public class WithdrawalsFragment extends Fragment implements View.OnClickListene
     TextView tv_user_amount, tv_user_pending,tv_transfer_now;
     Integer user_amount, user_pending;
     CardView card_make_recharge,card_transfer_bank,card_gift_card;
+    protected  FragmentActivity mActivity;
 
 
     public WithdrawalsFragment() {
@@ -62,8 +66,8 @@ public class WithdrawalsFragment extends Fragment implements View.OnClickListene
         card_gift_card = view.findViewById(R.id.card_gift_card);
         card_make_recharge = view.findViewById(R.id.card_make_recharge);
         card_transfer_bank = view.findViewById(R.id.card_transfer_bank);
-        tv_user_amount.setText(Constants.getSharedPreferenceString(getActivity(), "currency", "") + " " + user_amount);
-        tv_user_pending.setText(Constants.getSharedPreferenceString(getActivity(), "currency", "") + "" + user_pending);
+        tv_user_amount.setText(Constants.getSharedPreferenceString(mActivity, "currency", "") + " " + user_amount);
+        tv_user_pending.setText(Constants.getSharedPreferenceString(mActivity, "currency", "") + "" + user_pending);
         ll_recharge_now = view.findViewById(R.id.ll_recharge_now);
         ll_transfer_now = view.findViewById(R.id.ll_transfer_now);
         desc_arrow = view.findViewById(R.id.desc_arrow);
@@ -95,7 +99,7 @@ public class WithdrawalsFragment extends Fragment implements View.OnClickListene
                 break;
 
             case R.id.card_make_recharge:
-                Toast.makeText(getActivity(), "Features coming soon.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mActivity, "Features coming soon.", Toast.LENGTH_SHORT).show();
 //                if (ll_recharge_now.getVisibility() == View.GONE) {
 //                    // it's collapsed - expand it
 //                    ll_recharge_now.setVisibility(View.VISIBLE);
@@ -108,11 +112,11 @@ public class WithdrawalsFragment extends Fragment implements View.OnClickListene
                 break;
 
             case R.id.card_gift_card:
-                Toast.makeText(getActivity(), "Features coming soon.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mActivity, "Features coming soon.", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.card_transfer_bank:
-                Toast.makeText(getActivity(), "Features coming soon.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mActivity, "Features coming soon.", Toast.LENGTH_SHORT).show();
                 break;
 
 
@@ -121,7 +125,7 @@ public class WithdrawalsFragment extends Fragment implements View.OnClickListene
 
                 int thresold = 100;
                  if(user_amount > thresold){
-                     Intent intent_payment = new Intent(getActivity(), PaymentScreenActivity.class);
+                     Intent intent_payment = new Intent(mActivity, PaymentScreenActivity.class);
                      startActivity(intent_payment);
                  }
 
@@ -134,7 +138,7 @@ public class WithdrawalsFragment extends Fragment implements View.OnClickListene
     }
 
     public void getDialog(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
         //Uncomment the below code to Set the message and title from the strings.xml file
         // builder.setMessage(R.string.dialog_message).setTitle(R.string.dialog_title);
 
@@ -151,5 +155,14 @@ public class WithdrawalsFragment extends Fragment implements View.OnClickListene
         //Setting the title manually
         alert.setTitle("Insufficient Cashback Balance");
         alert.show();
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof FragmentActivity){
+            mActivity = (FragmentActivity) context;
+        }
+
     }
 }

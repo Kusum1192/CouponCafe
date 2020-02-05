@@ -16,29 +16,19 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatRatingBar;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.couponcafe.app.R;
-import com.couponcafe.app.fragments.AllFragment;
-import com.couponcafe.app.fragments.FoodDiningFragment;
-import com.couponcafe.app.fragments.TravelFragment;
 import com.couponcafe.app.interfaces.APIService;
 import com.couponcafe.app.models.ProductDetails;
 import com.couponcafe.app.models.ProductDetailsModel;
 import com.couponcafe.app.models.SliderDatum;
 import com.couponcafe.app.utils.ApiClient;
-import com.couponcafe.app.utils.CircleTransform;
 import com.couponcafe.app.utils.Constants;
-import com.couponcafe.app.utils.Sliding_Adapter_For_viewpager_main;
-import com.google.android.material.tabs.TabLayout;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import me.relex.circleindicator.CircleIndicator;
 import retrofit2.Call;
@@ -135,7 +125,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements View.On
                             tv_product_specificaion.setText(productDetails.getSpecifications());
                             appCompatRatingBar.setRating(Float.parseFloat(""+productDetails.getRating()));
 
-//                            tv_total.setText(Constants.getSharedPreferenceString(getActivity(),"currency","")+""+response.body().getUserSavings());
+//                            tv_total.setText(Constants.getSharedPreferenceString(mActivity,"currency","")+""+response.body().getUserSavings());
 
 
                         } else {

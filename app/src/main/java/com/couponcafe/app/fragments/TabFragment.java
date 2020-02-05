@@ -9,7 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,6 +31,8 @@ public class TabFragment extends Fragment  {
     RecyclerView recylerview;
     TodayBestOfferListAdapter todayBestOfferListAdapter;
     ArrayList<BestOfferDatum>bestOfferData;
+
+    protected  FragmentActivity mActivity;
 
     public TabFragment(ArrayList<BestOfferDatum> bestOfferData) {
         this.bestOfferData = bestOfferData;
@@ -57,18 +61,18 @@ public class TabFragment extends Fragment  {
         recylerview = view.findViewById(R.id.recylerview);
 
        // Log.e("testing", "onCreateView:size "+bestOfferData.size());
-        todayBestOfferListAdapter = new TodayBestOfferListAdapter(bestOfferData,getActivity());
+        todayBestOfferListAdapter = new TodayBestOfferListAdapter(bestOfferData,mActivity);
        // recylerview.setHasFixedSize(true);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(mActivity);
         recylerview.setLayoutManager(mLayoutManager);
         recylerview.setAdapter(todayBestOfferListAdapter);
         recylerview.setNestedScrollingEnabled(false);
-        recylerview.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recylerview, new RecyclerTouchListener.ClickListener() {
+        recylerview.addOnItemTouchListener(new RecyclerTouchListener(mActivity, recylerview, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
                 BestOfferDatum bestOfferDatum = bestOfferData.get(position);
-                // Toast.makeText(getActivity(), topStores.getTitle() + " is selected!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity(), OffersDetailsActivity.class);
+                // Toast.makeText(mActivity, topStores.getTitle() + " is selected!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(mActivity, OffersDetailsActivity.class);
                 intent.putExtra("offerId",bestOfferDatum.getOfferId());
                 startActivity(intent);
             }
@@ -90,5 +94,14 @@ public class TabFragment extends Fragment  {
 
     }
 
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof FragmentActivity){
+            mActivity = (FragmentActivity) context;
+        }
+
+    }
 
 }

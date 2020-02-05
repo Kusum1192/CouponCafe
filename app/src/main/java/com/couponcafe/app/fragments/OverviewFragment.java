@@ -1,7 +1,9 @@
 package com.couponcafe.app.fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,8 +11,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -33,10 +37,11 @@ public class OverviewFragment extends Fragment implements View.OnClickListener {
 
     TextView textView_invite, tv_user_amount, tv_user_pending;
     Integer user_amount,user_pending;
-    //LinearLayout ll_product_item;
     RecyclerView recyclerview_product;
     ProductListAdapter productListAdapter;
     ArrayList<Product> productlistarraylist;
+    protected FragmentActivity mActivity;
+    String TAG = "overview_testing";
 
     public OverviewFragment() {
         // Required empty public constructor
@@ -47,6 +52,7 @@ public class OverviewFragment extends Fragment implements View.OnClickListener {
         this.user_amount = userAmount;
         this.user_pending = pendingAmount;
         this.productlistarraylist = productlistarraylist;
+        Log.e(TAG, "OverviewFragment: "+userAmount );
 
 
     }
@@ -73,21 +79,20 @@ public class OverviewFragment extends Fragment implements View.OnClickListener {
         textView_invite = view.findViewById(R.id.invite_now);
         tv_user_amount = view.findViewById(R.id.tv_user_amount);
         tv_user_pending = view.findViewById(R.id.tv_user_pending);
-        tv_user_amount.setText(Constants.getSharedPreferenceString(getActivity(),"currency","")+" "+user_amount);
-        tv_user_pending.setText(Constants.getSharedPreferenceString(getActivity(),"currency","")+""+user_pending);
+        tv_user_amount.setText(Constants.getSharedPreferenceString(mActivity,"currency","")+" "+user_amount);
+        tv_user_pending.setText(Constants.getSharedPreferenceString(mActivity,"currency","")+""+user_pending);
         textView_invite.setOnClickListener(this);
-       // ll_product_item.setOnClickListener(this);
 
-        productListAdapter = new ProductListAdapter(productlistarraylist,getActivity());
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        productListAdapter = new ProductListAdapter(productlistarraylist,mActivity);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(mActivity);
         recyclerview_product.setLayoutManager(mLayoutManager);
         recyclerview_product.setAdapter(productListAdapter);
         recyclerview_product.setNestedScrollingEnabled(false);
-        recyclerview_product.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recyclerview_product, new RecyclerTouchListener.ClickListener() {
+        recyclerview_product.addOnItemTouchListener(new RecyclerTouchListener(mActivity, recyclerview_product, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
                 Product product = productlistarraylist.get(position);
-                Intent intent_product_details = new Intent(getActivity(), ProductDetailsActivity.class);
+                Intent intent_product_details = new Intent(mActivity, ProductDetailsActivity.class);
                 intent_product_details.putExtra("productId",product.getProductId());
                 startActivity(intent_product_details);
             }
@@ -108,13 +113,22 @@ public class OverviewFragment extends Fragment implements View.OnClickListener {
 
         switch (view.getId()) {
             case R.id.invite_now:
-                ((MainActivity) getActivity()).setupBottomNavigationFrom(R.id.navigation_invite);
+                ((MainActivity) mActivity).setupBottomNavigationFrom(R.id.navigation_invite);
                 break;
 
 
                 default:
                     break;
         }
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof FragmentActivity){
+            mActivity = (FragmentActivity) context;
+        }
+
     }
 
 }

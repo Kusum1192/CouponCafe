@@ -9,7 +9,9 @@ import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -42,7 +44,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class InviteAndEarn extends Fragment implements View.OnClickListener {
+public class InviteAndEarnFragment extends Fragment implements View.OnClickListener {
 
     ImageView copyReferCode,invite_share_people_img;
     LinearLayout viewDetails,ll_invite_other,ll_whatsapp,ll_telegram;
@@ -52,8 +54,9 @@ public class InviteAndEarn extends Fragment implements View.OnClickListener {
 
     ProgressDialog progressDialog;
     RecyclerView recyclerview;
+    protected  FragmentActivity mActivity;
 
-    public InviteAndEarn() {
+    public InviteAndEarnFragment() {
         // Required empty public constructor
     }
 
@@ -93,7 +96,7 @@ public class InviteAndEarn extends Fragment implements View.OnClickListener {
         switch (v.getId()){
             case R.id.tv_code_copy:
                 if (Refer_code.getText().toString().equals("")) {
-                    Toast.makeText(getActivity(), "you have no Referral Code", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mActivity, "you have no Referral Code", Toast.LENGTH_SHORT).show();
                 } else {
                     Log.e("Referral code is", Refer_code.getText().toString() + "");
                     refferal_code = Refer_code.getText().toString();
@@ -126,14 +129,14 @@ public class InviteAndEarn extends Fragment implements View.OnClickListener {
 
     private void CopyReferCodeToClipboard (String text){
         if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.HONEYCOMB) {
-            android.text.ClipboardManager clipboard = (android.text.ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+            android.text.ClipboardManager clipboard = (android.text.ClipboardManager) mActivity.getSystemService(Context.CLIPBOARD_SERVICE);
             clipboard.setText(text);
-            Toast.makeText(getActivity(), "Referral code copied Successfully", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mActivity, "Referral code copied Successfully", Toast.LENGTH_SHORT).show();
         } else {
-            android.content.ClipboardManager clipboard = (android.content.ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+            android.content.ClipboardManager clipboard = (android.content.ClipboardManager) mActivity.getSystemService(Context.CLIPBOARD_SERVICE);
             android.content.ClipData clip = android.content.ClipData.newPlainText("Copied Text", text);
             clipboard.setPrimaryClip(clip);
-            Toast.makeText(getActivity(), "Referral code copied Successfully", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mActivity, "Referral code copied Successfully", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -154,13 +157,13 @@ public class InviteAndEarn extends Fragment implements View.OnClickListener {
     private void getinviteData() {
 
         APIService apiService = ApiClient.getClient().create(APIService.class);
-        Call<InviteFriendModel> call = apiService.getinviteData(Constants.getSharedPreferenceInt(getActivity(),"userId",0),
-                Constants.getSharedPreferenceString(getActivity(),"securitytoken",""),
-                Constants.getSharedPreferenceString(getActivity(),"versionName",""),
-                Constants.getSharedPreferenceInt(getActivity(),"versionCode",0));
+        Call<InviteFriendModel> call = apiService.getinviteData(Constants.getSharedPreferenceInt(mActivity,"userId",0),
+                Constants.getSharedPreferenceString(mActivity,"securitytoken",""),
+                Constants.getSharedPreferenceString(mActivity,"versionName",""),
+                Constants.getSharedPreferenceInt(mActivity,"versionCode",0));
 
-        if(!((Activity) getActivity()).isFinishing()) {
-            progressDialog = new ProgressDialog(getActivity());
+        if(!((Activity) mActivity).isFinishing()) {
+            progressDialog = new ProgressDialog(mActivity);
             progressDialog.setMessage(getString(R.string.loadingwait));
             progressDialog.show();
             progressDialog.setCancelable(false);
@@ -184,20 +187,20 @@ public class InviteAndEarn extends Fragment implements View.OnClickListener {
                             invite_text.setText(response.body().getInviteText());
                             ArrayList<InvitedUser> invitedUserArrayList = response.body().getInvitedUsers();
 
-                            InviteUserAdapter inviteUserAdapter = new InviteUserAdapter(invitedUserArrayList,getActivity());
-                            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+                            InviteUserAdapter inviteUserAdapter = new InviteUserAdapter(invitedUserArrayList,mActivity);
+                            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(mActivity);
                             recyclerview.setLayoutManager(mLayoutManager);
                             recyclerview.setAdapter(inviteUserAdapter);
                             recyclerview.setNestedScrollingEnabled(false);
 
                         }else{
-                            Toast.makeText(getActivity(),getString(R.string.systemmessage)+response.body().getMessage(),Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mActivity,getString(R.string.systemmessage)+response.body().getMessage(),Toast.LENGTH_SHORT).show();
                         }
 
                     }
                 }
                 else{
-                    Toast.makeText(getActivity(),getString(R.string.systemmessage)+response.errorBody(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mActivity,getString(R.string.systemmessage)+response.errorBody(),Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -219,7 +222,7 @@ public class InviteAndEarn extends Fragment implements View.OnClickListener {
             List<Intent> targetedShareIntents = new ArrayList<Intent>();
             Intent shareIntent = new Intent(Intent.ACTION_SEND);
             shareIntent.setType("text/plain");
-            List<ResolveInfo> resInfo = getActivity().getPackageManager().queryIntentActivities(shareIntent, 0);
+            List<ResolveInfo> resInfo = mActivity.getPackageManager().queryIntentActivities(shareIntent, 0);
             if (!resInfo.isEmpty()) {
                 for (ResolveInfo resolveInfo : resInfo) {
                     String packageName = resolveInfo.activityInfo.packageName;
@@ -253,26 +256,26 @@ public class InviteAndEarn extends Fragment implements View.OnClickListener {
         whatsappIntent.setPackage("com.whatsapp");
         whatsappIntent.putExtra(Intent.EXTRA_TEXT, inviteTextUrl);
         try {
-            getActivity().startActivity(whatsappIntent);
+            mActivity.startActivity(whatsappIntent);
         } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(getActivity(), "Whatsapp have not been installed.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mActivity, "Whatsapp have not been installed.", Toast.LENGTH_SHORT).show();
         }
     }
 
     public void shareOnTelegram() {
         final String appName = "org.telegram.messenger";
-        final boolean isAppInstalled = isAppAvailable(getActivity().getApplicationContext(), appName);
+        final boolean isAppInstalled = isAppAvailable(mActivity.getApplicationContext(), appName);
         if (isAppInstalled)
         {
             Intent myIntent = new Intent(Intent.ACTION_SEND);
             myIntent.setType("text/plain");
             myIntent.setPackage(appName);
             myIntent.putExtra(Intent.EXTRA_TEXT, inviteTextUrl);//
-            getActivity().startActivity(Intent.createChooser(myIntent, "Share with"));
+            mActivity.startActivity(Intent.createChooser(myIntent, "Share with"));
         }
         else
         {
-            Toast.makeText(getActivity(), "Telegram not Installed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mActivity, "Telegram not Installed", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -307,5 +310,14 @@ public class InviteAndEarn extends Fragment implements View.OnClickListener {
     public void onPause() {
         dismissProgressDialog();
         super.onPause();
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof FragmentActivity){
+            mActivity = (FragmentActivity) context;
+        }
+
     }
 }

@@ -13,8 +13,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
@@ -35,6 +37,7 @@ public class HelpFragment extends Fragment implements View.OnClickListener {
     TextView version;
     View view;
     String BASE_URL_WEB="https://couponhub.app/info-files/";
+    protected  FragmentActivity mActivity;
 
     public HelpFragment() {
         // Required empty public constructor
@@ -114,10 +117,10 @@ public class HelpFragment extends Fragment implements View.OnClickListener {
     }
 
     private void webViewLoad(String url,String title){
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
         builder.setTitle(title);
 
-        WebView wv = new WebView(getActivity());
+        WebView wv = new WebView(mActivity);
         wv.loadUrl(url);
         wv.setWebViewClient(new WebViewClient() {
             @Override
@@ -136,4 +139,14 @@ public class HelpFragment extends Fragment implements View.OnClickListener {
         });
         builder.show();
     }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof FragmentActivity){
+            mActivity = (FragmentActivity) context;
+        }
+
+    }
+
 }

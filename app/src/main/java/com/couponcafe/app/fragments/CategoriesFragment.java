@@ -2,6 +2,7 @@ package com.couponcafe.app.fragments;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.media.midi.MidiOutputPort;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,7 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,6 +38,7 @@ public class CategoriesFragment extends Fragment {
     RecyclerView recyclerView;
     ProgressDialog progressDialog;
     String TAG = "testing";
+    protected FragmentActivity mActivity;
 
     public CategoriesFragment() {
         // Required empty public constructor
@@ -63,13 +67,13 @@ public class CategoriesFragment extends Fragment {
     private void getcategoryData() {
 
         APIService apiService = ApiClient.getClient().create(APIService.class);
-        Call<CategoriesModel> call = apiService.getAllCategories(Constants.getSharedPreferenceInt(getActivity(), "userId", 0),
-                Constants.getSharedPreferenceString(getActivity(), "securitytoken", ""),
-                Constants.getSharedPreferenceString(getActivity(), "versionName", ""),
-                Constants.getSharedPreferenceInt(getActivity(), "versionCode", 0));
+        Call<CategoriesModel> call = apiService.getAllCategories(Constants.getSharedPreferenceInt(mActivity, "userId", 0),
+                Constants.getSharedPreferenceString(mActivity, "securitytoken", ""),
+                Constants.getSharedPreferenceString(mActivity, "versionName", ""),
+                Constants.getSharedPreferenceInt(mActivity, "versionCode", 0));
 
-        if (!((Activity) getActivity()).isFinishing()) {
-            progressDialog = new ProgressDialog(getActivity());
+        if (!((Activity) mActivity).isFinishing()) {
+            progressDialog = new ProgressDialog(mActivity);
             progressDialog.setMessage(getString(R.string.loadingwait));
             progressDialog.show();
             progressDialog.setCancelable(false);
@@ -85,20 +89,20 @@ public class CategoriesFragment extends Fragment {
                             ArrayList<CategoryDatum> categoriesModel = response.body().getCategoryData();
 
                             ExpandableRecyclerViewAdapter expandableCategoryRecyclerViewAdapter =
-                                    new ExpandableRecyclerViewAdapter(getActivity(), categoriesModel);
+                                    new ExpandableRecyclerViewAdapter(mActivity, categoriesModel);
 
-                            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                            recyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
                             recyclerView.setAdapter(expandableCategoryRecyclerViewAdapter);
                             recyclerView.setNestedScrollingEnabled(false);
 
 
                         } else {
-                            Toast.makeText(getActivity(), getString(R.string.systemmessage) + response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mActivity, getString(R.string.systemmessage) + response.body().getMessage(), Toast.LENGTH_SHORT).show();
                         }
 
                     }
                 } else {
-                    Toast.makeText(getActivity(), getString(R.string.systemmessage) + response.errorBody(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mActivity, getString(R.string.systemmessage) + response.errorBody(), Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -130,6 +134,15 @@ public class CategoriesFragment extends Fragment {
     public void onPause() {
         dismissProgressDialog();
         super.onPause();
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof FragmentActivity){
+            mActivity = (FragmentActivity) context;
+        }
+
     }
 
 

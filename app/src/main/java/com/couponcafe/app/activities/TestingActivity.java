@@ -9,7 +9,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
 
 import com.couponcafe.app.R;
-import com.couponcafe.app.fragments.ActivitiesFragment;
+
 import com.couponcafe.app.fragments.OverviewFragment;
 import com.couponcafe.app.fragments.WithdrawalsFragment;
 import com.google.android.material.tabs.TabLayout;
@@ -43,7 +43,7 @@ public class TestingActivity extends AppCompatActivity {
     public void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new OverviewFragment(), "Overview");
-        adapter.addFrag(new ActivitiesFragment(), "faq");
+//        adapter.addFrag(new ActivitiesFragment(), "faq");
         adapter.addFrag(new WithdrawalsFragment(), "cashback issue");
         adapter.addFrag(new WithdrawalsFragment(), "contact us");
         //viewPager.setOffscreenPageLimit(2);

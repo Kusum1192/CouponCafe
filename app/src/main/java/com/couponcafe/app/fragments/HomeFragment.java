@@ -3,6 +3,7 @@ package com.couponcafe.app.fragments;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -12,6 +13,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.cardview.widget.CardView;
 import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,28 +27,28 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
+
 import android.widget.ImageView;
-import android.widget.ProgressBar;
+
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.couponcafe.app.MainActivity;
 import com.couponcafe.app.R;
-import com.couponcafe.app.activities.BestOffersActivity;
+
 import com.couponcafe.app.activities.CategoriesDetailsActivity;
 import com.couponcafe.app.activities.OffersDetailsActivity;
 import com.couponcafe.app.activities.TopStoresDetailsActivity;
 import com.couponcafe.app.activities.ViewAllTopOffersActivity;
 import com.couponcafe.app.adapter.TodayBestOfferListAdapter;
-import com.couponcafe.app.adapter.TopStores;
+
 import com.couponcafe.app.adapter.TopStoresAdapter;
 import com.couponcafe.app.adapter.RecyclerTouchListener;
 import com.couponcafe.app.interfaces.APIService;
 import com.couponcafe.app.models.AllOffersDataModel;
 import com.couponcafe.app.models.BestOfferDatum;
 import com.couponcafe.app.models.SliderDatum;
-import com.couponcafe.app.models.TopOfferDatum;
+
 import com.couponcafe.app.models.TopStoreDatum;
 import com.couponcafe.app.utils.ApiClient;
 import com.couponcafe.app.utils.Constants;
@@ -78,6 +80,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     ProgressDialog progressDialog;
     ImageView tv_home_invite_image;
     String TAG = "testing";
+    protected FragmentActivity mActivity;
 
     public HomeFragment() {
     }
@@ -120,16 +123,16 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.cardview_share_invite:
-                ((MainActivity)getActivity()).setupBottomNavigationFrom(R.id.navigation_invite);
+                ((MainActivity)mActivity).setupBottomNavigationFrom(R.id.navigation_invite);
                 break;
 
             case R.id.tv_viewtop_offers:
-                Intent intent_topoffers = new Intent(getActivity(), ViewAllTopOffersActivity.class);
+                Intent intent_topoffers = new Intent(mActivity, ViewAllTopOffersActivity.class);
                 startActivity(intent_topoffers);
                 break;
 
             case R.id.tv_view_all:
-                Intent intent_best_offers = new Intent(getActivity(), CategoriesDetailsActivity.class);
+                Intent intent_best_offers = new Intent(mActivity, CategoriesDetailsActivity.class);
                 startActivity(intent_best_offers);
                 break;
 
@@ -141,13 +144,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private void getAllOffersData() {
 
         APIService apiService = ApiClient.getClient().create(APIService.class);
-        Call<AllOffersDataModel> call = apiService.getOffers(Constants.getSharedPreferenceInt(getActivity(),"userId",0),
-                Constants.getSharedPreferenceString(getActivity(),"securitytoken",""),
-                Constants.getSharedPreferenceString(getActivity(),"versionName",""),
-                Constants.getSharedPreferenceInt(getActivity(),"versionCode",0));
+        Call<AllOffersDataModel> call = apiService.getOffers(Constants.getSharedPreferenceInt(mActivity,"userId",0),
+                Constants.getSharedPreferenceString(mActivity,"securitytoken",""),
+                Constants.getSharedPreferenceString(mActivity,"versionName",""),
+                Constants.getSharedPreferenceInt(mActivity,"versionCode",0));
 
-        if(!((Activity) getActivity()).isFinishing()) {
-            progressDialog = new ProgressDialog(getActivity());
+        if(!((Activity) mActivity).isFinishing()) {
+            progressDialog = new ProgressDialog(mActivity);
             progressDialog.setMessage(getString(R.string.loadingwait));
             progressDialog.show();
             progressDialog.setCancelable(false);
@@ -160,8 +163,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 if(response!=null){
                     if(response.isSuccessful()){
                         if(response.body().getStatus()==200){
-                           Constants.setSharedPreferenceInt(getActivity(),"userAmount",response.body().getUserAmount());
-                           Constants.setSharedPreferenceString(getActivity(),"currency",response.body().getCurrency());
+                           Constants.setSharedPreferenceInt(mActivity,"userAmount",response.body().getUserAmount());
+                           Constants.setSharedPreferenceString(mActivity,"currency",response.body().getCurrency());
                            final ArrayList<SliderDatum> sliderArrayList = response.body().getSliderData();
                            final ArrayList<BestOfferDatum> bestOfferDatalist = response.body().getBestOfferData();
                            final ArrayList<TopStoreDatum> topStoreDatalist = response.body().getTopStoreData();
@@ -171,8 +174,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                                     .error(R.drawable.ic_placeholder_small)
                                     .into((tv_home_invite_image));
 
-                           // Toast.makeText(getActivity(), ""+bestOfferData.size(), Toast.LENGTH_SHORT).show();
-                            mPager.setAdapter(new Sliding_Adapter_For_viewpager_main(getActivity(), sliderArrayList));
+                           // Toast.makeText(mActivity, ""+bestOfferData.size(), Toast.LENGTH_SHORT).show();
+                            mPager.setAdapter(new Sliding_Adapter_For_viewpager_main(mActivity, sliderArrayList));
                             indicator.setViewPager(mPager);
                             // Pager listener over indicator
                             indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -212,15 +215,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
                             mAdapter = new TopStoresAdapter(topStoreDatalist);
                             recylerview_topstore.setHasFixedSize(true);
-                            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+                            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(mActivity, LinearLayoutManager.HORIZONTAL, false);
                             recylerview_topstore.setLayoutManager(mLayoutManager);
                             recylerview_topstore.setAdapter(mAdapter);
                             recylerview_topstore.setNestedScrollingEnabled(false);
-                            recylerview_topstore.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recylerview_topstore, new RecyclerTouchListener.ClickListener() {
+                            recylerview_topstore.addOnItemTouchListener(new RecyclerTouchListener(mActivity, recylerview_topstore, new RecyclerTouchListener.ClickListener() {
                                 @Override
                                 public void onClick(View view, int position) {
                                     TopStoreDatum topStores = topStoreDatalist.get(position);
-                                    Intent intent = new Intent(getActivity(), TopStoresDetailsActivity.class);
+                                    Intent intent = new Intent(mActivity, TopStoresDetailsActivity.class);
                                     intent.putExtra("storeId",topStores.getStoreId());
                                     startActivity(intent);
                                 }
@@ -231,17 +234,17 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                                 }
                             }));
 
-                            todayBestAdapter = new TodayBestOfferListAdapter(bestOfferDatalist,getActivity());
-                            RecyclerView.LayoutManager mLayoutManager1 = new LinearLayoutManager(getActivity());
+                            todayBestAdapter = new TodayBestOfferListAdapter(bestOfferDatalist,mActivity);
+                            RecyclerView.LayoutManager mLayoutManager1 = new LinearLayoutManager(mActivity);
                             recycler_view_best_offers.setLayoutManager(mLayoutManager1);
                             recycler_view_best_offers.setAdapter(todayBestAdapter);
                             recycler_view_best_offers.setNestedScrollingEnabled(false);
-                            recycler_view_best_offers.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recycler_view_best_offers, new RecyclerTouchListener.ClickListener() {
+                            recycler_view_best_offers.addOnItemTouchListener(new RecyclerTouchListener(mActivity, recycler_view_best_offers, new RecyclerTouchListener.ClickListener() {
                                 @Override
                                 public void onClick(View view, int position) {
                                     BestOfferDatum bestOfferDatum = bestOfferDatalist.get(position);
-                                    // Toast.makeText(getActivity(), topStores.getTitle() + " is selected!", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getActivity(), OffersDetailsActivity.class);
+                                    // Toast.makeText(mActivity, topStores.getTitle() + " is selected!", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(mActivity, OffersDetailsActivity.class);
                                     intent.putExtra("offerId",bestOfferDatum.getOfferId());
                                     startActivity(intent);
                                 }
@@ -253,13 +256,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                             }));
 
                         }else{
-                            Toast.makeText(getActivity(),getString(R.string.systemmessage)+response.body().getMessage(),Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mActivity,getString(R.string.systemmessage)+response.body().getMessage(),Toast.LENGTH_SHORT).show();
                         }
 
                     }
                 }
                 else{
-                    Toast.makeText(getActivity(),getString(R.string.systemmessage)+response.errorBody(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mActivity,getString(R.string.systemmessage)+response.errorBody(),Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -293,7 +296,16 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         super.onPause();
     }
 
-//    @Override
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof FragmentActivity){
+            mActivity = (FragmentActivity) context;
+        }
+
+    }
+
+    //    @Override
 //    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 //        inflater.inflate(R.menu.share_main_menu, menu);
 //        super.onCreateOptionsMenu(menu, inflater);
@@ -327,7 +339,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         switch (item.getItemId()) {
 
             case R.id.action_search:
-                Toast.makeText(getActivity(), "clcik", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mActivity, "clcik", Toast.LENGTH_SHORT).show();
                 // Do Activity menu item stuff here
                 return true;
 

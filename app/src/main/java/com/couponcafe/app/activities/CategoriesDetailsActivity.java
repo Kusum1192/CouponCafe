@@ -12,15 +12,11 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.couponcafe.app.R;
-import com.couponcafe.app.fragments.AllFragment;
-import com.couponcafe.app.fragments.FoodDiningFragment;
 import com.couponcafe.app.fragments.TabFragment;
-import com.couponcafe.app.fragments.TravelFragment;
 import com.couponcafe.app.interfaces.APIService;
 import com.couponcafe.app.models.AllCategoriesDetailsModel;
 import com.couponcafe.app.models.BestOfferDatum;
@@ -30,7 +26,6 @@ import com.couponcafe.app.utils.Constants;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,7 +36,7 @@ public class CategoriesDetailsActivity extends AppCompatActivity implements View
     ViewPager viewPager;
     TabLayout tabLayout;
     ProgressDialog progressDialog;
-    //OnAboutDataReceivedListener mAboutDataListener;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

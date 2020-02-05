@@ -7,11 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-import androidx.cardview.widget.CardView;
+
 import androidx.recyclerview.widget.RecyclerView;
 import com.couponcafe.app.R;
-import com.couponcafe.app.activities.BestOffersActivity;
+
 import com.couponcafe.app.activities.CategoriesDetailsActivity;
 import com.couponcafe.app.models.SubCategory;
 import java.util.ArrayList;
