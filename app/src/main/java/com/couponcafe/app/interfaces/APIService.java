@@ -41,11 +41,11 @@ public interface APIService {
 
     @FormUrlEncoded
     @POST("bestOfferDetails")
-    Call<BestOfferDetailsModel> viewofferDetails(@Field("offerId") String offerid,
-                                                 @Field("userId") int userId,
+    Call<BestOfferDetailsModel> viewofferDetails(@Field("userId") int userId,
                                                  @Field("securityToken") String securityToken,
                                                  @Field("versionName") String versionName,
-                                                 @Field("versionCode") int versionCode);
+                                                 @Field("versionCode") int versionCode,
+                                                 @Field("offerId") String offerid);
 
 
     @FormUrlEncoded
@@ -80,7 +80,9 @@ public interface APIService {
 
     @FormUrlEncoded
     @POST("categoryDetails")
-    Call<AllCategoriesDetailsModel> allcategoriesDetails(@Field("userId") int userId,
+    Call<AllCategoriesDetailsModel> allcategoriesDetails(@Field("categoryId") String catId,
+                                                         @Field("subCategoryId") String subCategoryId,
+                                                         @Field("userId") int userId,
                                                          @Field("securityToken") String securityToken,
                                                          @Field("versionName") String versionName,
                                                          @Field("versionCode") int versionCode);
@@ -106,6 +108,7 @@ public interface APIService {
                                    @Field("securityToken") String securityToken,
                                    @Field("versionName") String versionName,
                                    @Field("versionCode") int versionCode);
+
     @FormUrlEncoded
     @POST("userRegister")
     Call<UserRegisterModel> userSignUp(@Field("deviceType") String deviceType,
@@ -124,5 +127,5 @@ public interface APIService {
                                        @Field("utmMedium") String utmMedium,
                                        @Field("utmTerm") String utmTerm,
                                        @Field("utmContent") String utmContent,
-                                       @Field("utmCampaign") String utmCampaign );
+                                       @Field("utmCampaign") String utmCampaign);
 }

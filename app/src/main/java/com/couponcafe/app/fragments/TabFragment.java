@@ -88,9 +88,6 @@ public class TabFragment extends Fragment  {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        textView = (TextView) view.findViewById(R.id.textView);
-
-        textView.setText("Fragment " + (position + 1));
 
     }
 

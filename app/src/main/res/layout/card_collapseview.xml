@@ -15,55 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:visibility="gone"
-                android:id="@+id/linearLayoutHolder1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="20dp">
 
-
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:background="@drawable/hows_it_work" />
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginStart="10dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/categoryTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Fruits &amp; Vegetables"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/categoryDescription"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/categoryTitle"
-                        android:text="Fruits &amp; Vegetables from various shops"
-                        android:textSize="12sp" />
-
-                    <ImageButton
-                        android:id="@+id/categoryExpandBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:background="#FFF"
-                        android:src="@drawable/ic_arrow_down" />
-
-                </RelativeLayout>
-
-
-            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/linearLayoutHolder"
@@ -126,16 +78,53 @@
                     android:src="@drawable/ic_arrow_down"/>
             </LinearLayout>
 
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/innerRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_below="@+id/linearLayoutHolder"
-                android:background="#f6f6f6"
-                android:visibility="gone">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            </androidx.recyclerview.widget.RecyclerView>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/innerRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#f6f6f6"
+                    android:visibility="gone"/>
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/ll_view_all"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".4" />
+
+                    <TextView
+                        android:padding="8dp"
+                        android:visibility="visible"
+                        android:textColor="@color/blue"
+                        android:text="View All SubCategories"
+                        android:id="@+id/tv_view_all_subcategories"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.6"
+                        android:textSize="12sp" />
+
+
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+
+
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>

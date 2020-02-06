@@ -148,10 +148,10 @@ public class OffersDetailsActivity extends AppCompatActivity implements View.OnC
     private void getOfferDetails(String offerid) {
 
         APIService apiService = ApiClient.getClient().create(APIService.class);
-        Call<BestOfferDetailsModel> call = apiService.viewofferDetails(offerid,Constants.getSharedPreferenceInt(OffersDetailsActivity.this,"userId",0),
+        Call<BestOfferDetailsModel> call = apiService.viewofferDetails(Constants.getSharedPreferenceInt(OffersDetailsActivity.this,"userId",0),
                 Constants.getSharedPreferenceString(OffersDetailsActivity.this,"securitytoken",""),
                 Constants.getSharedPreferenceString(OffersDetailsActivity.this,"versionName",""),
-                Constants.getSharedPreferenceInt(OffersDetailsActivity.this,"versionCode",0));
+                Constants.getSharedPreferenceInt(OffersDetailsActivity.this,"versionCode",0),offerid);
 
         if(!((Activity) OffersDetailsActivity.this).isFinishing()) {
             progressDialog = new ProgressDialog(OffersDetailsActivity.this);

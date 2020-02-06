@@ -252,8 +252,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     case R.id.navigation_profile: {
 //                        loadProfileFragment();
                         ProfileFragment profileFragment = new ProfileFragment();
-//                        ProfileTestingFragment profileTestingFragment = new ProfileTestingFragment();
                         HoldAllFragments(profileFragment);
+//                        ProfileTestingFragment profileTestingFragment = new ProfileTestingFragment();
+//                        HoldAllFragments(profileTestingFragment);
+
                         return true;
                     }
                 }

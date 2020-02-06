@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.couponcafe.app.R;
 
 import com.couponcafe.app.activities.CategoriesDetailsActivity;
+import com.couponcafe.app.models.CategoryDatum;
 import com.couponcafe.app.models.SubCategory;
 import java.util.ArrayList;
 
@@ -20,11 +21,13 @@ import java.util.ArrayList;
 public class InnerRecyclerViewAdapter extends RecyclerView.Adapter<InnerRecyclerViewAdapter.ViewHolder> {
 
     ArrayList<SubCategory> getofferList;
+    Integer categoryId;
     Context context;
 
 
-    public InnerRecyclerViewAdapter(ArrayList<SubCategory> getNameList, Context context) {
+    public InnerRecyclerViewAdapter(Integer categoryId, ArrayList<SubCategory> getNameList, Context context) {
         this.getofferList = getNameList;
+        this.categoryId = categoryId;
         this.context = context;
     }
 
@@ -37,6 +40,7 @@ public class InnerRecyclerViewAdapter extends RecyclerView.Adapter<InnerRecycler
             tv_subcat_name = itemView.findViewById(R.id.tv_subcat_name);
             tv_subcat_offers = itemView.findViewById(R.id.tv_subcat_offers);
             cardView_child = itemView.findViewById(R.id.cardView_child);
+            //ll_view_all = itemView.findViewById(R.id.ll_view_all);
             cardView_child.setOnClickListener(this);
         }
 
@@ -45,6 +49,7 @@ public class InnerRecyclerViewAdapter extends RecyclerView.Adapter<InnerRecycler
             switch (view.getId()){
                 case R.id.cardView_child:
                     Intent intent = new Intent(context, CategoriesDetailsActivity.class);
+                    intent.putExtra("catId",categoryId);
                     intent.putExtra("subcatId",getofferList.get(getAdapterPosition()).getSubCategoryId());
                     intent.putExtra("subcatName",getofferList.get(getAdapterPosition()).getSubCategoryName());
                     context.startActivity(intent);
@@ -56,9 +61,7 @@ public class InnerRecyclerViewAdapter extends RecyclerView.Adapter<InnerRecycler
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.card_expand_item_view, parent, false);
-
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_expand_item_view, parent, false);
 
         InnerRecyclerViewAdapter.ViewHolder vh = new InnerRecyclerViewAdapter.ViewHolder(v);
 

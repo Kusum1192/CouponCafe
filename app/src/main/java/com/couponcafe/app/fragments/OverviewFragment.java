@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -87,6 +88,7 @@ public class OverviewFragment extends Fragment implements View.OnClickListener {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(mActivity);
         recyclerview_product.setLayoutManager(mLayoutManager);
         recyclerview_product.setAdapter(productListAdapter);
+        //ViewCompat.setNestedScrollingEnabled(recyclerview_product, false);
         recyclerview_product.setNestedScrollingEnabled(false);
         recyclerview_product.addOnItemTouchListener(new RecyclerTouchListener(mActivity, recyclerview_product, new RecyclerTouchListener.ClickListener() {
             @Override

@@ -36,6 +36,7 @@ public class CategoriesDetailsActivity extends AppCompatActivity implements View
     ViewPager viewPager;
     TabLayout tabLayout;
     ProgressDialog progressDialog;
+    String TAG = "testing";
 
 
     @Override
@@ -52,16 +53,18 @@ public class CategoriesDetailsActivity extends AppCompatActivity implements View
         //  init();
         Intent intent = getIntent();
         if(intent!=null){
-            String catId = String.valueOf(intent.getIntExtra("subcatId",0));
+            String subcatId = String.valueOf(intent.getIntExtra("subcatId",0));
+            String catId = String.valueOf(intent.getIntExtra("catId",0));
             String subcatName = intent.getStringExtra("subcatName");
-            getCategoriesDetails(catId);
+            getCategoriesDetails(catId,subcatId);
+            Log.e(TAG, "onCreate:catid "+catId +"\n subcat: "+subcatId);
         }
     }
 
-    private void getCategoriesDetails(final String catId) {
+    private void getCategoriesDetails(final String catId,final String subcatId) {
 
         APIService apiService = ApiClient.getClient().create(APIService.class);
-        Call<AllCategoriesDetailsModel> call = apiService.allcategoriesDetails(Constants.getSharedPreferenceInt(CategoriesDetailsActivity.this, "userId", 0),
+        Call<AllCategoriesDetailsModel> call = apiService.allcategoriesDetails(catId,subcatId,Constants.getSharedPreferenceInt(CategoriesDetailsActivity.this, "userId", 0),
                 Constants.getSharedPreferenceString(CategoriesDetailsActivity.this, "securitytoken", ""),
                 Constants.getSharedPreferenceString(CategoriesDetailsActivity.this, "versionName", ""),
                 Constants.getSharedPreferenceInt(CategoriesDetailsActivity.this, "versionCode", 0));
@@ -85,11 +88,30 @@ public class CategoriesDetailsActivity extends AppCompatActivity implements View
                             viewPager = (ViewPager) findViewById(R.id.view_pager);
                             ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), allCategoriesDetailsModels, bestOfferData);
                             viewPager.setAdapter(adapter);
+                            Log.e(TAG, "onResponse:subcat " +subcatId+"\n"+adapter.getCount());
                             //Toast.makeText(CategoriesDetailsActivity.this, "click child:cat "+catId, Toast.LENGTH_SHORT).show();
-                            viewPager.setCurrentItem(Integer.parseInt(""+catId));
+                            viewPager.setCurrentItem(Integer.parseInt(subcatId));
                             tabLayout = (TabLayout) findViewById(R.id.tab_layout);
                             tabLayout.setupWithViewPager(viewPager);
-
+//                            viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+//
+//                                @Override
+//                                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//
+//                                }
+//
+//                                @Override
+//                                public void onPageSelected(int position) {
+//                                    // Here's your instance
+//                                    YourFragment fragment =(YourFragment)yourPagerAdapter.getRegisteredFragment(position);
+//
+//                                }
+//
+//                                @Override
+//                                public void onPageScrollStateChanged(int state) {
+//
+//                                }
+//                            });
 
                         } else {
                             Toast.makeText(CategoriesDetailsActivity.this, getString(R.string.systemmessage) + response.body().getMessage(), Toast.LENGTH_SHORT).show();

@@ -4,11 +4,13 @@ package com.couponcafe.app.fragments;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -18,6 +20,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.core.view.ViewCompat;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -114,18 +118,19 @@ public class ProfileTestingFragment extends Fragment {
                 if(response!=null){
                     if(response.isSuccessful()){
                         if(response.body().getStatus()==200){
-                            Picasso.get().load(response.body().getSocialImgurl())
-                                    .placeholder(R.drawable.ic_placeholder_small)
-                                    .error(R.drawable.ic_placeholder_small).transform(new CircleTransform())
-                                    .into((imageView_profile));
-                            tv_useremail.setText(response.body().getSocialEmail());
-                            tv_username.setText(response.body().getSocialName());
-                            tv_total.setText(Constants.getSharedPreferenceString(mActivity,"currency","")+""+response.body().getUserSavings());
+//                            Picasso.get().load(response.body().getSocialImgurl())
+//                                    .placeholder(R.drawable.ic_placeholder_small)
+//                                    .error(R.drawable.ic_placeholder_small).transform(new CircleTransform())
+//                                    .into((imageView_profile));
+//                            tv_useremail.setText(response.body().getSocialEmail());
+//                            tv_username.setText(response.body().getSocialName());
+//                            tv_total.setText(Constants.getSharedPreferenceString(mActivity,"currency","")+""+response.body().getUserSavings());
 
                             viewPager = (ViewPager)view.findViewById(R.id.view_pager);
-                            //FragmentManager cfManager = getChildFragmentManager();
-                            ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager(), response);
+                            FragmentManager cfManager = getChildFragmentManager();
+                            ViewPagerAdapter adapter = new ViewPagerAdapter(cfManager, response);
                             viewPager.setAdapter(adapter);
+//                            viewPager.setSaveFromParentEnabled(false);
 
                             tabLayout = (TabLayout)view.findViewById(R.id.tab_layout);
                             tabLayout.setupWithViewPager(viewPager);
@@ -202,6 +207,10 @@ public class ProfileTestingFragment extends Fragment {
             super(childFragmentManager);
         }
 
+        public ViewPagerAdapter(FragmentManager supportFragmentManager, Response<ProfileDataModel> response, Resources resources) {
+            super(supportFragmentManager);
+            this.response = response;
+        }
 
 
         @Override
