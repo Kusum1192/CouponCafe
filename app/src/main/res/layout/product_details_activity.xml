@@ -129,24 +129,9 @@
                     android:background="@color/white"
                     android:orientation="vertical">
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.5dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
-                        android:background="@color/line_gray" />
 
                     <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="6dp"
-                        android:text="About Product"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/common_text_size"
-                        android:textStyle="bold" />
-
-
-                    <TextView
+                        android:visibility="gone"
                         android:id="@+id/tv_description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -175,7 +160,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="6dp"
-                        android:text="Specification"
+                        android:text="Product Specification"
                         android:textColor="@color/black"
                         android:textSize="@dimen/common_text_size"
                         android:textStyle="bold" />
