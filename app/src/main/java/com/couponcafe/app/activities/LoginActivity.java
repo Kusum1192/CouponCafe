@@ -262,7 +262,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 try{
                     if(response.isSuccessful()){
                         if(response.body().getStatus()==200) {
-                            String amount = String.valueOf(response.body().getUserAmount());
+                            int amount = response.body().getUserAmount();
                             String coins = String.valueOf(response.body().getUserCoin());
                             String curency = String.valueOf(response.body().getCurrency());
                             String packAge = response.body().getPackAge();
@@ -271,7 +271,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             String userFrom = "couponhub";
                             Constants.setSharedPreferenceString(LoginActivity.this,"userFrom",userFrom);
                             Constants.setSharedPreferenceString(LoginActivity.this,"forceUpdatePackage",packAge);
-                            Constants.setSharedPreferenceString(LoginActivity.this, "totalamount", amount);
+                            Constants.setSharedPreferenceInt(LoginActivity.this, "userAmount", amount);
                             Constants.setSharedPreferenceString(LoginActivity.this, "totalcoins", coins);
                             Constants.setSharedPreferenceString(LoginActivity.this, "curency", curency);
 

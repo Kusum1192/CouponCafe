@@ -168,7 +168,7 @@ public class SplashActivity extends AppCompatActivity {
 
                             } else {
                                 if (response.body().getStatus() == 200) {
-                                    String amount = String.valueOf(response.body().getUserAmount());
+                                    int amount = response.body().getUserAmount();
                                     String coins = String.valueOf(response.body().getUserCoin());
                                     String curency = String.valueOf(response.body().getCurrency());
                                     String packAge = response.body().getPackAge();
@@ -177,7 +177,7 @@ public class SplashActivity extends AppCompatActivity {
                                     Constants.setSharedPreferenceString(SplashActivity.this,"userFrom",userFrom);
 
                                     Constants.setSharedPreferenceString(SplashActivity.this,"forceUpdatePackage",packAge);
-                                    Constants.setSharedPreferenceString(SplashActivity.this, "totalamount", amount);
+                                    Constants.setSharedPreferenceInt(SplashActivity.this, "userAmount", amount);
                                     Constants.setSharedPreferenceString(SplashActivity.this, "totalcoins", coins);
                                     Constants.setSharedPreferenceString(SplashActivity.this, "curency", curency);
 

@@ -5,6 +5,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class SubCategory {
 
+    @SerializedName("sno")
+    @Expose
+    private Integer sno;
     @SerializedName("subCategoryId")
     @Expose
     private Integer subCategoryId;
@@ -14,6 +17,14 @@ public class SubCategory {
     @SerializedName("offersCount")
     @Expose
     private String offersCount;
+
+    public Integer getSno() {
+        return sno;
+    }
+
+    public void setSno(Integer sno) {
+        this.sno = sno;
+    }
 
     public Integer getSubCategoryId() {
         return subCategoryId;

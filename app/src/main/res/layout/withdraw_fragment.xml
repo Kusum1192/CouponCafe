@@ -147,6 +147,7 @@
 
             <!--    trasfer e wallet-->
             <androidx.cardview.widget.CardView
+                android:id="@+id/card_transfer_ewallet"
                 app:cardCornerRadius="4dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -222,7 +222,7 @@ public class ProfileTestingFragment extends Fragment {
 //                    return new OverviewFragment();
 
                 case 1:
-                    return new WithdrawalsFragment(response.body().getUserAmount(), response.body().getPendingAmount());
+                    return new WithdrawalsFragment(response.body().getUserAmount(), response.body().getPendingAmount(),response.body().getMinPayLimit());
 //                    return new WithdrawalsFragment();
             }
 

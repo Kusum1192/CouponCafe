@@ -10,12 +10,14 @@ import com.couponcafe.app.models.CategoriesModel;
 import com.couponcafe.app.models.CustomNotifyModel;
 import com.couponcafe.app.models.InviteFriendModel;
 import com.couponcafe.app.models.Notification;
+import com.couponcafe.app.models.PayoutDataModel;
 import com.couponcafe.app.models.ProductDetailsModel;
 import com.couponcafe.app.models.ProfileDataModel;
 import com.couponcafe.app.models.TopStoreDetailsModel;
 import com.couponcafe.app.models.UserAppOpenModel;
 import com.couponcafe.app.models.UserRegisterModel;
 import com.couponcafe.app.models.ViewTopStoreModel;
+import com.couponcafe.app.models.WalletRedeemModel;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -128,4 +130,21 @@ public interface APIService {
                                        @Field("utmTerm") String utmTerm,
                                        @Field("utmContent") String utmContent,
                                        @Field("utmCampaign") String utmCampaign);
+
+    @FormUrlEncoded
+    @POST("payoutData")
+    Call<PayoutDataModel>getpayoutData(@Field("userId") int userId,
+                                       @Field("securityToken") String securityToken,
+                                       @Field("versionName") String versionName,
+                                       @Field("versionCode") int versionCode);
+    @FormUrlEncoded
+    @POST("walletRedeem")
+    Call<WalletRedeemModel> walletDataRedeem(@Field("userId") int userId,
+                                             @Field("securityToken") String securityToken,
+                                             @Field("paytmNumber") String paytmNumber,
+                                             @Field("payAmount") String payoutAmount,
+                                             @Field("payEmail") String payoutEmail,
+                                             @Field("redeemType") String paymode,
+                                             @Field("versionName") String versionName,
+                                             @Field("versionCode") int versionCode);
 }

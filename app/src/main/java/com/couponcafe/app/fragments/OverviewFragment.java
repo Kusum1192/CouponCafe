@@ -53,7 +53,7 @@ public class OverviewFragment extends Fragment implements View.OnClickListener {
         this.user_amount = userAmount;
         this.user_pending = pendingAmount;
         this.productlistarraylist = productlistarraylist;
-        Log.e(TAG, "OverviewFragment: "+userAmount );
+
 
 
     }

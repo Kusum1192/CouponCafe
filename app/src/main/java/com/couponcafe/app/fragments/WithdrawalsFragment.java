@@ -29,8 +29,8 @@ public class WithdrawalsFragment extends Fragment implements View.OnClickListene
     LinearLayout ll_recharge_now, ll_transfer_now;
     ImageView desc_arrow, e_wallet_arrow;
     TextView tv_user_amount, tv_user_pending,tv_transfer_now;
-    Integer user_amount, user_pending;
-    CardView card_make_recharge,card_transfer_bank,card_gift_card;
+    Integer user_amount, user_pending,minPaylimit;
+    CardView card_make_recharge,card_transfer_bank,card_gift_card,card_transfer_ewallet;
     protected  FragmentActivity mActivity;
 
 
@@ -38,9 +38,10 @@ public class WithdrawalsFragment extends Fragment implements View.OnClickListene
 
     }
 
-    public WithdrawalsFragment(Integer userAmount, Integer pendingAmount) {
+    public WithdrawalsFragment(Integer userAmount, Integer pendingAmount,Integer minPaylimit) {
         this.user_amount = userAmount;
         this.user_pending = pendingAmount;
+        this.minPaylimit = minPaylimit;
     }
 
     @Override
@@ -55,6 +56,8 @@ public class WithdrawalsFragment extends Fragment implements View.OnClickListene
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.withdraw_fragment, container, false);
 
+
+
         init(view);
         return view;
     }
@@ -66,18 +69,20 @@ public class WithdrawalsFragment extends Fragment implements View.OnClickListene
         card_gift_card = view.findViewById(R.id.card_gift_card);
         card_make_recharge = view.findViewById(R.id.card_make_recharge);
         card_transfer_bank = view.findViewById(R.id.card_transfer_bank);
+        card_transfer_ewallet = view.findViewById(R.id.card_transfer_ewallet);
         tv_user_amount.setText(Constants.getSharedPreferenceString(mActivity, "currency", "") + " " + user_amount);
         tv_user_pending.setText(Constants.getSharedPreferenceString(mActivity, "currency", "") + "" + user_pending);
         ll_recharge_now = view.findViewById(R.id.ll_recharge_now);
         ll_transfer_now = view.findViewById(R.id.ll_transfer_now);
         desc_arrow = view.findViewById(R.id.desc_arrow);
         e_wallet_arrow = view.findViewById(R.id.e_wallet_arrow);
-        desc_arrow.setOnClickListener(this);
-        e_wallet_arrow.setOnClickListener(this);
+       // desc_arrow.setOnClickListener(this);
+        //e_wallet_arrow.setOnClickListener(this);
         tv_transfer_now.setOnClickListener(this);
         card_make_recharge.setOnClickListener(this);
         card_transfer_bank.setOnClickListener(this);
         card_gift_card.setOnClickListener(this);
+        card_transfer_ewallet.setOnClickListener(this);
 
 
     }
@@ -86,7 +91,7 @@ public class WithdrawalsFragment extends Fragment implements View.OnClickListene
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.e_wallet_arrow:
+            case R.id.card_transfer_ewallet:
                 if (ll_transfer_now.getVisibility() == View.GONE) {
                     // it's collapsed - expand it
                     ll_transfer_now.setVisibility(View.VISIBLE);
@@ -116,19 +121,17 @@ public class WithdrawalsFragment extends Fragment implements View.OnClickListene
                 break;
 
             case R.id.card_transfer_bank:
+//                getDialog();
                 Toast.makeText(mActivity, "Features coming soon.", Toast.LENGTH_SHORT).show();
                 break;
 
 
 
             case R.id.tv_transfer_now:
-
-                int thresold = 100;
-                 if(user_amount > thresold){
+                 if(minPaylimit <= user_amount ){
                      Intent intent_payment = new Intent(mActivity, PaymentScreenActivity.class);
                      startActivity(intent_payment);
                  }
-
                  else{
                      getDialog();
                  }
@@ -137,13 +140,15 @@ public class WithdrawalsFragment extends Fragment implements View.OnClickListene
         }
     }
 
+
+
     public void getDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
         //Uncomment the below code to Set the message and title from the strings.xml file
         // builder.setMessage(R.string.dialog_message).setTitle(R.string.dialog_title);
 
         //Setting message manually and performing action on button click
-        builder.setMessage("You have insufficient cashback balance for this transaction(250 rupees required atleast)")
+        builder.setMessage("You have insufficient cashback balance for this transaction ("+minPaylimit+Constants.getSharedPreferenceString(getActivity(),"currency","")+" required atleast)")
                 .setCancelable(false)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {

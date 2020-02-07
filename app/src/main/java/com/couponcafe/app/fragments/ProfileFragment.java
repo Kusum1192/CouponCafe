@@ -106,10 +106,12 @@ public class ProfileFragment extends Fragment {
                 if(response!=null){
                     if(response.isSuccessful()){
                         if(response.body().getStatus()==200){
+
                             Picasso.get().load(response.body().getSocialImgurl())
                                     .placeholder(R.drawable.ic_placeholder_small)
                                     .error(R.drawable.ic_placeholder_small).transform(new CircleTransform())
                                     .into((imageView_profile));
+
                             tv_useremail.setText(response.body().getSocialEmail());
                             tv_username.setText(response.body().getSocialName());
                             tv_total.setText(Constants.getSharedPreferenceString(mActivity,"currency","")+""+response.body().getUserSavings());
@@ -130,7 +132,7 @@ public class ProfileFragment extends Fragment {
                                             fragment = new OverviewFragment(response.body().getUserAmount(),response.body().getPendingAmount(),response.body().getProducts());
                                             break;
                                         case 1:
-                                            fragment = new WithdrawalsFragment(response.body().getUserAmount(),response.body().getPendingAmount());
+                                            fragment = new WithdrawalsFragment(response.body().getUserAmount(),response.body().getPendingAmount(),response.body().getMinPayLimit());
                                             break;
 
                                     }

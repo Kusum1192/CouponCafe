@@ -2,6 +2,7 @@ package com.couponcafe.app.testing;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,6 +53,8 @@ public class InnerRecyclerViewAdapter extends RecyclerView.Adapter<InnerRecycler
                     intent.putExtra("catId",categoryId);
                     intent.putExtra("subcatId",getofferList.get(getAdapterPosition()).getSubCategoryId());
                     intent.putExtra("subcatName",getofferList.get(getAdapterPosition()).getSubCategoryName());
+                    intent.putExtra("sno",getofferList.get(getAdapterPosition()).getSno());
+                    Log.e("testing", "onClick:sno "+getofferList.get(getAdapterPosition()).getSno() );
                     context.startActivity(intent);
                     //Toast.makeText(context, "click child: "+getofferList.get(getAdapterPosition()).getSubCategoryId(), Toast.LENGTH_SHORT).show();
                     break;

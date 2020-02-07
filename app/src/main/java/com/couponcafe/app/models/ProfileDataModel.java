@@ -1,12 +1,9 @@
 package com.couponcafe.app.models;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 import java.util.ArrayList;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class ProfileDataModel {
 
@@ -19,6 +16,9 @@ public class ProfileDataModel {
     @SerializedName("currency")
     @Expose
     private String currency;
+    @SerializedName("minPayLimit")
+    @Expose
+    private Integer minPayLimit;
     @SerializedName("userCoin")
     @Expose
     private Integer userCoin;
@@ -37,12 +37,12 @@ public class ProfileDataModel {
     @SerializedName("socialEmail")
     @Expose
     private String socialEmail;
-    @SerializedName("products")
-    @Expose
-    private ArrayList<Product> products = null;
     @SerializedName("socialImgurl")
     @Expose
     private String socialImgurl;
+    @SerializedName("products")
+    @Expose
+    private ArrayList<Product> products = null;
 
     public String getMessage() {
         return message;
@@ -66,6 +66,14 @@ public class ProfileDataModel {
 
     public void setCurrency(String currency) {
         this.currency = currency;
+    }
+
+    public Integer getMinPayLimit() {
+        return minPayLimit;
+    }
+
+    public void setMinPayLimit(Integer minPayLimit) {
+        this.minPayLimit = minPayLimit;
     }
 
     public Integer getUserCoin() {
@@ -116,20 +124,20 @@ public class ProfileDataModel {
         this.socialEmail = socialEmail;
     }
 
-    public ArrayList<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(ArrayList<Product> products) {
-        this.products = products;
-    }
-
     public String getSocialImgurl() {
         return socialImgurl;
     }
 
     public void setSocialImgurl(String socialImgurl) {
         this.socialImgurl = socialImgurl;
+    }
+
+    public ArrayList<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(ArrayList<Product> products) {
+        this.products = products;
     }
 
 }

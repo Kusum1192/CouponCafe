@@ -57,7 +57,7 @@ public class Sliding_Adapter_For_viewpager_main extends PagerAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, OffersDetailsActivity.class);
-                intent.putExtra("offerId",position);
+                intent.putExtra("offerId",images.get(position).getOfferId());
                 context.startActivity(intent);
                 //Toast.makeText(context, "you clicked image " + (position + 1), Toast.LENGTH_LONG).show();
             }

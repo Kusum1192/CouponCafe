@@ -84,4 +84,5 @@
     <string name="highpayout">High Payout Alert</string>
     <string name="wallet">Wallet</string>
     <string name="withdrawal">Withdrawal</string>
+    <string name="rule">Withdraw Rules*</string>
 </resources>
