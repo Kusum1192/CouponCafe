@@ -233,7 +233,7 @@ public class PaymentScreenActivity extends AppCompatActivity implements View.OnC
             return;
         }
         else if (emailaddress.isEmpty()) {
-            email.setError("PayPal Email Required");
+            email.setError("Email Required");
             email.requestFocus();
             return;
         }

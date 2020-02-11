@@ -16,6 +16,7 @@ import com.couponcafe.app.models.ProfileDataModel;
 import com.couponcafe.app.models.TopStoreDetailsModel;
 import com.couponcafe.app.models.UserAppOpenModel;
 import com.couponcafe.app.models.UserRegisterModel;
+import com.couponcafe.app.models.UserTransactionsModel;
 import com.couponcafe.app.models.ViewTopStoreModel;
 import com.couponcafe.app.models.WalletRedeemModel;
 
@@ -147,4 +148,11 @@ public interface APIService {
                                              @Field("redeemType") String paymode,
                                              @Field("versionName") String versionName,
                                              @Field("versionCode") int versionCode);
+
+    @FormUrlEncoded
+    @POST("userTransactions")
+    Call<UserTransactionsModel> getUserTransaction(@Field("userId") int userId,
+                                                   @Field("securityToken") String securityToken,
+                                                   @Field("versionName") String versionName,
+                                                   @Field("versionCode") int versionCode);
 }

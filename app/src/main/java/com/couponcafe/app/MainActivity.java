@@ -1,10 +1,13 @@
 package com.couponcafe.app;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.couponcafe.app.activities.NotificationActivity;
+import com.couponcafe.app.activities.UserTransactionsActivity;
 import com.couponcafe.app.fragments.CategoriesFragment;
 import com.couponcafe.app.fragments.HelpFragment;
 import com.couponcafe.app.fragments.HomeFragment;
@@ -18,13 +21,16 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import android.os.Handler;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.SearchView;
 import androidx.core.view.GravityCompat;
+import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -35,6 +41,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
 import android.view.Menu;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -49,7 +56,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawer;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setupBottomNavigation();
 
         if (savedInstanceState == null) {
-           // loadHomeFragment();
+            // loadHomeFragment();
             HomeFragment homeFragment = new HomeFragment();
             HoldAllFragments(homeFragment);
         }
@@ -95,10 +101,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ImageView imageView = headerView.findViewById(R.id.imageView);
 
 
-        tv_username.setText(Constants.getSharedPreferenceString(MainActivity.this,"username",""));
-        tv_useremail.setText(Constants.getSharedPreferenceString(MainActivity.this,"useremail",""));
+        tv_username.setText(Constants.getSharedPreferenceString(MainActivity.this, "username", ""));
+        tv_useremail.setText(Constants.getSharedPreferenceString(MainActivity.this, "useremail", ""));
 
-        Picasso.get().load(Constants.getSharedPreferenceString(MainActivity.this,"userimage",""))
+        Picasso.get().load(Constants.getSharedPreferenceString(MainActivity.this, "userimage", ""))
                 .placeholder(R.drawable.ic_placeholder_small)
                 .error(R.drawable.ic_placeholder_small)
                 .into((imageView));
@@ -107,14 +113,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(final Menu menu) {
         // Inflate the bottom_menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.title_main_menu, menu);
 
         TextView userCoins = (TextView) menu.findItem(R.id.action_wallet).getActionView().findViewById(R.id.toolbar_total_coin);
-        userCoins.setText(Constants.getSharedPreferenceString(MainActivity.this,"currency","")+" "+Constants.getSharedPreferenceInt(MainActivity.this,"userAmount",0));
+        userCoins.setText(Constants.getSharedPreferenceString(MainActivity.this, "currency", "") + " " + Constants.getSharedPreferenceInt(MainActivity.this, "userAmount", 0));
         invalidateOptionsMenu();
+
         MenuItem NotificationIcon = menu.findItem(R.id.action_notification);
+
         NotificationIcon.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -124,24 +132,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        return true;
+        return super.onCreateOptionsMenu(menu);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
 
-            case R.id.action_search:
-
-                // Do Activity menu item stuff here
-                return true;
-
-            default:
-                break;
-        }
-
-        return false;
-    }
 
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -149,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        String BASE_URL_WEB="https://couponhub.app/info-files/";
+        String BASE_URL_WEB = "https://couponhub.app/info-files/";
 
         switch (id) {
             case R.id.nav_home:
@@ -167,24 +161,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 setupBottomNavigationFrom(R.id.navigation_invite);
                 break;
 
+            case R.id.nav_user_transaction:
+                 Intent intent_user_transaction = new Intent(MainActivity.this, UserTransactionsActivity.class);
+                 startActivity(intent_user_transaction);
+                break;
             case R.id.nav_special_offer:
                 Toast.makeText(this, "Coming Soon..!", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.nav_aboutus:
-                webViewLoad(BASE_URL_WEB+"about-us.html","About Us");
+                webViewLoad(BASE_URL_WEB + "about-us.html", "About Us");
                 break;
 
 
             case R.id.nav_privacy:
-                webViewLoad(BASE_URL_WEB+"privacy-policy.html","Privacy Policy");
+                webViewLoad(BASE_URL_WEB + "privacy-policy.html", "Privacy Policy");
                 break;
+
+
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
-    private void webViewLoad(String url,String title){
+    private void webViewLoad(String url, String title) {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle(title);
 
@@ -207,8 +207,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
         builder.show();
     }
-
-
 
     public void setupBottomNavigation() {
 
@@ -243,9 +241,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }
 
                     case R.id.navigation_help: {
-                    //loadHelpFragment();
-                    HelpFragment helpFragment = new HelpFragment();
-                    HoldAllFragments(helpFragment);
+                        //loadHelpFragment();
+                        HelpFragment helpFragment = new HelpFragment();
+                        HoldAllFragments(helpFragment);
                         return true;
 
                     }
@@ -258,57 +256,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                         return true;
                     }
+
+
                 }
                 return false;
             }
         });
     }
 
-    public void HoldAllFragments(Fragment fragment){
+    public void HoldAllFragments(Fragment fragment) {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.nav_host_fragment, fragment);
         ft.commit();
     }
 
 
-    public void loadHomeFragment() {
-        HomeFragment fragment = new HomeFragment();
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.nav_host_fragment, fragment);
-        ft.commit();
-    }
-
-    public void loadCategoriesFragment() {
-        CategoriesFragment fragment = new CategoriesFragment();
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.nav_host_fragment, fragment);
-        ft.commit();
-    }
-
-    public void loadInviteAndEarnFragment() {
-        InviteAndEarnFragment fragment = new InviteAndEarnFragment();
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.nav_host_fragment, fragment);
-        ft.commit();
-    }
-    public void loadHelpFragment() {
-        HelpFragment fragment = new HelpFragment();
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.nav_host_fragment, fragment);
-        ft.commit();
-    }
-
-    public void loadProfileFragment() {
-        ProfileFragment fragment = new ProfileFragment();
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.nav_host_fragment, fragment);
-        ft.commit();
-    }
-
-
-
-    public  void setupBottomNavigationFrom(final int id) {
-        mBottomNavigationView = (BottomNavigationView)findViewById(R.id.bottom_navigation);
+    public void setupBottomNavigationFrom(final int id) {
+        mBottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         BottomNavigationViewHelper.disableShiftMode(mBottomNavigationView);
         mBottomNavigationView.getMenu().findItem(id).setChecked(true);
         mBottomNavigationView.getMenu().performIdentifierAction(id, 0);
@@ -323,6 +287,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     boolean doubleBackToExitPressedOnce = false;
+
     @Override
     public void onBackPressed() {
         assert drawer != null;
@@ -340,9 +305,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             @Override
             public void run() {
-                doubleBackToExitPressedOnce=false;
+                doubleBackToExitPressedOnce = false;
             }
         }, 2000);
     }
+
 
 }

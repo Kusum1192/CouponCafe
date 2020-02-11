@@ -80,6 +80,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     ProgressDialog progressDialog;
     ImageView tv_home_invite_image;
     String TAG = "testing";
+
     protected FragmentActivity mActivity;
 
     public HomeFragment() {
@@ -196,7 +197,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                             });
 
                             // Auto start of viewpager
-                            final Handler handler = new Handler();
+                            final Handler  handler = new Handler();
                             final Runnable Update = new Runnable() {
                                 public void run() {
                                     if (currentPage == sliderArrayList.size()) {
@@ -289,12 +290,20 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onDestroy() {
         dismissProgressDialog();
         super.onDestroy();
+
     }
 
     @Override
     public void onPause() {
         dismissProgressDialog();
         super.onPause();
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
     }
 
     @Override
@@ -329,25 +338,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
 //    }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu,MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
 
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
 
-            case R.id.action_search:
-                Toast.makeText(mActivity, "clcik", Toast.LENGTH_SHORT).show();
-                // Do Activity menu item stuff here
-                return true;
-
-            default:
-                break;
-        }
-
-        return false;
-    }
 }

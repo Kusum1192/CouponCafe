@@ -174,7 +174,7 @@ public class OffersDetailsActivity extends AppCompatActivity implements View.OnC
                             tv_offer_cashback.setText(offerdetails.getCashBack());
                             tv_offer_mini_desc.setText(offerdetails.getShortDescription());
                             mItemDescription.setText(offerdetails.getLongDescription());
-                            if(offerdetails.getShopVia().equals(0)) ll_mobile_app.setVisibility(View.VISIBLE);
+                            if(offerdetails.getShopVia().equals(1)) ll_mobile_app.setVisibility(View.VISIBLE);
                             else ll_mobile_web.setVisibility(View.VISIBLE);
 
                             Picasso.get().load(offerdetails.getImageUrl())

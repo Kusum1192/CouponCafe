@@ -199,16 +199,10 @@
 
 
         </LinearLayout>
-        <View
-            android:background="@color/line_gray"
-            android:layout_width="match_parent"
-            android:layout_height="0.3dp"/>
-
-
-
 
 
         <LinearLayout
+            android:visibility="gone"
             android:padding="8dp"
             android:id="@+id/product_catelog"
             android:background="@color/white"
@@ -232,9 +226,6 @@
                 android:textColor="@color/black">
 
             </TextView>
-
-
-
 
         </LinearLayout>
 
@@ -308,10 +299,7 @@
 
 
         </LinearLayout>
-        <View
-            android:background="@color/line_gray"
-            android:layout_width="match_parent"
-            android:layout_height="0.3dp"/>
+
 
 
 

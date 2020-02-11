@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
     <item
-        android:visible="false"
-        android:id="@+id/action_settings"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
-    <item
-        android:icon="@drawable/ic_notifications"
-        android:visible="true"
         android:id="@+id/action_notification"
+        android:icon="@drawable/ic_notifications"
         android:title="@string/action_notification"
+        android:visible="true"
         app:showAsAction="always" />
     <item
-        app:showAsAction="always|withText"
-        android:visible="true"
         android:id="@+id/action_wallet"
         android:title="walllet"
-        app:actionLayout="@layout/view_totalcoins"/>
+        android:visible="true"
+        app:actionLayout="@layout/view_totalcoins"
+        app:showAsAction="always|withText" />
+
+
     <item
         android:icon="@drawable/ic_search"
-        android:visible="true"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
         android:id="@+id/action_search"
         android:title="@string/action_search"
+        android:visible="true"
         app:showAsAction="always" />
+
 </menu>
