@@ -3,7 +3,11 @@ package com.couponcafe.app.activities;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -21,6 +25,7 @@ import com.couponcafe.app.R;
 import com.couponcafe.app.interfaces.APIService;
 import com.couponcafe.app.models.BestOfferDetailsModel;
 import com.couponcafe.app.models.CouponDealData;
+import com.couponcafe.app.models.OfferClickedModel;
 import com.couponcafe.app.models.OfferDetails;
 import com.couponcafe.app.models.RecentUser;
 import com.couponcafe.app.utils.ApiClient;
@@ -39,11 +44,13 @@ public class OffersDetailsActivity extends AppCompatActivity implements View.OnC
 
 
     TextView text_copy_code, mItemDescription, tv_offer_name, tv_cat_name, tv_offer_mini_desc, tv_offer_cashback,
-            tv_copuon_code, tv_username, tv_date,tv_work,tv_coupon;
+            tv_copuon_code, tv_username, tv_date,tv_work,tv_coupon,tv_goto_store;
     ImageView desc_arrow, iv_offer_item,iv_user_profile;
     AppCompatRadioButton radio_upto_cashback, radio_no_cashback;
     ProgressDialog progressDialog;
     LinearLayout ll_mobile_web,ll_mobile_app;
+    String tv_coupon_deal_value;
+    String offerid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +65,7 @@ public class OffersDetailsActivity extends AppCompatActivity implements View.OnC
 
         Intent intent= getIntent();
         if(intent!=null){
-            String offerid = String.valueOf(intent.getIntExtra("offerId",0));
+            offerid = String.valueOf(intent.getIntExtra("offerId",0));
             getOfferDetails(offerid);
         }
     }
@@ -85,6 +92,7 @@ public class OffersDetailsActivity extends AppCompatActivity implements View.OnC
         tv_date = findViewById(R.id.tv_date);
         tv_work = findViewById(R.id.tv_work);
         tv_coupon = findViewById(R.id.tv_coupon);
+        tv_goto_store = findViewById(R.id.tv_goto_store);
         iv_user_profile = findViewById(R.id.iv_user_profile);
         desc_arrow = findViewById(R.id.desc_arrow);
         radio_upto_cashback = findViewById(R.id.radio_upto_cashback);
@@ -92,40 +100,24 @@ public class OffersDetailsActivity extends AppCompatActivity implements View.OnC
         text_copy_code.setOnClickListener(this);
 //        tv_view_allusers.setOnClickListener(this);
         desc_arrow.setOnClickListener(this);
+        tv_goto_store.setOnClickListener(this);
 
 
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.share_main_menu, menu);
-
-        return true;
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.action_share:
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_code_copy:
-                Toast.makeText(this, "text copied", Toast.LENGTH_SHORT).show();
+                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("label", tv_coupon_deal_value);
+                clipboard.setPrimaryClip(clip);
                 break;
 
-
+            case R.id.tv_goto_store:
+                 gotoStore(offerid);
+                break;
 
             case R.id.desc_arrow:
                 if (mItemDescription.getVisibility() == View.GONE) {
@@ -142,6 +134,52 @@ public class OffersDetailsActivity extends AppCompatActivity implements View.OnC
 
 
         }
+    }
+
+    private void gotoStore(String offerid) {
+
+        APIService apiService = ApiClient.getClient().create(APIService.class);
+        Call<OfferClickedModel> call = apiService.offerclicked(Constants.getSharedPreferenceInt(OffersDetailsActivity.this,"userId",0),
+                Constants.getSharedPreferenceString(OffersDetailsActivity.this,"securitytoken",""),
+                Constants.getSharedPreferenceString(OffersDetailsActivity.this,"versionName",""),
+                Constants.getSharedPreferenceInt(OffersDetailsActivity.this,"versionCode",0),offerid);
+
+        if(!((Activity) OffersDetailsActivity.this).isFinishing()) {
+            progressDialog = new ProgressDialog(OffersDetailsActivity.this);
+            progressDialog.setMessage(getString(R.string.loadingwait));
+            progressDialog.show();
+            progressDialog.setCancelable(false);
+        }
+
+        call.enqueue(new Callback<OfferClickedModel>() {
+            @Override
+            public void onResponse(Call<OfferClickedModel>call, Response<OfferClickedModel> response) {
+                dismissProgressDialog();
+                if(response!=null){
+                    if(response.isSuccessful()){
+                        if(response.body().getStatus()==200){
+
+                            startWebview(response.body().getActionUrl());
+
+                        }else{
+                            Toast.makeText(OffersDetailsActivity.this,getString(R.string.systemmessage)+response.body().getMessage(),Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                }
+                else{
+                    Toast.makeText(OffersDetailsActivity.this,getString(R.string.systemmessage)+response.errorBody(),Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<OfferClickedModel>call, Throwable t) {
+                // Log error here since request failed
+                Log.e("response", t.toString());
+            }
+        });
     }
 
 
@@ -196,6 +234,7 @@ public class OffersDetailsActivity extends AppCompatActivity implements View.OnC
 
                             CouponDealData couponDealData = offerdetails.getCouponDealData();
                             tv_coupon.setText(couponDealData.getShowText());
+                            tv_coupon_deal_value = couponDealData.getValue();
                             tv_copuon_code.setText(couponDealData.getValue());
 
                         }else{
@@ -221,6 +260,39 @@ public class OffersDetailsActivity extends AppCompatActivity implements View.OnC
 
     }
 
+//    private void handleRedirect(String redirectType, String url) {
+//        switch (redirectType) {
+//            case "browser":
+//                startWebview(url);
+//                break;
+//
+//            case "app":
+//                openInApp(url);
+//                break;
+//
+//            case "web":
+//                openInAppWeb(url);
+//                break;
+//        }
+//    }
+
+    private void startWebview(String url) {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        startActivity(browserIntent);
+    }
+
+//    private void openInApp(String url) {
+//        Intent intent = new Intent(OffersDetailsActivity.this, Activity_Webview.class);
+//        intent.putExtra("URL", url);
+//        startActivity(intent);
+//    }
+//
+//    private void openInAppWeb(String url) {
+//        Intent intent = new Intent(OffersDetailsActivity.this, WebViewActivity.class);
+//        intent.putExtra("URL", url);
+//        startActivity(intent);
+//    }
+
     private void dismissProgressDialog() {
         if (progressDialog != null && progressDialog.isShowing()) {
             progressDialog.dismiss();
@@ -238,4 +310,24 @@ public class OffersDetailsActivity extends AppCompatActivity implements View.OnC
         dismissProgressDialog();
         super.onPause();
     }
+
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.share_main_menu, menu);
+//
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle item selection
+//        switch (item.getItemId()) {
+//            case R.id.action_share:
+//                return true;
+//
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//    }
 }

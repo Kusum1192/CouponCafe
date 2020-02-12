@@ -21,6 +21,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -46,6 +47,7 @@ import android.view.Menu;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private BottomNavigationView mBottomNavigationView;
     private DrawerLayout drawer;
+    String TAG = "testing";
 
 
     @Override
@@ -117,9 +120,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Inflate the bottom_menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.title_main_menu, menu);
 
-        TextView userCoins = (TextView) menu.findItem(R.id.action_wallet).getActionView().findViewById(R.id.toolbar_total_coin);
-        userCoins.setText(Constants.getSharedPreferenceString(MainActivity.this, "currency", "") + " " + Constants.getSharedPreferenceInt(MainActivity.this, "userAmount", 0));
+//        TextView userCoins = (TextView) menu.findItem(R.id.action_wallet).getActionView().findViewById(R.id.toolbar_total_coin);
+//        userCoins.setText(Constants.getSharedPreferenceString(MainActivity.this, "currency", "") + " " + Constants.getSharedPreferenceInt(MainActivity.this, "userAmount", 0));
         invalidateOptionsMenu();
+
+        MenuItem action_search = menu.findItem(R.id.action_search);
+
+       MenuItem action_wallet = menu.findItem(R.id.action_wallet);
+       action_wallet.setTitle(Constants.getSharedPreferenceString(MainActivity.this, "currency", "") + " " + Constants.getSharedPreferenceInt(MainActivity.this, "userAmount", 0));
+       action_wallet.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+           @Override
+           public boolean onMenuItemClick(MenuItem menuItem) {
+               setupBottomNavigationFrom(R.id.navigation_profile);
+               return false;
+           }
+       });
 
         MenuItem NotificationIcon = menu.findItem(R.id.action_notification);
 
@@ -132,7 +147,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
+
+
+
+
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.action_search:
+                Toast.makeText(this, "clickm y", Toast.LENGTH_SHORT).show();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 
@@ -287,7 +319,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     boolean doubleBackToExitPressedOnce = false;
-
     @Override
     public void onBackPressed() {
         assert drawer != null;

@@ -39,6 +39,7 @@
                 card_view:contentPadding="4dp">
 
                 <EditText
+                    android:textColorHint="@color/black"
                     android:maxLength="13"
                     android:singleLine="true"
                     android:inputType="number"
@@ -67,6 +68,7 @@
                 card_view:contentPadding="4dp">
 
             <EditText
+                android:textColorHint="@color/black"
                 android:inputType="textEmailAddress"
                 android:padding="10dp"
                 android:background="@color/white"

@@ -10,20 +10,20 @@
         android:title="@string/action_notification"
         android:visible="true"
         app:showAsAction="always" />
+
+
     <item
         android:id="@+id/action_wallet"
         android:title="walllet"
         android:visible="true"
-        app:actionLayout="@layout/view_totalcoins"
         app:showAsAction="always|withText" />
 
 
     <item
-        android:icon="@drawable/ic_search"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         android:id="@+id/action_search"
         android:title="@string/action_search"
-        android:visible="true"
+        android:visible="false"
         app:showAsAction="always" />
 
 </menu>

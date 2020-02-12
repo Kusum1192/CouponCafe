@@ -10,6 +10,7 @@ import com.couponcafe.app.models.CategoriesModel;
 import com.couponcafe.app.models.CustomNotifyModel;
 import com.couponcafe.app.models.InviteFriendModel;
 import com.couponcafe.app.models.Notification;
+import com.couponcafe.app.models.OfferClickedModel;
 import com.couponcafe.app.models.PayoutDataModel;
 import com.couponcafe.app.models.ProductDetailsModel;
 import com.couponcafe.app.models.ProfileDataModel;
@@ -155,4 +156,15 @@ public interface APIService {
                                                    @Field("securityToken") String securityToken,
                                                    @Field("versionName") String versionName,
                                                    @Field("versionCode") int versionCode);
+
+    @FormUrlEncoded
+    @POST("bestOfferClicked")
+    Call<OfferClickedModel> offerclicked(@Field("userId") int userId,
+                                         @Field("securityToken") String securityToken,
+                                         @Field("versionName") String versionName,
+                                         @Field("versionCode") int versionCode,
+                                         @Field("offerId") String offerid);
+
+
+
 }
