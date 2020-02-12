@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.couponcafe.app.R;
 import com.couponcafe.app.interfaces.APIService;
@@ -32,13 +33,14 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class CategoriesFragment extends Fragment {
+public class CategoriesFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
 
     RecyclerView recyclerView;
     ProgressDialog progressDialog;
     String TAG = "testing";
     protected FragmentActivity mActivity;
+    SwipeRefreshLayout refreshLayout;
 
     public CategoriesFragment() {
         // Required empty public constructor
@@ -57,6 +59,8 @@ public class CategoriesFragment extends Fragment {
         View view = inflater.inflate(R.layout.categories_fragment, container, false);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
+        refreshLayout = view.findViewById(R.id.refresh);
+        refreshLayout.setOnRefreshListener(this);
 
         getcategoryData();
 
@@ -118,6 +122,13 @@ public class CategoriesFragment extends Fragment {
 
     }
 
+    @Override
+    public void onRefresh() {
+        getcategoryData();
+        refreshLayout.setRefreshing(false);
+
+    }
+
     private void dismissProgressDialog() {
         if (progressDialog != null && progressDialog.isShowing()) {
             progressDialog.dismiss();
@@ -144,6 +155,7 @@ public class CategoriesFragment extends Fragment {
         }
 
     }
+
 
 
 }

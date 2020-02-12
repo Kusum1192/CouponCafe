@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Handler;
@@ -66,7 +67,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class HomeFragment extends Fragment implements View.OnClickListener {
+public class HomeFragment extends Fragment implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     private static ViewPager mPager;
     private static int currentPage = 0;
@@ -80,6 +81,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     ProgressDialog progressDialog;
     ImageView tv_home_invite_image;
     String TAG = "testing";
+    SwipeRefreshLayout refreshLayout;
 
     protected FragmentActivity mActivity;
 
@@ -99,8 +101,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         mPager = (ViewPager) root.findViewById(R.id.pager);
         cardview_share_invite = root.findViewById(R.id.cardview_share_invite);
         indicator = (CircleIndicator) root.findViewById(R.id.indicator);
-
-
+        refreshLayout = (SwipeRefreshLayout) root.findViewById(R.id.refresh);
 
         recylerview_topstore = root.findViewById(R.id.recylerview_topstore);
         recycler_view_best_offers = root.findViewById(R.id.recycler_view_best_offers);
@@ -111,6 +112,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         tv_view_all.setOnClickListener(this);
         cardview_share_invite.setOnClickListener(this);
 
+        refreshLayout.setOnRefreshListener(this);
 
         getAllOffersData();
 
@@ -118,6 +120,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         return root;
     }
 
+    @Override
+    public void onRefresh() {
+        getAllOffersData();
+        refreshLayout.setRefreshing(false);
+    }
 
 
     @Override
@@ -314,6 +321,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         }
 
     }
+
+
 
     //    @Override
 //    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {

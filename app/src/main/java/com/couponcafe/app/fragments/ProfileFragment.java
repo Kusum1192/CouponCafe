@@ -19,6 +19,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.couponcafe.app.R;
 import com.couponcafe.app.interfaces.APIService;
 import com.couponcafe.app.models.ProfileDataModel;
@@ -35,7 +37,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
    // ViewPager viewPager;
     TabLayout tabLayout;
 
@@ -47,6 +49,7 @@ public class ProfileFragment extends Fragment {
     ImageView imageView_profile;
     TextView tv_useremail,tv_username,tv_total;
     protected FragmentActivity mActivity;
+    SwipeRefreshLayout refreshLayout;
 
     //Context context;
     View view;
@@ -82,6 +85,14 @@ public class ProfileFragment extends Fragment {
         tv_username = view.findViewById(R.id.tv_username);
         tv_useremail = view.findViewById(R.id.tv_useremail);
         tv_total = view.findViewById(R.id.tv_total);
+        refreshLayout = view.findViewById(R.id.refresh);
+        refreshLayout.setOnRefreshListener(this);
+    }
+
+    @Override
+    public void onRefresh() {
+        getProfileData();
+        refreshLayout.setRefreshing(false);
     }
 
     private void getProfileData() {
@@ -204,6 +215,7 @@ public class ProfileFragment extends Fragment {
         }
 
     }
+
 
 
 }
