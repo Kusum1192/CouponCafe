@@ -1,6 +1,7 @@
 package com.couponcafe.app.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,7 @@ public class RecentUserAdapter extends RecyclerView.Adapter<RecentUserAdapter.Vi
     public RecentUserAdapter(ArrayList<RecentUser> recentUserArrayList, Context context) {
         this.context = context;
         this.recentUserArrayList = recentUserArrayList;
+        Log.e("testing", "RecentUserAdapter:size "+recentUserArrayList );
     }
 
     @Override

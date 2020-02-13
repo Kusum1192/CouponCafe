@@ -255,6 +255,7 @@ public class OffersDetailsActivity extends AppCompatActivity implements View.OnC
 //                                    .into((iv_user_profile));
                             ArrayList<RecentUser> recentUserArrayList = offerdetails.getRecentUser();
 
+                            Log.e(TAG, "onResponse:usder "+recentUserArrayList.size());
                             RecentUserAdapter recentUserAdapter = new RecentUserAdapter(recentUserArrayList, OffersDetailsActivity.this);
                             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(OffersDetailsActivity.this);
                             recyclerview.setLayoutManager(mLayoutManager);
