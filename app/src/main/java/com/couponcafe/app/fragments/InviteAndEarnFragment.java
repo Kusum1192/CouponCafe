@@ -57,6 +57,7 @@ public class InviteAndEarnFragment extends Fragment implements View.OnClickListe
     RecyclerView recyclerview;
     protected FragmentActivity mActivity;
     SwipeRefreshLayout refreshLayout;
+    String TAG = "testing_invite";
 
     public InviteAndEarnFragment() {
         // Required empty public constructor
@@ -68,6 +69,8 @@ public class InviteAndEarnFragment extends Fragment implements View.OnClickListe
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_invite_and_earn, container, false);
+
+        try {
 
         refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refresh);
         copyReferCode = view.findViewById(R.id.tv_code_copy);
@@ -90,6 +93,11 @@ public class InviteAndEarnFragment extends Fragment implements View.OnClickListe
         refreshLayout.setOnRefreshListener(this);
 
         getinviteData();
+
+        } catch (Exception e){
+            e.printStackTrace();
+            Log.e(TAG, "onCreateView: "+e );
+        }
 
         return view;
     }

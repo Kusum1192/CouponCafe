@@ -49,13 +49,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Fresh to Home"
+                        android:text="top store title"
                         android:textColor="@color/black"
                         android:textSize="@dimen/common_text_size" />
 
                     <TextView
-                        android:textColor="@color/black"
-                        android:textStyle="bold"
+                        android:textStyle="normal"
                         android:id="@+id/tv_offer_count"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -71,14 +70,29 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="category" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/money" />
 
                 <TextView
+                    android:layout_marginLeft="5dp"
+                    android:textStyle="bold"
+                    android:gravity="center|left"
+                    android:layout_gravity="center"
                     android:id="@+id/tv_cashback"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/uptocashback"
                     android:textColor="@color/green"
-                    android:textSize="@dimen/common_text_size" />
+                    android:textSize="12sp" />
+
+                </LinearLayout>
 
 
             </LinearLayout>

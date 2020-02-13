@@ -20,6 +20,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.couponcafe.app.R;
 import com.couponcafe.app.interfaces.APIService;
+import com.couponcafe.app.interfaces.refreshLayout;
 import com.couponcafe.app.models.CategoriesModel;
 import com.couponcafe.app.models.CategoryDatum;
 import com.couponcafe.app.testing.ExpandableRecyclerViewAdapter;
@@ -41,6 +42,7 @@ public class CategoriesFragment extends Fragment implements SwipeRefreshLayout.O
     String TAG = "testing";
     protected FragmentActivity mActivity;
     SwipeRefreshLayout refreshLayout;
+    ExpandableRecyclerViewAdapter expandableCategoryRecyclerViewAdapter;
 
     public CategoriesFragment() {
         // Required empty public constructor
@@ -92,8 +94,7 @@ public class CategoriesFragment extends Fragment implements SwipeRefreshLayout.O
                         if (response.body().getStatus() == 200) {
                             ArrayList<CategoryDatum> categoriesModel = response.body().getCategoryData();
 
-                            ExpandableRecyclerViewAdapter expandableCategoryRecyclerViewAdapter =
-                                    new ExpandableRecyclerViewAdapter(mActivity, categoriesModel);
+                            expandableCategoryRecyclerViewAdapter = new ExpandableRecyclerViewAdapter(mActivity, categoriesModel);
 
                             recyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
                             recyclerView.setAdapter(expandableCategoryRecyclerViewAdapter);
@@ -122,12 +123,6 @@ public class CategoriesFragment extends Fragment implements SwipeRefreshLayout.O
 
     }
 
-    @Override
-    public void onRefresh() {
-        getcategoryData();
-        refreshLayout.setRefreshing(false);
-
-    }
 
     private void dismissProgressDialog() {
         if (progressDialog != null && progressDialog.isShowing()) {
@@ -150,12 +145,16 @@ public class CategoriesFragment extends Fragment implements SwipeRefreshLayout.O
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        if (context instanceof FragmentActivity){
+        if (context instanceof FragmentActivity) {
             mActivity = (FragmentActivity) context;
         }
 
     }
 
 
-
+    @Override
+    public void onRefresh() {
+        getcategoryData();
+        refreshLayout.setRefreshing(false);
+    }
 }

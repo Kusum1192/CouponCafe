@@ -74,7 +74,7 @@
                                     android:layout_margin="10dp"
                                     android:layout_weight="1"
                                     android:text="@string/topstore"
-                                    android:textColor="@color/black"
+                                    android:textColor="@color/orange"
                                     android:textSize="@dimen/common_text_size"
                                     android:textStyle="bold" />
 
@@ -130,7 +130,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
                             android:text="@string/todaysoffers"
-                            android:textColor="@color/black"
+                            android:textColor="@color/orange"
                             android:textSize="@dimen/common_text_size"
                             android:textStyle="bold" />
 
@@ -191,7 +191,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_margin="10dp"
                                 android:text="@string/invite_friends"
-                                android:textColor="@color/black"
+                                android:textColor="@color/orange"
                                 android:textSize="@dimen/common_text_size"
                                 android:textStyle="bold" />
 

@@ -1,6 +1,7 @@
 package com.couponcafe.app.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +50,8 @@ public class TopStoreDetailsAdapter extends RecyclerView.Adapter<TopStoreDetails
                 .placeholder(R.drawable.ic_placeholder_small)
                 .error(R.drawable.ic_placeholder_small)
                 .into((holder.offerImage));
-
+        holder.tv_success.setText(items.get(position).getSuces()+"% Success");
+        holder.tv_user_visit.setText(items.get(position).getUsrs()+" Users Today");
     }
 
     @Override
@@ -63,7 +65,7 @@ public class TopStoreDetailsAdapter extends RecyclerView.Adapter<TopStoreDetails
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView offername,offercategory,description,offercashback;
+        TextView offername,offercategory,description,offercashback,tv_success,tv_user_visit;
         ImageView offerImage;
 
         public ViewHolder(View itemView) {
@@ -73,6 +75,8 @@ public class TopStoreDetailsAdapter extends RecyclerView.Adapter<TopStoreDetails
             description = itemView.findViewById(R.id.offer_short_description);
             offercashback = itemView.findViewById(R.id.offer_cashback);
             offerImage = itemView.findViewById(R.id.offer_image);
+            tv_success = itemView.findViewById(R.id.tv_success);
+            tv_user_visit = itemView.findViewById(R.id.tv_user_visit);
 
         }
 

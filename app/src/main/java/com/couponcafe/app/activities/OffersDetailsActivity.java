@@ -18,10 +18,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatRadioButton;
+import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.couponcafe.app.R;
+import com.couponcafe.app.adapter.RecentUserAdapter;
 import com.couponcafe.app.interfaces.APIService;
 import com.couponcafe.app.models.BestOfferDetailsModel;
 import com.couponcafe.app.models.CouponDealData;
@@ -44,29 +49,38 @@ public class OffersDetailsActivity extends AppCompatActivity implements View.OnC
 
 
     TextView text_copy_code, mItemDescription, tv_offer_name, tv_cat_name, tv_offer_mini_desc, tv_offer_cashback,
-            tv_copuon_code, tv_username, tv_date,tv_work,tv_coupon,tv_goto_store;
-    ImageView desc_arrow, iv_offer_item,iv_user_profile;
+            tv_copuon_code, tv_username, tv_date, tv_work, tv_coupon, tv_goto_store,tv_radio_label;
+    ImageView desc_arrow, iv_offer_item, iv_user_profile;
     AppCompatRadioButton radio_upto_cashback, radio_no_cashback;
     ProgressDialog progressDialog;
-    LinearLayout ll_mobile_web,ll_mobile_app;
+    LinearLayout ll_mobile_web, ll_mobile_app;
     String tv_coupon_deal_value;
-    String offerid;
+    String offerid, TAG = "testing_offer_details";
+    RecyclerView recyclerview;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offers_details);
 
-        getSupportActionBar().setTitle("Offers Details");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        try {
 
-        init();
+            getSupportActionBar().setTitle("Offers Details");
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        Intent intent= getIntent();
-        if(intent!=null){
-            offerid = String.valueOf(intent.getIntExtra("offerId",0));
-            getOfferDetails(offerid);
+            init();
+
+            Intent intent = getIntent();
+            if (intent != null) {
+                offerid = String.valueOf(intent.getIntExtra("offerId", 0));
+                getOfferDetails(offerid);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.e(TAG, "onCreate: " + e);
         }
     }
 
@@ -97,6 +111,8 @@ public class OffersDetailsActivity extends AppCompatActivity implements View.OnC
         desc_arrow = findViewById(R.id.desc_arrow);
         radio_upto_cashback = findViewById(R.id.radio_upto_cashback);
         radio_no_cashback = findViewById(R.id.radio_no_cashback);
+        tv_radio_label = findViewById(R.id.tv_radio_label);
+        recyclerview = findViewById(R.id.recyclerview);
         text_copy_code.setOnClickListener(this);
 //        tv_view_allusers.setOnClickListener(this);
         desc_arrow.setOnClickListener(this);
@@ -116,7 +132,7 @@ public class OffersDetailsActivity extends AppCompatActivity implements View.OnC
                 break;
 
             case R.id.tv_goto_store:
-                 gotoStore(offerid);
+                gotoStore(offerid);
                 break;
 
             case R.id.desc_arrow:
@@ -139,12 +155,12 @@ public class OffersDetailsActivity extends AppCompatActivity implements View.OnC
     private void gotoStore(String offerid) {
 
         APIService apiService = ApiClient.getClient().create(APIService.class);
-        Call<OfferClickedModel> call = apiService.offerclicked(Constants.getSharedPreferenceInt(OffersDetailsActivity.this,"userId",0),
-                Constants.getSharedPreferenceString(OffersDetailsActivity.this,"securitytoken",""),
-                Constants.getSharedPreferenceString(OffersDetailsActivity.this,"versionName",""),
-                Constants.getSharedPreferenceInt(OffersDetailsActivity.this,"versionCode",0),offerid);
+        Call<OfferClickedModel> call = apiService.offerclicked(Constants.getSharedPreferenceInt(OffersDetailsActivity.this, "userId", 0),
+                Constants.getSharedPreferenceString(OffersDetailsActivity.this, "securitytoken", ""),
+                Constants.getSharedPreferenceString(OffersDetailsActivity.this, "versionName", ""),
+                Constants.getSharedPreferenceInt(OffersDetailsActivity.this, "versionCode", 0), offerid);
 
-        if(!((Activity) OffersDetailsActivity.this).isFinishing()) {
+        if (!((Activity) OffersDetailsActivity.this).isFinishing()) {
             progressDialog = new ProgressDialog(OffersDetailsActivity.this);
             progressDialog.setMessage(getString(R.string.loadingwait));
             progressDialog.show();
@@ -153,29 +169,28 @@ public class OffersDetailsActivity extends AppCompatActivity implements View.OnC
 
         call.enqueue(new Callback<OfferClickedModel>() {
             @Override
-            public void onResponse(Call<OfferClickedModel>call, Response<OfferClickedModel> response) {
+            public void onResponse(Call<OfferClickedModel> call, Response<OfferClickedModel> response) {
                 dismissProgressDialog();
-                if(response!=null){
-                    if(response.isSuccessful()){
-                        if(response.body().getStatus()==200){
+                if (response != null) {
+                    if (response.isSuccessful()) {
+                        if (response.body().getStatus() == 200) {
 
                             startWebview(response.body().getActionUrl());
 
-                        }else{
-                            Toast.makeText(OffersDetailsActivity.this,getString(R.string.systemmessage)+response.body().getMessage(),Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(OffersDetailsActivity.this, getString(R.string.systemmessage) + response.body().getMessage(), Toast.LENGTH_SHORT).show();
                         }
 
                     }
-                }
-                else{
-                    Toast.makeText(OffersDetailsActivity.this,getString(R.string.systemmessage)+response.errorBody(),Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(OffersDetailsActivity.this, getString(R.string.systemmessage) + response.errorBody(), Toast.LENGTH_SHORT).show();
                 }
 
 
             }
 
             @Override
-            public void onFailure(Call<OfferClickedModel>call, Throwable t) {
+            public void onFailure(Call<OfferClickedModel> call, Throwable t) {
                 // Log error here since request failed
                 Log.e("response", t.toString());
             }
@@ -183,15 +198,15 @@ public class OffersDetailsActivity extends AppCompatActivity implements View.OnC
     }
 
 
-    private void getOfferDetails(String offerid) {
+    private void getOfferDetails(final String offerid) {
 
         APIService apiService = ApiClient.getClient().create(APIService.class);
-        Call<BestOfferDetailsModel> call = apiService.viewofferDetails(Constants.getSharedPreferenceInt(OffersDetailsActivity.this,"userId",0),
-                Constants.getSharedPreferenceString(OffersDetailsActivity.this,"securitytoken",""),
-                Constants.getSharedPreferenceString(OffersDetailsActivity.this,"versionName",""),
-                Constants.getSharedPreferenceInt(OffersDetailsActivity.this,"versionCode",0),offerid);
+        Call<BestOfferDetailsModel> call = apiService.viewofferDetails(Constants.getSharedPreferenceInt(OffersDetailsActivity.this, "userId", 0),
+                Constants.getSharedPreferenceString(OffersDetailsActivity.this, "securitytoken", ""),
+                Constants.getSharedPreferenceString(OffersDetailsActivity.this, "versionName", ""),
+                Constants.getSharedPreferenceInt(OffersDetailsActivity.this, "versionCode", 0), offerid);
 
-        if(!((Activity) OffersDetailsActivity.this).isFinishing()) {
+        if (!((Activity) OffersDetailsActivity.this).isFinishing()) {
             progressDialog = new ProgressDialog(OffersDetailsActivity.this);
             progressDialog.setMessage(getString(R.string.loadingwait));
             progressDialog.show();
@@ -200,11 +215,11 @@ public class OffersDetailsActivity extends AppCompatActivity implements View.OnC
 
         call.enqueue(new Callback<BestOfferDetailsModel>() {
             @Override
-            public void onResponse(Call<BestOfferDetailsModel>call, Response<BestOfferDetailsModel> response) {
+            public void onResponse(Call<BestOfferDetailsModel> call, Response<BestOfferDetailsModel> response) {
                 dismissProgressDialog();
-                if(response!=null){
-                    if(response.isSuccessful()){
-                        if(response.body().getStatus()==200){
+                if (response != null) {
+                    if (response.isSuccessful()) {
+                        if (response.body().getStatus() == 200) {
                             //final ArrayList<TopStoreDatum> topStoreDatumArrayList = response.body().getTopStoreData();
 
                             OfferDetails offerdetails = response.body().getOfferDetails();
@@ -212,46 +227,59 @@ public class OffersDetailsActivity extends AppCompatActivity implements View.OnC
                             tv_offer_cashback.setText(offerdetails.getCashBack());
                             tv_offer_mini_desc.setText(offerdetails.getShortDescription());
                             mItemDescription.setText(offerdetails.getLongDescription());
-                            if(offerdetails.getShopVia().equals(1)) ll_mobile_app.setVisibility(View.VISIBLE);
-                            else ll_mobile_web.setVisibility(View.VISIBLE);
+                            tv_cat_name.setText(offerdetails.getCategory());
+                            tv_radio_label.setText(offerdetails.getCashBack());
+//                            if (offerdetails.getShopVia().equals(1)) {
+//                                radio_upto_cashback.setEnabled(false);
+//                                radio_upto_cashback.setChecked(false);
+//                            } else {
+//                                radio_no_cashback.setEnabled(true);
+//                                radio_no_cashback.setChecked(true);
+//                            }
 
                             Picasso.get().load(offerdetails.getImageUrl())
                                     .placeholder(R.drawable.ic_placeholder_small)
                                     .error(R.drawable.ic_placeholder_small)
                                     .into((iv_offer_item));
 
-                            RecentUser recentUser = offerdetails.getRecentUser();
-                            tv_username.setText(recentUser.getUserName());
-                            tv_date.setText(recentUser.getDate());
-                            tv_date.setText(recentUser.getDate());
-                            tv_work.setText(recentUser.getShowText());
+//                            RecentUser recentUser = offerdetails.getRecentUser();
+//                            tv_username.setText(recentUser.getUserName());
+//                            tv_date.setText(recentUser.getDate());
+//                            tv_date.setText(recentUser.getDate());
+//                            tv_work.setText(recentUser.getShowText());
 
 
-                            Picasso.get().load(recentUser.getImageUrl())
-                                    .placeholder(R.drawable.ic_placeholder_small)
-                                    .error(R.drawable.ic_placeholder_small).transform(new CircleTransform())
-                                    .into((iv_user_profile));
+//                            Picasso.get().load(recentUser.getImageUrl())
+//                                    .placeholder(R.drawable.ic_placeholder_small)
+//                                    .error(R.drawable.ic_placeholder_small).transform(new CircleTransform())
+//                                    .into((iv_user_profile));
+                            ArrayList<RecentUser> recentUserArrayList = offerdetails.getRecentUser();
+
+                            RecentUserAdapter recentUserAdapter = new RecentUserAdapter(recentUserArrayList, OffersDetailsActivity.this);
+                            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(OffersDetailsActivity.this);
+                            recyclerview.setLayoutManager(mLayoutManager);
+                            recyclerview.setAdapter(recentUserAdapter);
+                            recyclerview.setNestedScrollingEnabled(false);
 
                             CouponDealData couponDealData = offerdetails.getCouponDealData();
                             tv_coupon.setText(couponDealData.getShowText());
                             tv_coupon_deal_value = couponDealData.getValue();
                             tv_copuon_code.setText(couponDealData.getValue());
 
-                        }else{
-                            Toast.makeText(OffersDetailsActivity.this,getString(R.string.systemmessage)+response.body().getMessage(),Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(OffersDetailsActivity.this, getString(R.string.systemmessage) + response.body().getMessage(), Toast.LENGTH_SHORT).show();
                         }
 
                     }
-                }
-                else{
-                    Toast.makeText(OffersDetailsActivity.this,getString(R.string.systemmessage)+response.errorBody(),Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(OffersDetailsActivity.this, getString(R.string.systemmessage) + response.errorBody(), Toast.LENGTH_SHORT).show();
                 }
 
 
             }
 
             @Override
-            public void onFailure(Call<BestOfferDetailsModel>call, Throwable t) {
+            public void onFailure(Call<BestOfferDetailsModel> call, Throwable t) {
                 // Log error here since request failed
                 Log.e("response", t.toString());
             }
@@ -310,6 +338,8 @@ public class OffersDetailsActivity extends AppCompatActivity implements View.OnC
         dismissProgressDialog();
         super.onPause();
     }
+
+
 
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {

@@ -31,6 +31,7 @@ public class TabFragment extends Fragment  {
     RecyclerView recylerview;
     TodayBestOfferListAdapter todayBestOfferListAdapter;
     ArrayList<BestOfferDatum>bestOfferData;
+    String TAG = "testing_tab";
 
     protected  FragmentActivity mActivity;
 
@@ -58,6 +59,7 @@ public class TabFragment extends Fragment  {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tab, container, false);
 
+        try{
         recylerview = view.findViewById(R.id.recylerview);
 
        // Log.e("testing", "onCreateView:size "+bestOfferData.size());
@@ -82,6 +84,10 @@ public class TabFragment extends Fragment  {
 
             }
         }));
+        }catch (Exception ex){
+        ex.printStackTrace();
+            Log.e(TAG, "onCreateView: "+ex );
+        }
         return view ;
     }
 

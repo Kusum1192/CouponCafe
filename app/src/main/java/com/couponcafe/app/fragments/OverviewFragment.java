@@ -84,6 +84,7 @@ public class OverviewFragment extends Fragment implements View.OnClickListener {
         tv_user_pending.setText(Constants.getSharedPreferenceString(mActivity,"currency","")+""+user_pending);
         textView_invite.setOnClickListener(this);
 
+        try{
         productListAdapter = new ProductListAdapter(productlistarraylist,mActivity);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(mActivity);
         recyclerview_product.setLayoutManager(mLayoutManager);
@@ -104,6 +105,10 @@ public class OverviewFragment extends Fragment implements View.OnClickListener {
 
             }
         }));
+        }catch (Exception e){
+            e.printStackTrace();
+            Log.e(TAG, "init: "+e );
+        }
 
     }
 

@@ -14,6 +14,7 @@ import com.couponcafe.app.fragments.HomeFragment;
 import com.couponcafe.app.fragments.InviteAndEarnFragment;
 import com.couponcafe.app.fragments.ProfileFragment;
 import com.couponcafe.app.fragments.ProfileTestingFragment;
+import com.couponcafe.app.interfaces.refreshLayout;
 import com.couponcafe.app.utils.BottomNavigationViewHelper;
 import com.couponcafe.app.utils.Constants;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -42,6 +43,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.Menu;
 import android.webkit.WebView;
@@ -59,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     String TAG = "testing";
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             HoldAllFragments(homeFragment);
         }
 
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
 
 
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -340,6 +343,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         }, 2000);
     }
+
 
 
 }

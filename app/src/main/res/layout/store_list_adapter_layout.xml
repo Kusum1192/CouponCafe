@@ -42,7 +42,7 @@
                     android:textStyle="bold"
                     android:id="@+id/offer_name"
                     android:textColor="@color/black"
-                    android:text="Myntra"
+                    android:text="offer title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
@@ -55,6 +55,10 @@
             </LinearLayout>
 
             <TextView
+                android:gravity="center|left"
+                android:textSize="12sp"
+                android:drawableLeft="@drawable/ic_star"
+                android:drawablePadding="3dp"
                 android:textColor="@color/red"
                 android:text="@string/editorpics"
                 android:layout_weight="1"
@@ -72,15 +76,29 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/money" />
+
         <TextView
-            android:textSize="@dimen/common_text_size"
+            android:textStyle="bold"
+            android:layout_marginLeft="5dp"
+            android:gravity="center|left"
+            android:layout_gravity="center"
+            android:textSize="12sp"
             android:id="@+id/offer_cashback"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
             android:textColor="@color/green"
             android:text="@string/uptocashback"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_marginTop="10dp"
@@ -90,6 +108,7 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/tv_success"
                 android:textSize="12sp"
                 android:text="@string/success"
                 android:layout_weight="1"
@@ -97,6 +116,7 @@
                 android:layout_height="wrap_content"/>
 
             <TextView
+                android:id="@+id/tv_user_visit"
                 android:gravity="center"
                 android:textSize="12sp"
                 android:text="@string/usertoday"

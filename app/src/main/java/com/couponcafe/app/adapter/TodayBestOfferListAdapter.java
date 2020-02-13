@@ -50,6 +50,8 @@ public class TodayBestOfferListAdapter extends RecyclerView.Adapter<TodayBestOff
 
         holder.offercashback.setText(items.get(position).getCashBack());
         holder.offercategory.setText(items.get(position).getCategory());
+        holder.tv_success.setText(items.get(position).getSuces()+"% Success");
+        holder.tv_user_visit.setText(items.get(position).getUsrs()+" Users Today");
 
         Picasso.get().load(items.get(position).getImageUrl())
                 .placeholder(R.drawable.ic_placeholder_small)
@@ -100,7 +102,7 @@ public class TodayBestOfferListAdapter extends RecyclerView.Adapter<TodayBestOff
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView offername,offercategory,description,offercashback;
+        TextView offername,offercategory,description,offercashback,tv_success,tv_user_visit;
         ImageView offerImage;
 
         public ViewHolder(View itemView) {
@@ -110,6 +112,8 @@ public class TodayBestOfferListAdapter extends RecyclerView.Adapter<TodayBestOff
             description = itemView.findViewById(R.id.offer_short_description);
             offercashback = itemView.findViewById(R.id.offer_cashback);
             offerImage = itemView.findViewById(R.id.offer_image);
+            tv_success = itemView.findViewById(R.id.tv_success);
+            tv_user_visit = itemView.findViewById(R.id.tv_user_visit);
 
         }
 

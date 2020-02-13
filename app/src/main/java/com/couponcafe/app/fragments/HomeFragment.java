@@ -46,6 +46,7 @@ import com.couponcafe.app.adapter.TodayBestOfferListAdapter;
 import com.couponcafe.app.adapter.TopStoresAdapter;
 import com.couponcafe.app.adapter.RecyclerTouchListener;
 import com.couponcafe.app.interfaces.APIService;
+import com.couponcafe.app.interfaces.refreshLayout;
 import com.couponcafe.app.models.AllOffersDataModel;
 import com.couponcafe.app.models.BestOfferDatum;
 import com.couponcafe.app.models.SliderDatum;
@@ -82,6 +83,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
     ImageView tv_home_invite_image;
     String TAG = "testing";
     SwipeRefreshLayout refreshLayout;
+    ArrayList<TopStoreDatum> topStoreDatalist;
 
     protected FragmentActivity mActivity;
 
@@ -120,11 +122,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
         return root;
     }
 
-    @Override
-    public void onRefresh() {
-        getAllOffersData();
-        refreshLayout.setRefreshing(false);
-    }
+//    @Override
+//    public void onRefresh() {
+//        getAllOffersData();
+//        refreshLayout.setRefreshing(false);
+//    }
 
 
     @Override
@@ -171,11 +173,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
                 if(response!=null){
                     if(response.isSuccessful()){
                         if(response.body().getStatus()==200){
+                            if(topStoreDatalist!=null){
+                                topStoreDatalist.clear();
+                            }
+
                            Constants.setSharedPreferenceInt(mActivity,"userAmount",response.body().getUserAmount());
                            Constants.setSharedPreferenceString(mActivity,"currency",response.body().getCurrency());
                            final ArrayList<SliderDatum> sliderArrayList = response.body().getSliderData();
                            final ArrayList<BestOfferDatum> bestOfferDatalist = response.body().getBestOfferData();
-                           final ArrayList<TopStoreDatum> topStoreDatalist = response.body().getTopStoreData();
+                           topStoreDatalist = response.body().getTopStoreData();
 
                             Picasso.get().load(response.body().getInviteImgurl())
                                     .placeholder(R.drawable.ic_placeholder_small)
@@ -293,6 +299,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
         }
     }
 
+
+
+
     @Override
     public void onDestroy() {
         dismissProgressDialog();
@@ -322,6 +331,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
 
     }
 
+    @Override
+    public void onRefresh() {
+
+        refreshLayout.setRefreshing(false);
+
+    }
 
 
     //    @Override

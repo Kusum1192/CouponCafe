@@ -11,6 +11,12 @@ public class BestOfferDatum {
     @SerializedName("offerId")
     @Expose
     private Integer offerId;
+    @SerializedName("usrs")
+    @Expose
+    private Integer usrs;
+    @SerializedName("suces")
+    @Expose
+    private Integer suces;
     @SerializedName("offerName")
     @Expose
     private String offerName;
@@ -75,4 +81,19 @@ public class BestOfferDatum {
         this.imageUrl = imageUrl;
     }
 
+    public Integer getUsrs() {
+        return usrs;
+    }
+
+    public void setUsrs(Integer usrs) {
+        this.usrs = usrs;
+    }
+
+    public Integer getSuces() {
+        return suces;
+    }
+
+    public void setSuces(Integer suces) {
+        this.suces = suces;
+    }
 }

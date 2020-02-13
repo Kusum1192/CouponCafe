@@ -53,7 +53,7 @@
                                 android:id="@+id/tv_offer_name"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Myntra"
+                                android:text="offer title"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/common_text_size"
                                 android:textStyle="bold" />
@@ -72,10 +72,12 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:drawableLeft="@drawable/ic_star"
+                            android:drawablePadding="3dp"
+                            android:gravity="center|left"
                             android:text="@string/editorpics"
                             android:textColor="@color/red"
-                            android:textSize="13sp"
-                            android:visibility="visible" />
+                            android:textSize="12sp" />
                     </LinearLayout>
 
                     <TextView
@@ -88,15 +90,29 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/common_text_size" />
 
-                    <TextView
-                        android:id="@+id/tv_offer_cashback"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
-                        android:text="@string/uptocashback"
-                        android:textColor="@color/green"
-                        android:textSize="@dimen/common_text_size" />
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/money" />
+
+                        <TextView
+                            android:id="@+id/tv_offer_cashback"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:gravity="center|left"
+                            android:text="@string/uptocashback"
+                            android:textColor="@color/green"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -142,8 +158,8 @@
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="0.5dp"
-                        android:background="@color/line_gray" />
+                        android:layout_height="0.3dp"
+                        android:background="@color/line_gray_tras" />
 
                     <TextView
                         android:id="@+id/mItemDescription"
@@ -218,28 +234,29 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_margin="8dp"
+                        android:layout_marginTop="3dp"
                         android:text="Coupon Code"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/common_text_size" />
+                        android:textSize="@dimen/common_text_size"
+                        android:textStyle="bold" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.5dp"
-                        android:layout_marginBottom="5dp"
-                        android:background="@color/line_gray" />
 
                     <TextView
                         android:id="@+id/tv_copuon_code"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="@string/productcode"
+                        android:layout_margin="8dp"
+                        android:text="COUPONHUB"
                         android:textAllCaps="true"
                         android:textColor="@color/red"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.3dp"
+                        android:background="@color/line_gray_tras" />
 
                     <TextView
                         android:id="@+id/tv_code_copy"
@@ -282,15 +299,15 @@
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="0.5dp"
+                        android:layout_height="0.3dp"
                         android:layout_marginBottom="5dp"
-                        android:background="@color/line_gray" />
+                        android:background="@color/line_gray_tras" />
 
 
                     <LinearLayout
-                        android:background="@color/white"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@color/white"
                         android:orientation="vertical"
                         android:padding="8dp">
 
@@ -299,7 +316,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:visibility="gone">
+                            android:visibility="visible">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -318,23 +335,36 @@
                                     android:id="@+id/radio_upto_cashback"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
-                                    android:layout_weight="1.4"
-                                    android:text="upto 7.3% CD CASHBACK"
+                                    android:layout_weight=".2"
+                                    android:checked="true"
+                                    android:text=""
                                     android:textSize="@dimen/common_text_size" />
+
+                                <TextView
+                                    android:id="@+id/tv_radio_label"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.9"
+                                    android:text="label"
+                                    android:textColor="@color/black" />
 
 
                             </LinearLayout>
 
 
-
                         </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.3dp"
+                            android:background="@color/line_gray_tras" />
 
                         <LinearLayout
                             android:id="@+id/ll_mobile_app"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:visibility="gone">
+                            android:visibility="visible">
 
 
                             <TextView
@@ -349,9 +379,17 @@
                                 android:id="@+id/radio_no_cashback"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1.4"
-                                android:text="No CD CASHBACK"
+                                android:layout_weight=".2"
+                                android:checked="false"
+                                android:enabled="false"
+                                android:text=""
                                 android:textSize="@dimen/common_text_size" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight=".9"
+                                android:text="No CH CASHBACK" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -386,68 +424,15 @@
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="0.5dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="@color/line_gray" />
+                        android:layout_height="0.3dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@color/line_gray_tras" />
 
-
-                    <LinearLayout
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerview"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="8dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:id="@+id/iv_user_profile"
-                                android:layout_width="0dp"
-                                android:layout_height="40dp"
-                                android:layout_weight=".4"
-                                android:scaleType="fitStart"
-                                android:src="@drawable/ic_placeholder_small" />
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:id="@+id/tv_username"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Anil"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/common_text_size" />
-
-                                <TextView
-                                    android:id="@+id/tv_work"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="worked"
-                                    android:textSize="13sp" />
-
-                            </LinearLayout>
-
-
-                            <TextView
-                                android:id="@+id/tv_date"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="30 Dec 2019"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/common_text_size" />
-
-
-                        </LinearLayout>
-
-
-                    </LinearLayout>
+                        android:scrollbars="none" />
 
 
                 </LinearLayout>

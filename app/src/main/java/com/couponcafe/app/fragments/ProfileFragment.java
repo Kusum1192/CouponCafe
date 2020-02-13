@@ -50,6 +50,7 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
     TextView tv_useremail,tv_username,tv_total;
     protected FragmentActivity mActivity;
     SwipeRefreshLayout refreshLayout;
+    String TAG = "testing";
 
     //Context context;
     View view;
@@ -74,7 +75,13 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
         initView(view);
 
-        getProfileData();
+        try {
+            getProfileData();
+        }catch (Exception ex){
+            ex.printStackTrace();
+            Log.e(TAG, "onCreateView: "+ex );
+        }
+
         return view;
     }
 

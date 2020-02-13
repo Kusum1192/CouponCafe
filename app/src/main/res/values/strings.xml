@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Coupon Hub</string>
+    <string name="app_name">CouponHub App</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -28,7 +28,7 @@
     <string name="success">61% Success</string>
     <string name="verifiedoffers">Verified Offer</string>
     <string name="usertoday">100 Users today</string>
-    <string name="editorpics">Editor\'s Picks</string>
+    <string name="editorpics">User\'s Favorite</string>
     <string name="uptooff_oyo">Flat 60% Off + 100% Cashback via OYO Money on Room Bookings-OYOCDR</string>
 
     <string name="text_with_paragraphs">
@@ -39,7 +39,7 @@
     <string name="nocomment">there are no comments right now</string>
     <string name="lifesaving">Lifetime Savings: </string>
     <string name="invite_text">Invite your Friends to CouponCafe and earn 10% of their cashback earnings forever.</string>
-    <string name="invite_friends">Invite Friends &amp; Get 10% Cashback for life</string>
+    <string name="invite_friends">Invite Friends &amp; Get 10% Cashback for Life</string>
 
     <string name="collapsed">collapsed: %s</string>
     <string name="expanded">expanded: %s</string>
