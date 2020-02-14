@@ -35,7 +35,7 @@ import retrofit2.Response;
 public class SplashActivity extends AppCompatActivity {
 
     ProgressDialog progressDialog;
-    String TAG ="testing";
+    String TAG = "testing_spalsh";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,14 +47,16 @@ public class SplashActivity extends AppCompatActivity {
         try {
             PackageInfo pInfo = this.getPackageManager().getPackageInfo(getPackageName(), 0);
             String version = pInfo.versionName;
-            tv_version.setText("version: "+version);
+            tv_version.setText("version: " + version);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
 
-        if(isNetworkAvailable(SplashActivity.this)){
-            if (Constants.getSharedPreferenceInt(SplashActivity.this, "userId", 0)!=0 &&
+        if (isNetworkAvailable(SplashActivity.this)) {
+
+            if (Constants.getSharedPreferenceInt(SplashActivity.this, "userId", 0) != 0 &&
                     !Constants.getSharedPreferenceString(SplashActivity.this, "securitytoken", "").equals("null")) {
+
 
                 if (getIntent().getExtras() != null) {
                     String title = null;
@@ -63,17 +65,14 @@ public class SplashActivity extends AppCompatActivity {
                             title = getIntent().getExtras().getString(key);
                         }
                     }
-                    if(title!=null && !title.equals("null")){
+                    if (title != null && !title.equals("null")) {
                         Intent intentProductdDtails = new Intent(SplashActivity.this, OffersDetailsActivity.class);
                         intentProductdDtails.putExtra("offerId", Integer.parseInt(title));
-                        startActivityForResult(intentProductdDtails,105);
-                    }
-
-                    else{
+                        startActivityForResult(intentProductdDtails, 105);
+                    } else {
                         openApp();
                     }
-                }
-                else{
+                } else {
                     openApp();
                 }
 
@@ -81,8 +80,8 @@ public class SplashActivity extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        if(!((Activity) SplashActivity.this).isFinishing()){
-                            progressDialog = new ProgressDialog(SplashActivity.this,R.style.MyAlertDialogStyle);
+                        if (!((Activity) SplashActivity.this).isFinishing()) {
+                            progressDialog = new ProgressDialog(SplashActivity.this, R.style.MyAlertDialogStyle);
                             progressDialog.setMessage(getString(R.string.loadingwait));
                             progressDialog.show();
                             progressDialog.setCancelable(false);
@@ -93,11 +92,10 @@ public class SplashActivity extends AppCompatActivity {
                         finish();
 
                     }
-                },3000);
+                }, 3000);
 
             }
-        }
-        else{
+        } else {
             android.app.AlertDialog.Builder builder = new AlertDialog.Builder(SplashActivity.this);
             builder.setTitle("Alert!");
             builder.setMessage("Please Check Your Internet Connection.");
@@ -115,21 +113,21 @@ public class SplashActivity extends AppCompatActivity {
 
     }
 
-    public void openApp(){
+    public void openApp() {
         int versionCode = BuildConfig.VERSION_CODE;
         final String versionName = BuildConfig.VERSION_NAME;
 
-        Constants.setSharedPreferenceInt(SplashActivity.this,"versionCode",versionCode);
-        Constants.setSharedPreferenceString(SplashActivity.this,"versionName",versionName);
+        Constants.setSharedPreferenceInt(SplashActivity.this, "versionCode", versionCode);
+        Constants.setSharedPreferenceString(SplashActivity.this, "versionName", versionName);
 
         APIService apiService = ApiClient.getClient().create(APIService.class);
-        Call<UserAppOpenModel> call = apiService.appOpen(Constants.getSharedPreferenceInt(SplashActivity.this,"userId",0),
-                Constants.getSharedPreferenceString(SplashActivity.this,"securitytoken",""),
-                Constants.getSharedPreferenceString(SplashActivity.this,"versionName",""),
-                Constants.getSharedPreferenceInt(SplashActivity.this,"versionCode",0));
+        Call<UserAppOpenModel> call = apiService.appOpen(Constants.getSharedPreferenceInt(SplashActivity.this, "userId", 0),
+                Constants.getSharedPreferenceString(SplashActivity.this, "securitytoken", ""),
+                Constants.getSharedPreferenceString(SplashActivity.this, "versionName", ""),
+                Constants.getSharedPreferenceInt(SplashActivity.this, "versionCode", 0));
 
-        if(!((Activity) SplashActivity.this).isFinishing()) {
-            progressDialog = new ProgressDialog(SplashActivity.this,R.style.MyAlertDialogStyle);
+        if (!((Activity) SplashActivity.this).isFinishing()) {
+            progressDialog = new ProgressDialog(SplashActivity.this, R.style.MyAlertDialogStyle);
             progressDialog.setMessage(getString(R.string.loadingwait));
             progressDialog.show();
             progressDialog.setCancelable(false);
@@ -142,7 +140,7 @@ public class SplashActivity extends AppCompatActivity {
 
                 dismissProgressDialog();
                 try {
-                    if(response!=null){
+                    if (response != null) {
                         if (response.isSuccessful()) {
                             if (response.body().getForceUpdate()) {
                                 android.app.AlertDialog.Builder builder = new AlertDialog.Builder(SplashActivity.this);
@@ -154,10 +152,10 @@ public class SplashActivity extends AppCompatActivity {
                                                 dialog.dismiss();
 
                                                 try {
-                                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + Constants.getSharedPreferenceString(SplashActivity.this,"forceUpdatePackage",""))));
+                                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + Constants.getSharedPreferenceString(SplashActivity.this, "forceUpdatePackage", ""))));
                                                 } catch (ActivityNotFoundException e) {
                                                     // TODO: handle exception
-                                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + Constants.getSharedPreferenceString(SplashActivity.this,"forceUpdatePackage",""))));
+                                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + Constants.getSharedPreferenceString(SplashActivity.this, "forceUpdatePackage", ""))));
 
                                                 }
                                                 finish();
@@ -174,9 +172,9 @@ public class SplashActivity extends AppCompatActivity {
                                     String packAge = response.body().getPackAge();
 
                                     String userFrom = "couponhub";
-                                    Constants.setSharedPreferenceString(SplashActivity.this,"userFrom",userFrom);
+                                    Constants.setSharedPreferenceString(SplashActivity.this, "userFrom", userFrom);
 
-                                    Constants.setSharedPreferenceString(SplashActivity.this,"forceUpdatePackage",packAge);
+                                    Constants.setSharedPreferenceString(SplashActivity.this, "forceUpdatePackage", packAge);
                                     Constants.setSharedPreferenceInt(SplashActivity.this, "userAmount", amount);
                                     Constants.setSharedPreferenceString(SplashActivity.this, "totalcoins", coins);
                                     Constants.setSharedPreferenceString(SplashActivity.this, "curency", curency);
@@ -191,18 +189,17 @@ public class SplashActivity extends AppCompatActivity {
                             }
 
                         }
-                    }
-                    else Toast.makeText(SplashActivity.this,getString(R.string.systemmessage)+response.errorBody(),Toast.LENGTH_SHORT).show();
+                    } else
+                        Toast.makeText(SplashActivity.this, getString(R.string.systemmessage) + response.errorBody(), Toast.LENGTH_SHORT).show();
 
-                }
-                catch (Exception e){
-                    Log.e(TAG, "onResponse:110 "+e );
+                } catch (Exception e) {
+                    Log.e(TAG, "onResponse:110 " + e);
                 }
             }
 
             @Override
             public void onFailure(Call<UserAppOpenModel> call, Throwable t) {
-                Toast.makeText(SplashActivity.this,getString(R.string.systemmessage)+t,Toast.LENGTH_SHORT).show();
+                Toast.makeText(SplashActivity.this, getString(R.string.systemmessage) + t, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -243,6 +240,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     boolean doubleBackToExitPressedOnce = false;
+
     @Override
     public void onBackPressed() {
         if (doubleBackToExitPressedOnce) {
@@ -257,7 +255,7 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void run() {
-                doubleBackToExitPressedOnce=false;
+                doubleBackToExitPressedOnce = false;
             }
         }, 2000);
     }

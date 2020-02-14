@@ -53,7 +53,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/imageView_profile"
                     android:paddingTop="@dimen/nav_header_vertical_spacing"
-                    android:text="@string/nav_header_title"
+                    android:text="User Social Name"
                     android:textColor="@color/white" />
 
                 <TextView
@@ -63,7 +63,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_username"
                     android:layout_toRightOf="@+id/imageView_profile"
-                    android:text="@string/nav_header_subtitle"
+                    android:text="couponhubapp@gmail.com"
                     android:textColor="@color/white" />
 
                 <RelativeLayout
@@ -85,7 +85,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@+id/textView"
-                        android:text=" 2220"
+                        android:text="00"
                         android:textColor="@color/white"
                         android:textSize="@dimen/common_text_size" />
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CouponHub App</string>
+    <string name="app_name">CouponHub</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -75,7 +75,7 @@
     <string name="hrago">3 hours ago</string>
     <string name="notification_title"><![CDATA[Flipkart: Beauty, Toys &amp; more Starting from Rs. 99.]]></string>
     <string name="todays">Todays</string>
-    <string name="purchase">Purchase Card</string>
+    <string name="purchase">Purchase Product</string>
     <string name="product_title">Redmi 8A (Sunset Red, 32 GB)</string>
     <string name="justhere">#JustHere</string>
     <string name="price">\u20B9 5,999</string>
@@ -86,4 +86,8 @@
     <string name="withdrawal">Withdrawal</string>
     <string name="rule">Withdraw Rules*</string>
     <string name="user_transactions">User Transactions</string>
+    <string name="textprviacy">By Continuing You Indicate that You have Read and Agree to our Privacy Policy and Terms Of Services. </string>
+    <string name="termofservices"><u>Terms of Services</u></string>
+    <string name="termservices">Terms of Services</string>
+    <string name="privacypolicy"><u>Privacy Policy</u></string>
 </resources>

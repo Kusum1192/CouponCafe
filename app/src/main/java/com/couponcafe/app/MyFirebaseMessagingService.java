@@ -69,7 +69,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         if (tag.equalsIgnoreCase("image")) {
             notificationBuilder = new NotificationCompat.Builder(this, channelID)
-                    .setSmallIcon(R.drawable.ic_notifications)
+                    .setSmallIcon(R.drawable.ic_card_giftcard)
                     .setContentTitle(title)
                     .setContentText(messageBody)
                     .setStyle(new NotificationCompat.BigPictureStyle()
@@ -79,7 +79,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     .setContentIntent(pendingIntent);
         } else {
             notificationBuilder = new NotificationCompat.Builder(this, channelID)
-                    .setSmallIcon(R.drawable.ic_notifications)
+                    .setSmallIcon(R.drawable.ic_card_giftcard)
                     .setContentTitle(title)
                     .setContentText(messageBody)
                     .setAutoCancel(true)

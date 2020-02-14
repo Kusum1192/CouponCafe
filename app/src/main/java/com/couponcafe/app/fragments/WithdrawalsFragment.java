@@ -28,7 +28,7 @@ public class WithdrawalsFragment extends Fragment implements View.OnClickListene
 
     LinearLayout ll_recharge_now, ll_transfer_now;
     ImageView desc_arrow, e_wallet_arrow;
-    TextView tv_user_amount, tv_user_pending,tv_transfer_now;
+    TextView tv_user_amount, tv_user_pending,tv_transfer_now,tv_withdraw_AB,tv_mini_balance;
     Integer user_amount, user_pending,minPaylimit;
     CardView card_make_recharge,card_transfer_bank,card_gift_card,card_transfer_ewallet;
     protected  FragmentActivity mActivity;
@@ -64,6 +64,8 @@ public class WithdrawalsFragment extends Fragment implements View.OnClickListene
 
     private void init(View view) {
         tv_user_amount = view.findViewById(R.id.tv_user_amount);
+        tv_withdraw_AB = view.findViewById(R.id.tv_withdraw_AB);
+        tv_mini_balance = view.findViewById(R.id.tv_mini_balance);
         tv_user_pending = view.findViewById(R.id.tv_user_pending);
         tv_transfer_now = view.findViewById(R.id.tv_transfer_now);
         card_gift_card = view.findViewById(R.id.card_gift_card);
@@ -71,6 +73,8 @@ public class WithdrawalsFragment extends Fragment implements View.OnClickListene
         card_transfer_bank = view.findViewById(R.id.card_transfer_bank);
         card_transfer_ewallet = view.findViewById(R.id.card_transfer_ewallet);
         tv_user_amount.setText(Constants.getSharedPreferenceString(mActivity, "currency", "") + " " + user_amount);
+        tv_withdraw_AB.setText(Constants.getSharedPreferenceString(mActivity, "currency", "") + " " + user_amount);
+        tv_mini_balance.setText("Minimum Required "+Constants.getSharedPreferenceString(mActivity, "currency", "") + " " + minPaylimit);
         tv_user_pending.setText(Constants.getSharedPreferenceString(mActivity, "currency", "") + "" + user_pending);
         ll_recharge_now = view.findViewById(R.id.ll_recharge_now);
         ll_transfer_now = view.findViewById(R.id.ll_transfer_now);

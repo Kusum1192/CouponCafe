@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.action_search:
-                Toast.makeText(this, "clickm y", Toast.LENGTH_SHORT).show();
+
                 return true;
 
             default:
@@ -184,6 +184,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_home:
                 setupBottomNavigationFrom(R.id.navigation_home);
                 break;
+            case R.id.nav_categories:
+                setupBottomNavigationFrom(R.id.navigation_categories);
+                break;
+
             case R.id.nav_cashactivity:
                 setupBottomNavigationFrom(R.id.navigation_profile);
                 break;
@@ -207,10 +211,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_aboutus:
                 webViewLoad(BASE_URL_WEB + "about-us.html", "About Us");
                 break;
-
-
             case R.id.nav_privacy:
                 webViewLoad(BASE_URL_WEB + "privacy-policy.html", "Privacy Policy");
+                break;
+
+            case R.id.nav_termof_services:
+                webViewLoad(BASE_URL_WEB + "terms-conditions.html", "Terms Of Services");
                 break;
 
 

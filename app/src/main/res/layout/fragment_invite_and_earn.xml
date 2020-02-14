@@ -280,6 +280,7 @@
                         android:src="@drawable/giftbox" />
 
                     <TextView
+                        android:textStyle="bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="4dp"
@@ -295,7 +296,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="You've not got any confirmed bonus yet."
+                    android:text="Invite More Friends And Earn More Cashback."
                     android:textColor="@color/black"
                     android:textSize="@dimen/common_text_size" />
 

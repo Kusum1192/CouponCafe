@@ -41,7 +41,7 @@
         android:textColor="@color/green"
         android:gravity="center"
         android:text="gener"
-        android:textSize="12sp"
+        android:textSize="11sp"
         android:id="@+id/genre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

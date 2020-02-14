@@ -41,6 +41,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements View.On
     private static int currentPage = 0;
     private CircleIndicator indicator;
     ProgressDialog progressDialog;
+    TextView tv_purchase_product;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,8 @@ public class ProductDetailsActivity extends AppCompatActivity implements View.On
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+        tv_purchase_product = findViewById(R.id.tv_purchase_product);
+        tv_purchase_product.setOnClickListener(this);
 
         Intent intent = getIntent();
         if (intent != null) {
@@ -177,7 +180,11 @@ public class ProductDetailsActivity extends AppCompatActivity implements View.On
 
     @Override
     public void onClick(View view) {
-
+        switch (view.getId()){
+            case R.id.tv_purchase_product:
+                Toast.makeText(ProductDetailsActivity.this, "Features coming soon.", Toast.LENGTH_SHORT).show();
+                break;
+        }
     }
 
 

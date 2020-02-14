@@ -27,7 +27,7 @@ public class RecentUserAdapter extends RecyclerView.Adapter<RecentUserAdapter.Vi
     public RecentUserAdapter(ArrayList<RecentUser> recentUserArrayList, Context context) {
         this.context = context;
         this.recentUserArrayList = recentUserArrayList;
-        Log.e("testing", "RecentUserAdapter:size "+recentUserArrayList );
+
     }
 
     @Override

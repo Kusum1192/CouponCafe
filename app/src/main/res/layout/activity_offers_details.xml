@@ -142,7 +142,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Description"
-                            android:textColor="@color/black"
+                            android:textColor="@color/orange"
                             android:textSize="@dimen/common_text_size"
                             android:textStyle="bold" />
 
@@ -294,7 +294,7 @@
                         android:layout_height="wrap_content"
                         android:padding="8dp"
                         android:text="Shop via"
-                        android:textColor="@color/black"
+                        android:textColor="@color/orange"
                         android:textSize="@dimen/common_text_size"
                         android:textStyle="bold" />
 
@@ -419,7 +419,7 @@
                         android:layout_height="wrap_content"
                         android:padding="8dp"
                         android:text="Recent Users"
-                        android:textColor="@color/black"
+                        android:textColor="@color/orange"
                         android:textSize="@dimen/common_text_size"
                         android:textStyle="bold" />
 

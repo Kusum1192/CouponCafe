@@ -183,6 +183,7 @@
     </androidx.core.widget.NestedScrollView>
 
     <TextView
+        android:id="@+id/tv_purchase_product"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

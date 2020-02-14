@@ -1,10 +1,12 @@
 package com.couponcafe.app.activities;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -15,6 +17,8 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,6 +58,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private GoogleSignInClient mGoogleSignInClient;
     ProgressDialog progressDialog;
     String TAG = "testing_login";
+    private TextView privacypolicy,termcondition;
+    String BASE_URL_WEB="https://couponhub.app/info-files/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,9 +70,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void init() {
-        getSupportActionBar().setTitle(getString(R.string.login));
+//        getSupportActionBar().setTitle("");
         TextView tv_google_login = findViewById(R.id.tv_google_login);
         TextView tv_fb_login = findViewById(R.id.tv_fb_login);
+        privacypolicy = findViewById(R.id.txt_privacy);
+        termcondition = findViewById(R.id.txt_termcondition);
+        privacypolicy.setOnClickListener(this);
+        termcondition.setOnClickListener(this);
         tv_google_login.setOnClickListener(this);
         tv_fb_login.setOnClickListener(this);
 
@@ -321,6 +331,39 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.tv_fb_login:
                 Toast.makeText(this, "Feature Coming Soon..!", Toast.LENGTH_SHORT).show();
                 break;
+
+            case R.id.txt_privacy:
+                String url = BASE_URL_WEB+"privacy-policy.html";
+                webViewLoad(url,"Privacy Policy");
+                break;
+
+            case R.id.txt_termcondition:
+                String urlcondition = BASE_URL_WEB+"terms-conditions.html";
+                webViewLoad(urlcondition,"Terms Of Services");
+                break;
         }
+    }
+    private void webViewLoad(String url,String title){
+        AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
+        alert.setTitle(title);
+
+        WebView wv = new WebView(LoginActivity.this);
+        wv.loadUrl(url);
+        wv.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+        });
+
+        alert.setView(wv);
+        alert.setNegativeButton("Accept", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+            }
+        });
+        alert.show();
     }
 }

@@ -149,12 +149,12 @@ public class InviteAndEarnFragment extends Fragment implements View.OnClickListe
         if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.HONEYCOMB) {
             android.text.ClipboardManager clipboard = (android.text.ClipboardManager) mActivity.getSystemService(Context.CLIPBOARD_SERVICE);
             clipboard.setText(text);
-            Toast.makeText(mActivity, "Referral code copied Successfully", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mActivity, "Referral code copied Successfully"+text, Toast.LENGTH_SHORT).show();
         } else {
             android.content.ClipboardManager clipboard = (android.content.ClipboardManager) mActivity.getSystemService(Context.CLIPBOARD_SERVICE);
             android.content.ClipData clip = android.content.ClipData.newPlainText("Copied Text", text);
             clipboard.setPrimaryClip(clip);
-            Toast.makeText(mActivity, "Referral code copied Successfully", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mActivity, "Referral code copied Successfully"+text, Toast.LENGTH_SHORT).show();
         }
     }
 

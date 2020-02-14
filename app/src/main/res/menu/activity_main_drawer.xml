@@ -9,6 +9,16 @@
             android:icon="@drawable/ic_home"
             android:title="@string/home" />
         <item
+            android:id="@+id/nav_categories"
+            android:icon="@drawable/ic_categories"
+            android:title="Categories" />
+
+        <item
+            android:id="@+id/nav_invite"
+            android:icon="@drawable/share"
+            android:title="@string/referfriend" />
+
+        <item
             android:id="@+id/nav_cashactivity"
             android:icon="@drawable/cashback"
             android:title="@string/cashactivities" />
@@ -26,10 +36,6 @@
             android:id="@+id/nav_user_transaction"
             android:icon="@drawable/coupon"
             android:title="@string/user_transactions"/>
-        <item
-            android:id="@+id/nav_invite"
-            android:icon="@drawable/share"
-            android:title="@string/referfriend" />
 
         <item
             android:id="@+id/nav_aboutus"
@@ -40,6 +46,12 @@
             android:id="@+id/nav_privacy"
             android:icon="@drawable/sheet"
             android:title="@string/privacy" />
+
+        <item
+            android:id="@+id/nav_termof_services"
+            android:icon="@drawable/terms_and_services"
+            android:title="@string/termservices" />
+
     </group>
 
 

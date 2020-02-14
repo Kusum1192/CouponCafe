@@ -155,7 +155,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:text="@string/purchase"
-                        android:textColor="@color/black"
+                        android:textColor="@color/orange"
                         android:textSize="@dimen/common_text_size"
                         android:textStyle="bold" />
 

@@ -216,6 +216,7 @@
                                 android:layout_height="wrap_content"/>
 
                             <TextView
+                                android:id="@+id/tv_withdraw_AB"
                                 android:textColor="@color/black"
                                 android:gravity="right"
                                 android:text="Rs. 0"
@@ -238,7 +239,8 @@
                             android:layout_height="wrap_content"/>
 
                         <TextView
-                            android:text="minimum Required Rs. 250"
+                            android:id="@+id/tv_mini_balance"
+                            android:text="Minimum Required Rs.50"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
 

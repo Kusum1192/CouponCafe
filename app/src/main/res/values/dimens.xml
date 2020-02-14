@@ -27,7 +27,7 @@
     <dimen name="_24sdp">24sp</dimen>
     <dimen name="_15sdp">15sp</dimen>
     <dimen name="_2sdp">2sp</dimen>
-    <dimen name="help_image_width">50dp</dimen>
+    <dimen name="help_image_width">40dp</dimen>
     <dimen name="help_image_height">40dp</dimen>
 <!--for text font-->
     <dimen name="common_text_size">14sp</dimen>
