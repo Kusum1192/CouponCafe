@@ -64,8 +64,6 @@ public class OffersDetailsActivity extends AppCompatActivity implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offers_details);
 
-        try {
-
             getSupportActionBar().setTitle("Offers Details");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -74,14 +72,12 @@ public class OffersDetailsActivity extends AppCompatActivity implements View.OnC
 
             Intent intent = getIntent();
             if (intent != null) {
-                offerid = String.valueOf(intent.getIntExtra("offerId", 0));
+                offerid = String.valueOf(intent.getIntExtra("offerId",0));
+                //Log.e(TAG, "onCreate:offerID "+offerid );
                 getOfferDetails(offerid);
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            Log.e(TAG, "onCreate: " + e);
-        }
+
     }
 
     @Override
@@ -94,7 +90,6 @@ public class OffersDetailsActivity extends AppCompatActivity implements View.OnC
         text_copy_code = findViewById(R.id.tv_code_copy);
         ll_mobile_app = findViewById(R.id.ll_mobile_app);
         ll_mobile_web = findViewById(R.id.ll_mobile_web);
-//        tv_view_allusers = findViewById(R.id.tv_view_allusers);
         mItemDescription = findViewById(R.id.mItemDescription);
         tv_offer_name = findViewById(R.id.tv_offer_name);
         tv_cat_name = findViewById(R.id.tv_cat_name);

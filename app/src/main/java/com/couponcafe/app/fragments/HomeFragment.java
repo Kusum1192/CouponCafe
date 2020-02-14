@@ -260,7 +260,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
                                     // Toast.makeText(mActivity, topStores.getTitle() + " is selected!", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(mActivity, OffersDetailsActivity.class);
                                     intent.putExtra("offerId",bestOfferDatum.getOfferId());
-//                                    Log.e(TAG, "onClick:bestOfferDatum.getOfferId() "+bestOfferDatum.getOfferId() );
+                                   // Log.e(TAG, "onClick:bestOfferDatum.getOfferId() "+bestOfferDatum.getOfferId() );
                                     startActivity(intent);
                                 }
 
