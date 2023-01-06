@@ -1,42 +1,49 @@
 {
   "project_info": {
-    "project_number": "66833815706",
-    "firebase_url": "https://coupon-app-3ff47.firebaseio.com",
-    "project_id": "coupon-app-3ff47",
-    "storage_bucket": "coupon-app-3ff47.appspot.com"
+    "project_number": "417739152831",
+    "project_id": "couponapp-1a5de",
+    "storage_bucket": "couponapp-1a5de.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:66833815706:android:74618b4e54f0c8e5e36723",
+        "mobilesdk_app_id": "1:417739152831:android:ce1f69d98a72a8b36a950a",
         "android_client_info": {
-          "package_name": "com.couponcafe.app"
+          "package_name": "com.couponhub.app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "66833815706-crvrl603v69l6inq0s7e8if6f1on3lhu.apps.googleusercontent.com",
+          "client_id": "417739152831-9dakn9ol9dht6hdqt6g80mpkkcr7kpqi.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.couponcafe.app",
-            "certificate_hash": "44ade602612258ba2575615f0c7c592222d2114e"
+            "package_name": "com.couponhub.app",
+            "certificate_hash": "79767e75ad9a1c545e8270f751044f0716371f2e"
           }
         },
         {
-          "client_id": "66833815706-r42u7iq36edg2cgcdtler9ehg66nokr3.apps.googleusercontent.com",
+          "client_id": "417739152831-euadsiqm2t4q6eujaook6adqee691c39.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.couponhub.app",
+            "certificate_hash": "d7fc364d2029ad1822bc0411945f3ff8a859404a"
+          }
+        },
+        {
+          "client_id": "417739152831-hinkl3ulr920pbahnjti10g27o6pfqf7.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDKsaZSibLEFZ_RkodZwnaH1oA4Qm08Fog"
+          "current_key": "AIzaSyCNZk3vAL7qtoluVbL2SDcHmDzVeWVWTmg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "66833815706-r42u7iq36edg2cgcdtler9ehg66nokr3.apps.googleusercontent.com",
+              "client_id": "417739152831-hinkl3ulr920pbahnjti10g27o6pfqf7.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

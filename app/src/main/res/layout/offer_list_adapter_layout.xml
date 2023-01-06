@@ -17,6 +17,7 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:layout_marginRight="5dp"
                 android:id="@+id/offer_image"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
